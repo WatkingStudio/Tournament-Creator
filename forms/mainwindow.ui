@@ -1,0 +1,2414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/background.png);</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="headerWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:white;</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="pageTitleWidget">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Calibri</family>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Page Title</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="mainScrollArea">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1278</width>
+         <height>668</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QStackedWidget" name="stackedWidget">
+          <property name="styleSheet">
+           <string notr="true">background:transparent;</string>
+          </property>
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <widget class="QWidget" name="startScreen">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QWidget" name="startCenterWidget" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>254</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QWidget" name="startButtonWidget" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <item>
+                   <widget class="QPushButton" name="createNewEventButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>75</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Create New Event</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="loadEventButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>75</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Load Event</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>253</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tournamentCreatorPage">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QWidget" name="entryInformationWidget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>175</width>
+                <height>430</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QWidget" name="playerInputWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>160</width>
+                   <height>108</height>
+                  </size>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="spacing">
+                   <number>7</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="playerNameInputWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>160</width>
+                      <height>54</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_6">
+                     <item>
+                      <widget class="QLabel" name="playerNameInputLabel">
+                       <property name="minimumSize">
+                        <size>
+                         <width>70</width>
+                         <height>32</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>16</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <property name="text">
+                        <string>Name</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="playerNameInputLineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>32</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>250</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>16</pointsize>
+                        </font>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="playerSeedInputWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>160</width>
+                      <height>54</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_5">
+                     <item>
+                      <widget class="QLabel" name="playerSeedInputLabel">
+                       <property name="minimumSize">
+                        <size>
+                         <width>50</width>
+                         <height>32</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>16</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border: none;</string>
+                       </property>
+                       <property name="text">
+                        <string>Seed</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="playerSeedInputLineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>32</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>260</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>16</pointsize>
+                        </font>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removePlayerButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Remove Player</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="addPlayerButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Add Player</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="saveEventTournamentCreatorButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Save Event</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="eventSettingsButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Event Settings</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>224</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="continueTournamentCreatorButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Continue</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="backTournamentCreatorButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Back</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QScrollArea" name="tournamentCreatorScrollView">
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>430</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>200</width>
+                 <height>430</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <property name="spacing">
+                 <number>1</number>
+                </property>
+                <property name="leftMargin">
+                 <number>1</number>
+                </property>
+                <property name="topMargin">
+                 <number>1</number>
+                </property>
+                <property name="rightMargin">
+                 <number>1</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>1</number>
+                </property>
+                <item>
+                 <widget class="QTableWidget" name="tournamentCreatorPlayerTableWidget">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>180</width>
+                    <height>200</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 1px solid; background:white;</string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="gridStyle">
+                   <enum>Qt::DashLine</enum>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>false</bool>
+                  </property>
+                  <property name="rowCount">
+                   <number>0</number>
+                  </property>
+                  <property name="columnCount">
+                   <number>2</number>
+                  </property>
+                  <attribute name="horizontalHeaderVisible">
+                   <bool>false</bool>
+                  </attribute>
+                  <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                   <bool>false</bool>
+                  </attribute>
+                  <attribute name="horizontalHeaderStretchLastSection">
+                   <bool>true</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+                  </attribute>
+                  <column/>
+                  <column/>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="matchupsPage">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QWidget" name="matchupsUpperWidget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QWidget" name="matchupsSidebarWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>370</height>
+                  </size>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <property name="spacing">
+                   <number>3</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="matchupsRoundWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                     <property name="spacing">
+                      <number>3</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <spacer name="verticalSpacer_6">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>13</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <italic>true</italic>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Select Round Number</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="matchupsRoundNumberComboBox">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>27</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border: 1px solid; background:white;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="matchupsPreviousRoundButton">
+                       <property name="minimumSize">
+                        <size>
+                         <width>82</width>
+                         <height>71</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border: 1px solid; background:white;</string>
+                       </property>
+                       <property name="text">
+                        <string>View
+ Previous
+ Round</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="matchupsCurrentRoundButton">
+                       <property name="minimumSize">
+                        <size>
+                         <width>82</width>
+                         <height>71</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border: 1px solid; background:white;</string>
+                       </property>
+                       <property name="text">
+                        <string>View
+ Current
+ Round</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_5">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="matchupsModifyMatchupsButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Modify
+ Selected
+ Matchup</string>
+                    </property>
+                    <property name="autoRepeat">
+                     <bool>false</bool>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="matchupsNextRoundButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>48</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Next
+ Round</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="matchupsListWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>220</width>
+                   <height>320</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_7">
+                  <property name="spacing">
+                   <number>1</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="matchupsListWidgetTitleLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Player Standings</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QListWidget" name="matchupsPlayerListWidget">
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>300</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="matchupsTableWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>320</width>
+                   <height>320</height>
+                  </size>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <property name="spacing">
+                   <number>1</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="matchupsCurrentRoundNumberLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>300</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Current Round Number: </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="matchupsPlayerTableWidget">
+                    <property name="minimumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="editTriggers">
+                     <set>QAbstractItemView::NoEditTriggers</set>
+                    </property>
+                    <property name="columnCount">
+                     <number>6</number>
+                    </property>
+                    <attribute name="horizontalHeaderStretchLastSection">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="matchupsFooterWidget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>1036</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="spacing">
+                <number>3</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="matchupsBackButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Back</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QLabel" name="matchupsPlayerOneNameLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Player One</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="matchupsPlayerOneComboBox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="matchupsPlayerOneSpinBox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="maximum">
+                  <number>12</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QLabel" name="matchupsPlayerTwoNameLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Player Two</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="matchupsPlayerTwoComboBox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="matchupsPlayerTwoSpinBox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="maximum">
+                  <number>12</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="matchupsEnterResultsButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Calibri</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid; background:white;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enter Results</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="resultsPage">
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QWidget" name="resultsPageWidget" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item>
+                <widget class="QWidget" name="awardInputWidget" native="true">
+                 <property name="maximumSize">
+                  <size>
+                   <width>410</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <item>
+                   <widget class="QWidget" name="bestPaintedInputWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>170</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>410</width>
+                      <height>200</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_13">
+                     <item>
+                      <widget class="QLabel" name="bestPaintedTitleLabel">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Best Painted Votes</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="bestPatintedVoteInputWidget" native="true">
+                       <property name="maximumSize">
+                        <size>
+                         <width>400</width>
+                         <height>100</height>
+                        </size>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_10">
+                        <item>
+                         <widget class="QWidget" name="bestPaintedVotingInputWidget" native="true">
+                          <property name="styleSheet">
+                           <string notr="true">border:none;</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_14">
+                           <item>
+                            <widget class="QLabel" name="bestPaintedVotingLabel">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Voting Players Name</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="bestPaintedVotingLineEdit">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:1px solid;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="bestPaintedVotedInputWidget" native="true">
+                          <property name="styleSheet">
+                           <string notr="true">border:none;</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_15">
+                           <item>
+                            <widget class="QLabel" name="bestPaintedVotedLabel">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Voted Players Name</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="bestPaintedVotedLineEdit">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:1px solid;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="bestPaintedPushButton">
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Submit Vote</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="mostSportingInputWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>170</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>410</width>
+                      <height>200</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_16">
+                     <item>
+                      <widget class="QWidget" name="mostSportingTitleWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_12">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="mostSportingTitleLabel">
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Most Sporting Votes</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="mostSportingVoteInputWidget" native="true">
+                       <property name="maximumSize">
+                        <size>
+                         <width>400</width>
+                         <height>100</height>
+                        </size>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_11">
+                        <item>
+                         <widget class="QWidget" name="mostSportingVotingInputWidget" native="true">
+                          <property name="styleSheet">
+                           <string notr="true">border:none;</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_18">
+                           <item>
+                            <widget class="QLabel" name="mostSportingVotingLabel">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Voting Players Name</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="mostSportingVotingLineEdit">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:1px solid;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="mostSportingVotedInputWidget" native="true">
+                          <property name="styleSheet">
+                           <string notr="true">border:none;</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_17">
+                           <item>
+                            <widget class="QLabel" name="mostSportingVotedLabel">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Voted Players Name</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="mostSportingVotedLineEdit">
+                             <property name="font">
+                              <font>
+                               <family>Calibri</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">border:1px solid;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="mostSportingPushButton">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Submit Vote</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="displayResultsPushButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>16</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <property name="text">
+                     <string>Display Results</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_7">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="awardResultsWidget" native="true">
+                 <layout class="QVBoxLayout" name="verticalLayout_19">
+                  <item>
+                   <widget class="QWidget" name="podiumResultsWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>110</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_20">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>9</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>1</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="podiumResultTitleLabel">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Podium Results</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="podiumFirstPlaceWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_13">
+                        <item>
+                         <widget class="QLabel" name="firstPlaceSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>75</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>75</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>1st Place:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="firstPlaceInputLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="podiumSecondPlaceWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_14">
+                        <item>
+                         <widget class="QLabel" name="secondPlaceSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>75</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>75</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>2nd Place:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="secondPlaceInputLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="podiumThirdPlaceWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_15">
+                        <item>
+                         <widget class="QLabel" name="thirdPlaceSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>75</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>75</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>3rd Place:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="thirdPlaceInputLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="woodenSpoonResultWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>110</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>112</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_21">
+                     <item>
+                      <widget class="QLabel" name="woodenSpoonResultTitleLabel">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Wooden Spoon Result</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="woodenSpoonResultPlayerWIdget" native="true">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_16">
+                        <item>
+                         <widget class="QLabel" name="woodenSpoonSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>100</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="woodenSpoonInputLabel">
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="bestPaintedResultWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>77</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>112</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_22">
+                     <item>
+                      <widget class="QLabel" name="bestPaintedTitleLabel_2">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Best Painted Army Result</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="bestPaintedResultPlayerWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_17">
+                        <item>
+                         <widget class="QLabel" name="bestPaintedSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>100</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="bestPaintedInputLabel">
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="mostSportingResultWidget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>390</width>
+                      <height>77</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>112</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_23">
+                     <item>
+                      <widget class="QLabel" name="mostSportingTitleLabel_2">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Most Sporting Result</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="mostSportingResultPlayerWidget" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border:none;</string>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_18">
+                        <item>
+                         <widget class="QLabel" name="mostSportingSetLabel">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>25</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>100</width>
+                            <height>50</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="mostSportingInputLabel">
+                          <property name="font">
+                           <font>
+                            <family>Calibri</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Player Name</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="fullResultListWidget" native="true">
+                 <layout class="QVBoxLayout" name="verticalLayout_24">
+                  <item>
+                   <widget class="QLabel" name="fullResultsTitleLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>35</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <property name="text">
+                     <string>Overall Results</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="fullResultsTable">
+                    <property name="styleSheet">
+                     <string notr="true">background:white; border:1px solid;</string>
+                    </property>
+                    <property name="columnCount">
+                     <number>7</number>
+                    </property>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

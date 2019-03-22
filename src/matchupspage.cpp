@@ -116,8 +116,8 @@ void MainWindow::loadMatchupsPage()
     ui->matchupsPreviousRoundButton->setEnabled(false);
     ui->matchupsCurrentRoundButton->setEnabled(false);
     ui->matchupsModifyMatchupsButton->setEnabled(false);
-    ui->matchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
     m_CurrentRoundNumber = 1;
+    ui->matchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
     m_ActiveRoundNumber = 1;
     m_MatchupsSelectedCol = -1;
     m_MatchupsSelectedRow = -1;

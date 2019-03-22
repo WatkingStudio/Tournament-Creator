@@ -27,8 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->matchupsPlayerTwoComboBox->addItem(QString("Draw"));
     ui->matchupsPlayerTwoComboBox->addItem(QString("Loss"));
 
-    //ui->fullResultsTable->set
-
     loadStartPage();
 }
 

@@ -167,7 +167,6 @@ void MainWindow::on_displayResultsPushButton_clicked()
             display = false;
         }
     }
-    //addExtraAwardsPoints();
     if(display)
     {
         resetPage();

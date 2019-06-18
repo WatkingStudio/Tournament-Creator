@@ -83,6 +83,7 @@ private:
     std::vector<Player> m_TempPlayerList;
     int m_TournamentCreatorSelectedRow = -1;
     int m_TournamentCreatorSelectedCol = -1;
+    bool m_EventSettingsActive = false;
 
     //Matchups Page Functions and Variables
     void loadMatchupsPage();
@@ -102,6 +103,7 @@ private:
     void updateRoundInput();
     bool isRoundFinished() const;
     bool resultsValid() const;
+    void addResult(const std::string &result, int playerIndex);
 
     Player findRandomPlayer(int playerCount);
 
@@ -110,6 +112,9 @@ private:
     int m_MatchupsSelectedRow = -1;
     int m_MatchupsSelectedCol = -1;
     bool m_TableIsVictory{false};
+    int m_WinValue = 3;
+    int m_DrawValue = 1;
+    int m_LossValue = 0;
 
     //Results Page Functions and Vartiables
     void loadResultsPage();
@@ -119,11 +124,17 @@ private:
     std::vector<std::string> getPodiumPlayers();
     void populateResultsTable();
     void resetPage();
+
+    int m_MostSportingValue = 0;
+    int m_BestPaintedValue = 0;
 private: //Json Strings
     std::string m_NumRoundsTag = "number_of_rounds";
     std::string m_CurrentRoundTag = "current_round";
     std::string m_ActiveRoundTag = "active_round";
     std::string m_UsingSeedTag = "using_seed";
+    std::string m_WinValueTag = "win_value";
+    std::string m_DrawValueTag = "draw_value";
+    std::string m_LossValueTag = "loss_value";
     std::string m_PlayerDataTag = "player_data";
     std::string m_PairFirstTag = "first";
     std::string m_PairSecondTag = "second";

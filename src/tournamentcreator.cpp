@@ -5,6 +5,10 @@ void MainWindow::loadTournamentCreatorPage()
 {
     ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
     ui->pageTitleWidget->setText("Tournament Creator");
+    ui->eventSettingsTPValues->setEnabled(false);
+    ui->eventSettingsTPValues->setVisible(false);
+    ui->eventSettingsNumberRoundsWidget->setEnabled(false);
+    ui->eventSettingsNumberRoundsWidget->setVisible(false);
 
     m_TournamentCreatorSelectedCol = -1;
     m_TournamentCreatorSelectedRow = -1;
@@ -80,7 +84,11 @@ void MainWindow::on_saveEventTournamentCreatorButton_clicked()
 
 void MainWindow::on_eventSettingsButton_clicked()
 {
-
+    ui->eventSettingsTPValues->setEnabled(!ui->eventSettingsTPValues->isEnabled());
+    ui->eventSettingsTPValues->setVisible(!ui->eventSettingsTPValues->isVisible());
+    ui->eventSettingsNumberRoundsWidget->setEnabled(!ui->eventSettingsNumberRoundsWidget->isEnabled());
+    ui->eventSettingsNumberRoundsWidget->setVisible(!ui->eventSettingsNumberRoundsWidget->isVisible());
+    m_EventSettingsActive = ui->eventSettingsTPValues->isEnabled();
 }
 
 void MainWindow::on_continueTournamentCreatorButton_clicked()
@@ -99,6 +107,16 @@ void MainWindow::on_continueTournamentCreatorButton_clicked()
     else
     {
         QMessageBox::warning(this, "Warning", "No Players Detected.");
+    }
+
+    if(m_EventSettingsActive)
+    {
+        m_NumberOfRounds = ui->eventSettingsNumberRoundsLineEdit->displayText().toInt();
+        m_WinValue = ui->eventSettingsWinLineEdit->displayText().toInt();
+        m_DrawValue = ui->eventSettingsDrawLineEdit->displayText().toInt();
+        m_LossValue = ui->eventSettingsLossLineEdit->displayText().toInt();
+        m_MostSportingValue = ui->eventSettingsMostSportingLineEdit->displayText().toInt();
+        m_BestPaintedValue = ui->eventSettingsBestPaintedLineEdit->displayText().toInt();
     }
     saveEventData();
 }

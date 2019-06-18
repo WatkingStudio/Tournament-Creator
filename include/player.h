@@ -22,6 +22,10 @@ public:
     int getVPs() const;
     int getVPDiff() const;
 
+    void addWin(int value);
+    void addDraw(int value);
+    void addLoss(int value);
+
     bool isFirstRoundSet() const;
     bool hasVotedBestPainted() const;
     bool hasVotedMostSporting() const;
@@ -39,7 +43,7 @@ public:
     void addTPs(int points);
     void addVPs(int points);
     void addVPDiff(int points);
-    void addResult(const std::string &result);
+    void addResult(const std::string &result, int value);
 
     void setFirstRoundSet(bool set);
     void setVotedBestPainted(bool set);
@@ -68,10 +72,7 @@ private:
     std::string m_BestPaintedVote = "";
     bool m_VotedMostSporting{false};
     std::string m_MostSportingVote = "";
-    
-    void addWin();
-    void addDraw();
-    void addLoss();
+
 private: //Json Tags
     std::string m_NameTag = "name";
     std::string m_SeedTag = "seed";

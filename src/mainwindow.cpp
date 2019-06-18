@@ -66,6 +66,9 @@ void MainWindow::saveEventData()
         jsonObject[m_CurrentRoundTag.c_str()] = m_CurrentRoundNumber;
         jsonObject[m_ActiveRoundTag.c_str()] = m_ActiveRoundNumber;
         jsonObject[m_UsingSeedTag.c_str()] = m_UsingSeed;
+        jsonObject[m_WinValueTag.c_str()] = m_WinValue;
+        jsonObject[m_DrawValueTag.c_str()] = m_DrawValue;
+        jsonObject[m_LossValueTag.c_str()] = m_LossValue;
     }
 
     //Player Data
@@ -136,6 +139,9 @@ void MainWindow::loadEventData()
         m_CurrentRoundNumber = object[m_CurrentRoundTag.c_str()].toInt();
         m_ActiveRoundNumber = object[m_ActiveRoundTag.c_str()].toInt();
         m_UsingSeed = object[m_UsingSeedTag.c_str()].toBool();
+        m_WinValue = object[m_WinValueTag.c_str()].toInt();
+        m_DrawValue = object[m_DrawValueTag.c_str()].toInt();
+        m_LossValue = object[m_LossValueTag.c_str()].toInt();
     }
 
     //Get array of player data

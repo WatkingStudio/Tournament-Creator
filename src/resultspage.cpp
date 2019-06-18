@@ -66,6 +66,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
             if(m_MainPlayerList.at(i).getName() == votedPlayer)
             {
                 m_MainPlayerList.at(i).addBestPaintedArmyVote();
+                m_NumBestPaintedVotes++;
                 break;
             }
         }
@@ -134,6 +135,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
             if(m_MainPlayerList.at(i).getName() == votedPlayer)
             {
                 m_MainPlayerList.at(i).addMostSportingVote();
+                m_NumMostSportingVotes++;
                 break;
             }
         }

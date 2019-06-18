@@ -236,17 +236,20 @@ void MainWindow::updateScores()
             {
                 m_MainPlayerList.at(i).addVPs(playerOneScore);
                 m_MainPlayerList.at(i).addVPDiff(playerOneScore - playerTwoScore);
-                m_MainPlayerList.at(i).addResult(playerOneResult);
+                addResult(playerOneResult, i);
             }
             else if(m_MainPlayerList.at(i).getName() == playerTwoName)
             {
                 m_MainPlayerList.at(i).addVPs(playerTwoScore);
                 m_MainPlayerList.at(i).addVPDiff(playerTwoScore - playerOneScore);
-                m_MainPlayerList.at(i).addResult(playerTwoResult);
+                addResult(playerTwoResult, i);
+                //m_MainPlayerList.at(i).addResult(playerTwoResult);
             }
         }
     }
 }
+
+
 
 void MainWindow::createRankedMatchup()
 {
@@ -444,6 +447,22 @@ bool MainWindow::resultsValid() const
     }
 
     return false;
+}
+
+void MainWindow::addResult(const std::string &result, int playerIndex)
+{
+    if(result == "Win")
+    {
+        m_MainPlayerList.at(playerIndex).addWin(m_WinValue);
+    }
+    else if(result == "Draw")
+    {
+        m_MainPlayerList.at(playerIndex).addDraw(m_DrawValue);
+    }
+    else if(result == "Loss")
+    {
+        m_MainPlayerList.at(playerIndex).addLoss(m_LossValue);
+    }
 }
 
 Player MainWindow::findRandomPlayer(int playerCount)

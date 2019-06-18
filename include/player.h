@@ -35,10 +35,10 @@ public:
     void setName(const std::string &name);
     void setSeed(int seed);
 
-    void addMostSportingVote();
-    void addBestPaintedArmyVote();
-    void removeMostSportingVote();
-    void removeBestPaintedArmyVote();
+    void addMostSportingVote(int value = 0);
+    void addBestPaintedArmyVote(int value = 0);
+    void removeMostSportingVote(int value = 0);
+    void removeBestPaintedArmyVote(int value = 0);
 
     void addTPs(int points);
     void addVPs(int points);

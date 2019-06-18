@@ -135,6 +135,8 @@ private: //Json Strings
     std::string m_WinValueTag = "win_value";
     std::string m_DrawValueTag = "draw_value";
     std::string m_LossValueTag = "loss_value";
+    std::string m_MostSportingValueTag = "most_sporting_value";
+    std::string m_BestPaintedValueTag = "best_painted_value";
     std::string m_PlayerDataTag = "player_data";
     std::string m_PairFirstTag = "first";
     std::string m_PairSecondTag = "second";

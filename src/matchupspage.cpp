@@ -243,7 +243,6 @@ void MainWindow::updateScores()
                 m_MainPlayerList.at(i).addVPs(playerTwoScore);
                 m_MainPlayerList.at(i).addVPDiff(playerTwoScore - playerOneScore);
                 addResult(playerTwoResult, i);
-                //m_MainPlayerList.at(i).addResult(playerTwoResult);
             }
         }
     }

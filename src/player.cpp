@@ -86,24 +86,28 @@ void Player::setSeed(int seed)
     m_Seed = seed;
 }
 
-void Player::addMostSportingVote()
+void Player::addMostSportingVote(int value)
 {
     m_MostSportingVotes++;
+    m_TPs += value;
 }
 
-void Player::addBestPaintedArmyVote()
+void Player::addBestPaintedArmyVote(int value)
 {
     m_BestPaintedArmyVotes++;
+    m_TPs += value;
 }
 
-void Player::removeMostSportingVote()
+void Player::removeMostSportingVote(int value)
 {
     m_MostSportingVotes--;
+    m_TPs -= value;
 }
 
-void Player::removeBestPaintedArmyVote()
+void Player::removeBestPaintedArmyVote(int value)
 {
     m_BestPaintedArmyVotes--;
+    m_TPs -= value;
 }
 
 void Player::addWin(int value)

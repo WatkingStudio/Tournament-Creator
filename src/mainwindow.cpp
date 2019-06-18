@@ -69,6 +69,8 @@ void MainWindow::saveEventData()
         jsonObject[m_WinValueTag.c_str()] = m_WinValue;
         jsonObject[m_DrawValueTag.c_str()] = m_DrawValue;
         jsonObject[m_LossValueTag.c_str()] = m_LossValue;
+        jsonObject[m_MostSportingValueTag.c_str()] = m_MostSportingValue;
+        jsonObject[m_BestPaintedValueTag.c_str()] = m_BestPaintedValue;
     }
 
     //Player Data
@@ -142,6 +144,8 @@ void MainWindow::loadEventData()
         m_WinValue = object[m_WinValueTag.c_str()].toInt();
         m_DrawValue = object[m_DrawValueTag.c_str()].toInt();
         m_LossValue = object[m_LossValueTag.c_str()].toInt();
+        m_MostSportingValue = object[m_MostSportingValueTag.c_str()].toInt();
+        m_BestPaintedValue = object[m_BestPaintedValueTag.c_str()].toInt();
     }
 
     //Get array of player data

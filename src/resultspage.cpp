@@ -65,7 +65,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
         {
             if(m_MainPlayerList.at(i).getName() == votedPlayer)
             {
-                m_MainPlayerList.at(i).addBestPaintedArmyVote();
+                m_MainPlayerList.at(i).addBestPaintedArmyVote(m_BestPaintedValue);
                 m_NumBestPaintedVotes++;
                 break;
             }
@@ -134,7 +134,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
         {
             if(m_MainPlayerList.at(i).getName() == votedPlayer)
             {
-                m_MainPlayerList.at(i).addMostSportingVote();
+                m_MainPlayerList.at(i).addMostSportingVote(m_MostSportingValue);
                 m_NumMostSportingVotes++;
                 break;
             }
@@ -167,9 +167,11 @@ void MainWindow::on_displayResultsPushButton_clicked()
             display = false;
         }
     }
+    //addExtraAwardsPoints();
     if(display)
     {
         resetPage();
+        updateRankings();
 
         //Fill in all award data
         std::string mostSportingPlayer = getMostSportingPlayer();

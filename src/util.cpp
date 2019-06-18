@@ -12,7 +12,7 @@ void writeToFile(const std::string &file){
 std::string getWorkingDirectory()
 {
     std::cout<<"This path has been hard-coded"<<std::endl;
-    return "C:/Users/gethi/Documents/Coding/Repositories/Tournament_Creator/";
+    return "C:/Users/gethi/Documents/Coding/Repositories/tournament_creator/";
 }
 
 }

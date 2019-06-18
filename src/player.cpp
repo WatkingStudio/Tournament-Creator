@@ -86,41 +86,45 @@ void Player::setSeed(int seed)
     m_Seed = seed;
 }
 
-void Player::addMostSportingVote()
+void Player::addMostSportingVote(int value)
 {
     m_MostSportingVotes++;
+    m_TPs += value;
 }
 
-void Player::addBestPaintedArmyVote()
+void Player::addBestPaintedArmyVote(int value)
 {
     m_BestPaintedArmyVotes++;
+    m_TPs += value;
 }
 
-void Player::removeMostSportingVote()
+void Player::removeMostSportingVote(int value)
 {
     m_MostSportingVotes--;
+    m_TPs -= value;
 }
 
-void Player::removeBestPaintedArmyVote()
+void Player::removeBestPaintedArmyVote(int value)
 {
     m_BestPaintedArmyVotes--;
+    m_TPs -= value;
 }
 
-void Player::addWin()
+void Player::addWin(int value)
 {
-    addTPs(3);
+    addTPs(value);
     m_NumberWins++;
 }
 
-void Player::addDraw()
+void Player::addDraw(int value)
 {
-    addTPs(1);
+    addTPs(value);
     m_NumberDraws++;
 }
 
-void Player::addLoss()
+void Player::addLoss(int value)
 {
-    addTPs(0);
+    addTPs(value);
     m_NumberLosses++;
 }
 
@@ -139,19 +143,19 @@ void Player::addVPDiff(int points)
     m_VPDiff += points;
 }
 
-void Player::addResult(const std::string &result)
+void Player::addResult(const std::string &result, int value)
 {
     if(result == "Win")
     {
-        addWin();
+        addWin(value);
     }
     else if(result == "Draw")
     {
-        addDraw();
+        addDraw(value);
     }
     else if(result == "Loss")
     {
-        addLoss();
+        addLoss(value);
     }
 }
 

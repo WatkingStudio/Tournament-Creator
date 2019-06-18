@@ -6,17 +6,13 @@
 
 [Label what tasks need to be completed for this issue to be completed]
 
-1. 
-2. 
-3. 
-
 ## Technology
 
 [Specify what software, hardware, tools or coding languages will be used for this issue]
 
 ## External Factors
 
-[What, if anym external factors will affect this issue]
+[What, if any external factors will affect this issue]
 
 ## Additional Comments
 

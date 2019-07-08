@@ -111,6 +111,7 @@ void MainWindow::on_matchupsNextRoundButton_clicked()
 
 void MainWindow::on_matchupsResetMatchupTable_clicked()
 {
+    m_CurrentRoundMatchups = m_AllRoundMatchups.at(m_CurrentRoundNumber - 1);
     updateMatchupsTable();
 }
 
@@ -511,33 +512,6 @@ void MainWindow::setMatchUp(Player playerOne, Player playerTwo)
             break;
         }
     }
-    /*for(auto it : m_CurrentRoundMatchups)
-    {
-        if(it.first.getName() == playerOne.getName())
-        {
-            utilLog("First");
-            it.second = playerTwo;
-            break;
-        }
-        else if(it.second.getName() == playerOne.getName())
-        {
-            utilLog("Second");
-            it.first = playerTwo;
-            break;
-        }
-        else if(it.first.getName() == playerTwo.getName())
-        {
-            utilLog("Third");
-            it.second = playerOne;
-            break;
-        }
-        else if(it.second.getName() == playerTwo.getName())
-        {
-            utilLog("Fourth");
-            it.first = playerOne;
-            break;
-        }
-    }*/
 }
 
 Player MainWindow::findRandomPlayer(int playerCount)

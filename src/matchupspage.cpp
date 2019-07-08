@@ -109,6 +109,25 @@ void MainWindow::on_matchupsNextRoundButton_clicked()
     }
 }
 
+void MainWindow::on_matchupsResetMatchupTable_clicked()
+{
+    updateMatchupsTable();
+}
+
+void MainWindow::on_matchupsDirectMatchupSwapButton_clicked()
+{
+    m_MatchUpSwapWidget.show();
+    m_MatchUpSwapWidget.SetUp(m_MainPlayerList, m_CurrentRoundMatchups);
+}
+
+void MainWindow::newMatchUpsFromSwap(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
+{
+    utilLog("Done");
+    setMatchUp(playerOne, playerTwo);
+    setMatchUp(playerThree, playerFour);
+    updateMatchupsTable();
+}
+
 void MainWindow::loadMatchupsPage()
 {
     utilDebug("Load Matchups Page");
@@ -263,8 +282,6 @@ void MainWindow::createRankedMatchup()
     }
     m_AllRoundMatchups.push_back(m_CurrentRoundMatchups);
     updateMatchupsTable();
-
-    utilLog("Funcationality Not implemented: createRankedMatchup");
 }
 
 void MainWindow::updateRankings()
@@ -462,6 +479,65 @@ void MainWindow::addResult(const std::string &result, int playerIndex)
     {
         m_MainPlayerList.at(playerIndex).addLoss(m_LossValue);
     }
+}
+
+void MainWindow::setMatchUp(Player playerOne, Player playerTwo)
+{
+    utilLog("Setting Matchup");
+    for(int i = 0; i < m_CurrentRoundMatchups.size(); ++i)
+    {
+        if(m_CurrentRoundMatchups.at(i).first.getName() == playerOne.getName())
+        {
+            m_CurrentRoundMatchups.at(i).second = playerTwo;
+            utilLog("Setting Player: " + playerTwo.getName());
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).second.getName() == playerOne.getName())
+        {
+            m_CurrentRoundMatchups.at(i).first = playerTwo;
+            utilLog("Setting Player: " + playerTwo.getName());
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).first.getName() == playerTwo.getName())
+        {
+            m_CurrentRoundMatchups.at(i).second = playerOne;
+            utilLog("Setting Player: " + playerOne.getName());
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).second.getName() == playerTwo.getName())
+        {
+            m_CurrentRoundMatchups.at(i).first = playerOne;
+            utilLog("Setting Player: " + playerOne.getName());
+            break;
+        }
+    }
+    /*for(auto it : m_CurrentRoundMatchups)
+    {
+        if(it.first.getName() == playerOne.getName())
+        {
+            utilLog("First");
+            it.second = playerTwo;
+            break;
+        }
+        else if(it.second.getName() == playerOne.getName())
+        {
+            utilLog("Second");
+            it.first = playerTwo;
+            break;
+        }
+        else if(it.first.getName() == playerTwo.getName())
+        {
+            utilLog("Third");
+            it.second = playerOne;
+            break;
+        }
+        else if(it.second.getName() == playerTwo.getName())
+        {
+            utilLog("Fourth");
+            it.first = playerOne;
+            break;
+        }
+    }*/
 }
 
 Player MainWindow::findRandomPlayer(int playerCount)

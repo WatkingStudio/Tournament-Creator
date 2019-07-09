@@ -60,6 +60,8 @@ private slots:
     void on_mostSportingPushButton_clicked();
     void on_displayResultsPushButton_clicked();
 
+    void on_usingSeededPlayersCheckBox_stateChanged(int arg1);
+
 private:
     //General Functions and Variables
     Ui::MainWindow *ui;

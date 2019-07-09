@@ -9,6 +9,8 @@ void MainWindow::loadTournamentCreatorPage()
     ui->eventSettingsTPValues->setVisible(false);
     ui->eventSettingsNumberRoundsWidget->setEnabled(false);
     ui->eventSettingsNumberRoundsWidget->setVisible(false);
+    ui->usingSeededPlayersWidget->setEnabled(false);
+    ui->usingSeededPlayersWidget->setVisible(false);
 
     m_TournamentCreatorSelectedCol = -1;
     m_TournamentCreatorSelectedRow = -1;
@@ -88,6 +90,8 @@ void MainWindow::on_eventSettingsButton_clicked()
     ui->eventSettingsTPValues->setVisible(!ui->eventSettingsTPValues->isVisible());
     ui->eventSettingsNumberRoundsWidget->setEnabled(!ui->eventSettingsNumberRoundsWidget->isEnabled());
     ui->eventSettingsNumberRoundsWidget->setVisible(!ui->eventSettingsNumberRoundsWidget->isVisible());
+    ui->usingSeededPlayersWidget->setEnabled(!ui->usingSeededPlayersWidget->isEnabled());
+    ui->usingSeededPlayersWidget->setVisible(!ui->usingSeededPlayersWidget->isVisible());
     m_EventSettingsActive = ui->eventSettingsTPValues->isEnabled();
 }
 
@@ -124,4 +128,16 @@ void MainWindow::on_continueTournamentCreatorButton_clicked()
 void MainWindow::on_backTournamentCreatorButton_clicked()
 {
     loadStartPage();
+}
+
+void MainWindow::on_usingSeededPlayersCheckBox_stateChanged(int arg1)
+{
+    if(arg1 == 2)
+    {
+        m_UsingSeed = true;
+    }
+    else
+    {
+        m_UsingSeed = false;
+    }
 }

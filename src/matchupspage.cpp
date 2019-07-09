@@ -121,9 +121,8 @@ void MainWindow::on_matchupsDirectMatchupSwapButton_clicked()
     m_MatchUpSwapWidget.SetUp(m_MainPlayerList, m_CurrentRoundMatchups);
 }
 
-void MainWindow::newMatchUpsFromSwap(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
+void MainWindow::newMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour)
 {
-    utilLog("Done");
     setMatchUp(playerOne, playerTwo);
     setMatchUp(playerThree, playerFour);
     updateMatchupsTable();
@@ -482,33 +481,28 @@ void MainWindow::addResult(const std::string &result, int playerIndex)
     }
 }
 
-void MainWindow::setMatchUp(Player playerOne, Player playerTwo)
+void MainWindow::setMatchUp(const Player &playerOne, const Player &playerTwo)
 {
-    utilLog("Setting Matchup");
     for(int i = 0; i < m_CurrentRoundMatchups.size(); ++i)
     {
         if(m_CurrentRoundMatchups.at(i).first.getName() == playerOne.getName())
         {
             m_CurrentRoundMatchups.at(i).second = playerTwo;
-            utilLog("Setting Player: " + playerTwo.getName());
             break;
         }
         else if(m_CurrentRoundMatchups.at(i).second.getName() == playerOne.getName())
         {
             m_CurrentRoundMatchups.at(i).first = playerTwo;
-            utilLog("Setting Player: " + playerTwo.getName());
             break;
         }
         else if(m_CurrentRoundMatchups.at(i).first.getName() == playerTwo.getName())
         {
             m_CurrentRoundMatchups.at(i).second = playerOne;
-            utilLog("Setting Player: " + playerOne.getName());
             break;
         }
         else if(m_CurrentRoundMatchups.at(i).second.getName() == playerTwo.getName())
         {
             m_CurrentRoundMatchups.at(i).first = playerOne;
-            utilLog("Setting Player: " + playerOne.getName());
             break;
         }
     }

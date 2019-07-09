@@ -14,11 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setDebugging(m_DebugMessagesOn);
 
-    //m_MatchUpSwapWidget = std::make_shared<DirectMatchupSwap>();
-
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
     connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
-    connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(Player, Player, Player, Player)), this, SLOT(newMatchUpsFromSwap(Player, Player, Player, Player)));
+    connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
 
     ui->matchupsPlayerOneComboBox->addItem(QString(""));
     ui->matchupsPlayerOneComboBox->addItem(QString("Win"));

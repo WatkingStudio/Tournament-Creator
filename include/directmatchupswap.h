@@ -19,7 +19,7 @@ public:
     void SetUp(const std::vector<Player> &playerList, const std::vector<std::pair<Player, Player>> &currentRound);
 
 signals:
-    void SwapComplete(Player playerOne, Player playerTwo, Player playerThree, Player playerFour);
+    void SwapComplete(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour);
 
 private slots:
     void on_okPushButton_clicked();
@@ -33,6 +33,8 @@ private:
 
     std::vector<std::pair<Player, Player>> m_TempPlayerMatchup;
     std::vector<Player> m_TempPlayerList;
+
+    void ResetWidget();
 };
 
 #endif // DIRECTMATCHUPSWAP_H

@@ -15,6 +15,8 @@ DirectMatchupSwap::~DirectMatchupSwap()
 
 void DirectMatchupSwap::SetUp(const std::vector<Player> &playerList, const std::vector<std::pair<Player, Player>> &currentRound)
 {
+    ResetWidget();
+
     m_TempPlayerList = playerList;
     //Populate the DropDown with players
     for(auto it : m_TempPlayerList)
@@ -52,11 +54,6 @@ void DirectMatchupSwap::on_okPushButton_clicked()
             playerFour = it;
         }
     }
-    //using new player matchups modify the matchup data
-    //find player a and make opponent player b
-    //find player c and make opponent player c
-    //setMatchup(playerOne, playerTwo);
-    //setMatchup(playerThree, playerFour);
 
     this->hide();
     emit SwapComplete(playerOne, playerTwo, playerThree, playerFour);
@@ -94,4 +91,15 @@ void DirectMatchupSwap::on_playerBComboBox_currentIndexChanged(const QString &ar
             ui->newMatchUpTwoPlayerDName->setText(it.first.getName().c_str());
         }
     }
+}
+
+void DirectMatchupSwap::ResetWidget()
+{
+    ui->playerAComboBox->setCurrentIndex(0);
+    ui->playerBComboBox->setCurrentIndex(0);
+
+    ui->newMatchUpOnePlayerAName->setText("");
+    ui->newMatchUpOnePlayerBName->setText("");
+    ui->newMatchUpTwoPlayerCName->setText("");
+    ui->newMatchUpTwoPlayerDName->setText("");
 }

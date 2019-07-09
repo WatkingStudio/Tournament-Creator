@@ -109,6 +109,25 @@ void MainWindow::on_matchupsNextRoundButton_clicked()
     }
 }
 
+void MainWindow::on_matchupsResetMatchupTable_clicked()
+{
+    m_CurrentRoundMatchups = m_AllRoundMatchups.at(m_CurrentRoundNumber - 1);
+    updateMatchupsTable();
+}
+
+void MainWindow::on_matchupsDirectMatchupSwapButton_clicked()
+{
+    m_MatchUpSwapWidget.show();
+    m_MatchUpSwapWidget.SetUp(m_MainPlayerList, m_CurrentRoundMatchups);
+}
+
+void MainWindow::newMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour)
+{
+    setMatchUp(playerOne, playerTwo);
+    setMatchUp(playerThree, playerFour);
+    updateMatchupsTable();
+}
+
 void MainWindow::loadMatchupsPage()
 {
     utilDebug("Load Matchups Page");
@@ -263,8 +282,6 @@ void MainWindow::createRankedMatchup()
     }
     m_AllRoundMatchups.push_back(m_CurrentRoundMatchups);
     updateMatchupsTable();
-
-    utilLog("Funcationality Not implemented: createRankedMatchup");
 }
 
 void MainWindow::updateRankings()
@@ -461,6 +478,33 @@ void MainWindow::addResult(const std::string &result, int playerIndex)
     else if(result == "Loss")
     {
         m_MainPlayerList.at(playerIndex).addLoss(m_LossValue);
+    }
+}
+
+void MainWindow::setMatchUp(const Player &playerOne, const Player &playerTwo)
+{
+    for(int i = 0; i < m_CurrentRoundMatchups.size(); ++i)
+    {
+        if(m_CurrentRoundMatchups.at(i).first.getName() == playerOne.getName())
+        {
+            m_CurrentRoundMatchups.at(i).second = playerTwo;
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).second.getName() == playerOne.getName())
+        {
+            m_CurrentRoundMatchups.at(i).first = playerTwo;
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).first.getName() == playerTwo.getName())
+        {
+            m_CurrentRoundMatchups.at(i).second = playerOne;
+            break;
+        }
+        else if(m_CurrentRoundMatchups.at(i).second.getName() == playerTwo.getName())
+        {
+            m_CurrentRoundMatchups.at(i).first = playerOne;
+            break;
+        }
     }
 }
 

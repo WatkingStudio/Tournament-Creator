@@ -5,6 +5,7 @@
 #include "util.h"
 #include "player.h"
 #include <QMessageBox>
+#include "directmatchupswap.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    DirectMatchupSwap m_MatchUpSwapWidget;
 
 private slots:
     //Global
@@ -48,6 +51,9 @@ private slots:
     void on_matchupsEnterResultsButton_clicked();
     void on_matchupsModifyMatchupsButton_clicked();
     void on_matchupsNextRoundButton_clicked();
+    void on_matchupsResetMatchupTable_clicked();
+    void on_matchupsDirectMatchupSwapButton_clicked();
+    void newMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour);
 
     //Result Page Slots
     void on_bestPaintedPushButton_clicked();
@@ -104,7 +110,7 @@ private:
     bool isRoundFinished() const;
     bool resultsValid() const;
     void addResult(const std::string &result, int playerIndex);
-
+    void setMatchUp(const Player &playerOne, const Player &playerTwo);
     Player findRandomPlayer(int playerCount);
 
     std::vector<std::vector<std::pair<Player, Player>>> m_AllRoundMatchups;

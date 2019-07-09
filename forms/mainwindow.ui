@@ -135,7 +135,7 @@
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="startScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1424,6 +1424,24 @@
                    </spacer>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="matchupsDirectMatchupSwapButton">
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Direct
+ Matchup
+ Swap</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="matchupsModifyMatchupsButton">
                     <property name="minimumSize">
                      <size>
@@ -1452,6 +1470,37 @@
                      <bool>false</bool>
                     </property>
                    </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="matchupsResetMatchupTable">
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid; background:white;</string>
+                    </property>
+                    <property name="text">
+                     <string>Reset
+ Matchup
+ Table</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                   <item>
                    <widget class="QPushButton" name="matchupsNextRoundButton">

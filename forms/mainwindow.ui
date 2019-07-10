@@ -135,7 +135,7 @@
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="startScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">

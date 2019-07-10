@@ -32,13 +32,15 @@ SOURCES +=  src/main.cpp \
     src/matchupspage.cpp \
     src/resultspage.cpp \
     src/directmatchupswap.cpp \
-    src/eventsettings.cpp
+    src/eventsettings.cpp \
+    src/tiebreakerdata.cpp
 
 HEADERS +=  include/mainwindow.h \
     include/util.h \
     include/player.h \
     include/directmatchupswap.h \
-    include/eventsettings.h
+    include/eventsettings.h \
+    include/tiebreakerdata.h
 
 FORMS +=  forms/mainwindow.ui \
     forms/directmatchupswap.ui \

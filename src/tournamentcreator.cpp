@@ -129,4 +129,12 @@ void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int 
     m_UsingSeed = usingSeeded;
     if(numberOfRounds > 0)
         m_NumberOfRounds = numberOfRounds;
+    if(firstTiebreaker != *Tiebreak::NoneString)
+        m_FirstTiebreaker = Tiebreak::StringToTiebreaker(firstTiebreaker);
+    if(secondTiebreaker != *Tiebreak::NoneString)
+        m_SecondTiebreaker = Tiebreak::StringToTiebreaker(secondTiebreaker);
+    if(thirdTiebreaker != *Tiebreak::NoneString)
+        m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(thirdTiebreaker);
+    if(fourthTiebreaker != *Tiebreak::NoneString)
+        m_FourthTiebreaker = Tiebreak::StringToTiebreaker(fourthTiebreaker);
 }

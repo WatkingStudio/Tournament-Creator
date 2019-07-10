@@ -75,6 +75,14 @@ void MainWindow::saveEventData()
         jsonObject[m_BestPaintedValueTag.c_str()] = m_BestPaintedValue;
     }
 
+    //Tiebreaker Settings
+    {
+        jsonObject[m_FirstTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_FirstTiebreaker).c_str();
+        jsonObject[m_SecondTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_SecondTiebreaker).c_str();
+        jsonObject[m_ThirdTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_ThirdTiebreaker).c_str();
+        jsonObject[m_FourthTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_FourthTiebreaker).c_str();
+    }
+
     //Player Data
     for(auto player : m_MainPlayerList)
     {
@@ -148,6 +156,14 @@ void MainWindow::loadEventData()
         m_LossValue = object[m_LossValueTag.c_str()].toInt();
         m_MostSportingValue = object[m_MostSportingValueTag.c_str()].toInt();
         m_BestPaintedValue = object[m_BestPaintedValueTag.c_str()].toInt();
+    }
+
+    //Tiebreaker Settings
+    {
+        m_FirstTiebreaker = Tiebreak::StringToTiebreaker(object[m_FirstTiebreakerTag.c_str()].toString().toStdString());
+        m_SecondTiebreaker = Tiebreak::StringToTiebreaker(object[m_SecondTiebreakerTag.c_str()].toString().toStdString());
+        m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(object[m_ThirdTiebreakerTag.c_str()].toString().toStdString());
+        m_FourthTiebreaker = Tiebreak::StringToTiebreaker(object[m_FourthTiebreakerTag.c_str()].toString().toStdString());
     }
 
     //Get array of player data

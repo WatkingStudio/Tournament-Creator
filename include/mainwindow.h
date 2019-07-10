@@ -20,6 +20,12 @@ enum Pages{
     LAST
 };
 
+enum TiebreakerResult{
+    HIGHER,
+    EQUAL,
+    LOWER
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -93,9 +99,14 @@ private:
     int m_TournamentCreatorSelectedRow = -1;
     int m_TournamentCreatorSelectedCol = -1;
     bool m_EventSettingsActive = false;
+    Tiebreak::Tiebreaker m_FirstTiebreaker = Tiebreak::Tiebreaker::VP_TOTAL;
+    Tiebreak::Tiebreaker m_SecondTiebreaker = Tiebreak::Tiebreaker::VP_DIFF;
+    Tiebreak::Tiebreaker m_ThirdTiebreaker = Tiebreak::Tiebreaker::MOST_SPORTING;
+    Tiebreak::Tiebreaker m_FourthTiebreaker = Tiebreak::Tiebreaker::BEST_PAINTED;
 
     //Matchups Page Functions and Variables
     void loadMatchupsPage();
+    void updatePlayerRankingList();
     void loadMatchupsPageFromLoadedEvent();
     void setLoadedEventMatchups();
     void setInitialMatchups();
@@ -115,6 +126,13 @@ private:
     void addResult(const std::string &result, int playerIndex);
     void setMatchUp(const Player &playerOne, const Player &playerTwo);
     Player findRandomPlayer(int playerCount);
+    bool checkTiebreakers(const Player &highestRank, const Player &player);
+    TiebreakerResult checkFirstTiebreaker(const Player &highestRank, const Player &player);
+    TiebreakerResult checkSecondTiebreaker(const Player &highestRank, const Player &player);
+    TiebreakerResult checkThirdTiebreaker(const Player &highestRank, const Player &player);
+    TiebreakerResult checkFourthTiebreaker(const Player &highestRank, const Player &player);
+    TiebreakerResult checkTiebreaker(Tiebreak::Tiebreaker tiebreak, const Player &highestRank, const Player &player);
+    TiebreakerResult checkTiebreakerValue(int highestRankValue, int playerValue);
 
     std::vector<std::vector<std::pair<Player, Player>>> m_AllRoundMatchups;
     std::vector<std::pair<Player,Player>> m_CurrentRoundMatchups;
@@ -151,6 +169,10 @@ private: //Json Strings
     std::string m_PairSecondTag = "second";
     std::string m_CurrentMatchupsTag = "current_matchups";
     std::string m_AllMatchupsTag = "all_matchups";
+    std::string m_FirstTiebreakerTag = "first_tiebreaker";
+    std::string m_SecondTiebreakerTag = "second_tiebreaker";
+    std::string m_ThirdTiebreakerTag = "third_tiebreaker";
+    std::string m_FourthTiebreakerTag = "fourth_tiebreaker";
 };
 
 #endif // MAINWINDOW_H

@@ -148,7 +148,13 @@ void MainWindow::loadMatchupsPage()
     m_CurrentRoundMatchups.clear();
     setInitialMatchups();
 
-    //List Players
+    updatePlayerRankingList();
+}
+
+void MainWindow::updatePlayerRankingList()
+{
+    ui->matchupsPlayerListWidget->clear();
+
     for(auto it = m_MainPlayerList.begin(); it != m_MainPlayerList.end(); ++it)
     {
         ui->matchupsPlayerListWidget->addItem(QString::fromStdString(it->getName()));
@@ -346,18 +352,9 @@ void MainWindow::updateRankings()
             }
             else if(it->getTPs() == highestRank.getTPs())
             {
-                //First tie-breaker
-                if(it->getVPs() > highestRank.getVPs())
+                if(checkTiebreakers(highestRank, *it))
                 {
                     highestRank = *it;
-                }
-                else if(it->getVPs() == highestRank.getVPs())
-                {
-                    //Second tie-breaker
-                    if(it->getVPDiff() > highestRank.getVPDiff())
-                    {
-                        highestRank = *it;
-                    }
                 }
             }
         }
@@ -373,6 +370,7 @@ void MainWindow::updateRankings()
     }
     
     m_MainPlayerList = tempRankings;
+    updatePlayerRankingList();
 }
 
 void MainWindow::resetMatchupsTable()
@@ -568,4 +566,96 @@ Player MainWindow::findRandomPlayer(int playerCount)
         }
     }
     return m_MainPlayerList.at(number);
+}
+
+//This function will go through each of the tiebreakers in order.
+//If one of the tiebreakers is in favour of the new player they will be
+// assigned as the highest rank player and the function will exit
+//If one of the tiebreakers is in favour of the current highest rank player
+// the function will exit.
+//If one of the tiebreakers is a draw then the function will proceed to check
+// the next tiebreaker.
+//If all of the tiebreakers are a draw then the current highest rank player stays
+// as the highest rank and the function will exit.
+bool MainWindow::checkTiebreakers(const Player &highestRank, const Player &player)
+{
+    //Calculate the result of the first Tiebreaker
+    TiebreakerResult firstTiebreakerResult = checkFirstTiebreaker(highestRank, player);
+    if(firstTiebreakerResult == TiebreakerResult::HIGHER)
+        return true;
+    else if(firstTiebreakerResult == TiebreakerResult::EQUAL)
+    {
+        //Calculate the result of the second Tiebreaker
+        TiebreakerResult secondTiebreakerResult = checkSecondTiebreaker(highestRank, player);
+        if(secondTiebreakerResult == TiebreakerResult::HIGHER)
+            return true;
+        else if(secondTiebreakerResult == TiebreakerResult::EQUAL)
+        {
+            //Calculate the result of the third Tiebreaker
+            TiebreakerResult thirdTiebreakerResult = checkThirdTiebreaker(highestRank, player);
+            if(thirdTiebreakerResult == TiebreakerResult::HIGHER)
+                return true;
+            else if(thirdTiebreakerResult == TiebreakerResult::EQUAL)
+            {
+                //Calculate the result of the fourth Tiebreaker
+                TiebreakerResult fourthTiebreakerResult = checkFourthTiebreaker(highestRank, player);
+                if(fourthTiebreakerResult == TiebreakerResult::HIGHER)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+//This function passes the enum for the first Tiebreaker into the "checkTiebreaker" function
+TiebreakerResult MainWindow::checkFirstTiebreaker(const Player &highestRank, const Player &player)
+{
+    return checkTiebreaker(m_FirstTiebreaker, highestRank, player);
+}
+
+//This function passes the enum for the second Tiebreaker into the "checkTiebreaker" function
+TiebreakerResult MainWindow::checkSecondTiebreaker(const Player &highestRank, const Player &player)
+{
+    return checkTiebreaker(m_SecondTiebreaker, highestRank, player);
+}
+
+//This function passes the enum for the third Tiebreaker into the "checkTiebreaker" function
+TiebreakerResult MainWindow::checkThirdTiebreaker(const Player &highestRank, const Player &player)
+{
+    return checkTiebreaker(m_ThirdTiebreaker, highestRank, player);
+}
+
+//This function passes the enum for the fourth Tiebreaker into the "checkTiebreaker" function
+TiebreakerResult MainWindow::checkFourthTiebreaker(const Player &highestRank, const Player &player)
+{
+    return checkTiebreaker(m_FourthTiebreaker, highestRank, player);
+}
+
+//This function is used to check the appropriate tiebreaker depending on the enum passed
+// in via the parameters.
+TiebreakerResult MainWindow::checkTiebreaker(Tiebreak::Tiebreaker tiebreak, const Player &highestRank, const Player &player)
+{
+    switch (tiebreak) {
+    case Tiebreak::Tiebreaker::VP_TOTAL:
+        return checkTiebreakerValue(highestRank.getVPs(), player.getVPs());
+    case Tiebreak::Tiebreaker::VP_DIFF:
+        return checkTiebreakerValue(highestRank.getVPDiff(), player.getVPDiff());
+    case Tiebreak::Tiebreaker::MOST_SPORTING:
+        return checkTiebreakerValue(highestRank.getMostSportingVotes(), player.getMostSportingVotes());
+    case Tiebreak::Tiebreaker::BEST_PAINTED:
+        return checkTiebreakerValue(highestRank.getBestPaintedArmyVotes(), player.getBestPaintedArmyVotes());
+    }
+}
+
+//This function checks the values passed in through the parameters and returns
+// the TiebreakerResult from comparing the two values.
+TiebreakerResult MainWindow::checkTiebreakerValue(int highestRankValue, int playerValue)
+{
+    if(highestRankValue < playerValue)
+        return TiebreakerResult::HIGHER;
+    else if(highestRankValue == playerValue)
+        return TiebreakerResult::EQUAL;
+    else
+        return TiebreakerResult::LOWER;
 }

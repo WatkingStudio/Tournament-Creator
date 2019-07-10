@@ -14,60 +14,73 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     std::string votingPlayer = ui->bestPaintedVotingLineEdit->text().toStdString();
     std::string votedPlayer = ui->bestPaintedVotedLineEdit->text().toStdString();
     bool addVote = false;
-    //Check if Voting Player has Voted
-    for(int i = 0; i < m_MainPlayerList.size(); ++i)
+    bool processVote = true;
+
+    if(votingPlayer == votedPlayer)
     {
-        if(m_MainPlayerList.at(i).getName() == votingPlayer)
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Voting for Themselves", "This player is voting for themselves. Do you wish to still process the vote?", QMessageBox::Yes|QMessageBox::No);
+        if(reply == QMessageBox::No)
+            processVote = false;
+    }
+
+    if(processVote)
+    {
+        //Check if Voting Player has Voted
+        for(int i = 0; i < m_MainPlayerList.size(); ++i)
         {
-            if(m_MainPlayerList.at(i).hasVotedBestPainted())
+            if(m_MainPlayerList.at(i).getName() == votingPlayer)
             {
-                QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
-                if(reply == QMessageBox::Yes)
+                if(m_MainPlayerList.at(i).hasVotedBestPainted())
                 {
-                    for(int j = 0; j < m_MainPlayerList.size(); ++j)
+                    QMessageBox::StandardButton reply;
+                    reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
+                    if(reply == QMessageBox::Yes)
                     {
-                        if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getBestPaintedVote())
+                        for(int j = 0; j < m_MainPlayerList.size(); ++j)
                         {
-                            m_MainPlayerList.at(j).removeBestPaintedArmyVote();
-                            break;
+                            if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getBestPaintedVote())
+                            {
+                                m_MainPlayerList.at(j).removeBestPaintedArmyVote();
+                                break;
+                            }
                         }
+                        m_MainPlayerList.at(i).setBestPaintedVote(votedPlayer);
+                        addVote = true;
+                        break;
                     }
-                    m_MainPlayerList.at(i).setBestPaintedVote(votedPlayer);
-                    addVote = true;
-                    break;
-                }
-                else if(reply == QMessageBox::No)
-                {
-                    addVote = false;
-                    break;
+                    else if(reply == QMessageBox::No)
+                    {
+                        addVote = false;
+                        break;
+                    }
+                    else
+                    {
+                        addVote = false;
+                        break;
+                    }
                 }
                 else
                 {
-                    addVote = false;
+                    addVote = true;
+                    m_MainPlayerList.at(i).setVotedBestPainted(true);
+                    m_MainPlayerList.at(i).setBestPaintedVote(votedPlayer);
                     break;
                 }
-            }
-            else
-            {
-                addVote = true;
-                m_MainPlayerList.at(i).setVotedBestPainted(true);
-                m_MainPlayerList.at(i).setBestPaintedVote(votedPlayer);
-                break;
-            }
 
+            }
         }
-    }
 
-    if(addVote)
-    {
-        for(int i = 0; i < m_MainPlayerList.size(); ++i)
+        if(addVote)
         {
-            if(m_MainPlayerList.at(i).getName() == votedPlayer)
+            for(int i = 0; i < m_MainPlayerList.size(); ++i)
             {
-                m_MainPlayerList.at(i).addBestPaintedArmyVote(m_BestPaintedValue);
-                m_NumBestPaintedVotes++;
-                break;
+                if(m_MainPlayerList.at(i).getName() == votedPlayer)
+                {
+                    m_MainPlayerList.at(i).addBestPaintedArmyVote(m_BestPaintedValue);
+                    m_NumBestPaintedVotes++;
+                    break;
+                }
             }
         }
     }
@@ -83,63 +96,76 @@ void MainWindow::on_mostSportingPushButton_clicked()
     std::string votingPlayer = ui->mostSportingVotingLineEdit->text().toStdString();
     std::string votedPlayer = ui->mostSportingVotedLineEdit->text().toStdString();
     bool addVote = false;
+    bool processVote = true;
 
-    //Check if Voting Player has Voted
-    for(int i = 0; i < m_MainPlayerList.size(); ++i)
+    if(votingPlayer == votedPlayer)
     {
-        if(m_MainPlayerList.at(i).getName() == votingPlayer)
-        {
-            if(m_MainPlayerList.at(i).hasVotedBestPainted())
-            {
-                QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
-                if(reply == QMessageBox::Yes)
-                {
-                    for(int j = 0; j < m_MainPlayerList.size(); ++j)
-                    {
-                        if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getMostSportingVote())
-                        {
-                            m_MainPlayerList.at(j).removeMostSportingVote();
-                            break;
-                        }
-                    }
-                    m_MainPlayerList.at(i).setMostSportingVote(votedPlayer);
-                    addVote = true;
-                    break;
-                }
-                else if(reply == QMessageBox::No)
-                {
-                    addVote = false;
-                    break;
-                }
-                else
-                {
-                    addVote = false;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            addVote = true;
-            m_MainPlayerList.at(i).setVotedMostSporting(true);
-            m_MainPlayerList.at(i).setMostSportingVote(votedPlayer);
-            break;
-        }
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Voting for Themselves", "This player is voting for themselves. Do you wish to still process the vote?", QMessageBox::Yes|QMessageBox::No);
+        if(reply == QMessageBox::No)
+            processVote = false;
     }
 
-    if(addVote)
+    if(processVote)
     {
+        //Check if Voting Player has Voted
         for(int i = 0; i < m_MainPlayerList.size(); ++i)
         {
-            if(m_MainPlayerList.at(i).getName() == votedPlayer)
+            if(m_MainPlayerList.at(i).getName() == votingPlayer)
             {
-                m_MainPlayerList.at(i).addMostSportingVote(m_MostSportingValue);
-                m_NumMostSportingVotes++;
+                if(m_MainPlayerList.at(i).hasVotedMostSporting())
+                {
+                    QMessageBox::StandardButton reply;
+                    reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
+                    if(reply == QMessageBox::Yes)
+                    {
+                        for(int j = 0; j < m_MainPlayerList.size(); ++j)
+                        {
+                            if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getMostSportingVote())
+                            {
+                                m_MainPlayerList.at(j).removeMostSportingVote();
+                                break;
+                            }
+                        }
+                        m_MainPlayerList.at(i).setMostSportingVote(votedPlayer);
+                        addVote = true;
+                        break;
+                    }
+                    else if(reply == QMessageBox::No)
+                    {
+                        addVote = false;
+                        break;
+                    }
+                    else
+                    {
+                        addVote = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                addVote = true;
+                m_MainPlayerList.at(i).setVotedMostSporting(true);
+                m_MainPlayerList.at(i).setMostSportingVote(votedPlayer);
                 break;
             }
         }
+
+        if(addVote)
+        {
+            for(int i = 0; i < m_MainPlayerList.size(); ++i)
+            {
+                if(m_MainPlayerList.at(i).getName() == votedPlayer)
+                {
+                    m_MainPlayerList.at(i).addMostSportingVote(m_MostSportingValue);
+                    m_NumMostSportingVotes++;
+                    break;
+                }
+            }
+        }
     }
+
 
     //clear field
     ui->mostSportingVotingLineEdit->clear();

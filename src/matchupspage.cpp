@@ -207,7 +207,51 @@ void MainWindow::setInitialMatchups()
 
 void MainWindow::createSeededMatchup()
 {
-    utilLog("Functionality Not Implemented: createSeededMatchup");
+    utilDebug("Create Seeded Matchups");
+
+    std::vector<Player> tempList = m_MainPlayerList;
+    std::vector<Player> tempRankings;
+    Player highestSeed;
+
+    for(int i = 0; i < m_MainPlayerList.size(); ++i)
+    {
+        highestSeed = tempList.at(0);
+
+        for(auto it : tempList)
+        {
+            if(it.getSeed() < highestSeed.getSeed())
+            {
+                highestSeed = it;
+            }
+        }
+        for(auto it = tempList.begin(); it != tempList.end(); ++it)
+        {
+            if(it->getName() == highestSeed.getName())
+            {
+                tempRankings.push_back(highestSeed);
+                tempList.erase(it);
+                break;
+            }
+        }
+    }
+
+    m_MainPlayerList = tempRankings;
+
+    for(auto it : m_MainPlayerList)
+    {
+        it.setFirstRoundSet(false);
+    }
+    //First need a list organised by seeds.
+    for(int i = 0; i < m_MainPlayerList.size()/2; ++i)
+    {
+        Player one = m_MainPlayerList.at(0 + i);
+        Player two = m_MainPlayerList.at(m_MainPlayerList.size() - 1 - i);
+
+        m_CurrentRoundMatchups.push_back(std::pair<Player, Player>(one, two));
+    }
+    m_AllRoundMatchups.push_back(m_CurrentRoundMatchups);
+    updateMatchupsTable();
+
 }
 
 void MainWindow::createRandomMatchup()

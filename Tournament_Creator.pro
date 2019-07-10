@@ -31,15 +31,18 @@ SOURCES +=  src/main.cpp \
     src/player.cpp \
     src/matchupspage.cpp \
     src/resultspage.cpp \
-    src/directmatchupswap.cpp
+    src/directmatchupswap.cpp \
+    src/eventsettings.cpp
 
 HEADERS +=  include/mainwindow.h \
     include/util.h \
     include/player.h \
-    include/directmatchupswap.h
+    include/directmatchupswap.h \
+    include/eventsettings.h
 
 FORMS +=  forms/mainwindow.ui \
-    forms/directmatchupswap.ui
+    forms/directmatchupswap.ui \
+    forms/eventsettings.ui
 
 RESOURCES += \
     resources/resourses.qrc

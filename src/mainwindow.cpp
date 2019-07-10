@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
     connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
     connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
+    connect(&m_EventSettingsWidget, SIGNAL(SettingsComplete(int, int, int, int, int, bool, int, std::string, std::string, std::string, std::string)), this, SLOT(receiveEventSettings(int, int, int, int, int, bool, int, std::string, std::string, std::string, std::string)));
 
     ui->matchupsPlayerOneComboBox->addItem(QString(""));
     ui->matchupsPlayerOneComboBox->addItem(QString("Win"));

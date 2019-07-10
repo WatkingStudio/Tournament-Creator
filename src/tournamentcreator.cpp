@@ -5,12 +5,6 @@ void MainWindow::loadTournamentCreatorPage()
 {
     ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
     ui->pageTitleWidget->setText("Tournament Creator");
-    ui->eventSettingsTPValues->setEnabled(false);
-    ui->eventSettingsTPValues->setVisible(false);
-    ui->eventSettingsNumberRoundsWidget->setEnabled(false);
-    ui->eventSettingsNumberRoundsWidget->setVisible(false);
-    ui->usingSeededPlayersWidget->setEnabled(false);
-    ui->usingSeededPlayersWidget->setVisible(false);
 
     m_TournamentCreatorSelectedCol = -1;
     m_TournamentCreatorSelectedRow = -1;
@@ -86,13 +80,7 @@ void MainWindow::on_saveEventTournamentCreatorButton_clicked()
 
 void MainWindow::on_eventSettingsButton_clicked()
 {
-    ui->eventSettingsTPValues->setEnabled(!ui->eventSettingsTPValues->isEnabled());
-    ui->eventSettingsTPValues->setVisible(!ui->eventSettingsTPValues->isVisible());
-    ui->eventSettingsNumberRoundsWidget->setEnabled(!ui->eventSettingsNumberRoundsWidget->isEnabled());
-    ui->eventSettingsNumberRoundsWidget->setVisible(!ui->eventSettingsNumberRoundsWidget->isVisible());
-    ui->usingSeededPlayersWidget->setEnabled(!ui->usingSeededPlayersWidget->isEnabled());
-    ui->usingSeededPlayersWidget->setVisible(!ui->usingSeededPlayersWidget->isVisible());
-    m_EventSettingsActive = ui->eventSettingsTPValues->isEnabled();
+    m_EventSettingsWidget.show();
 }
 
 void MainWindow::on_continueTournamentCreatorButton_clicked()
@@ -113,15 +101,9 @@ void MainWindow::on_continueTournamentCreatorButton_clicked()
         QMessageBox::warning(this, "Warning", "No Players Detected.");
     }
 
-    if(m_EventSettingsActive)
-    {
-        m_NumberOfRounds = ui->eventSettingsNumberRoundsLineEdit->displayText().toInt();
-        m_WinValue = ui->eventSettingsWinLineEdit->displayText().toInt();
-        m_DrawValue = ui->eventSettingsDrawLineEdit->displayText().toInt();
-        m_LossValue = ui->eventSettingsLossLineEdit->displayText().toInt();
-        m_MostSportingValue = ui->eventSettingsMostSportingLineEdit->displayText().toInt();
-        m_BestPaintedValue = ui->eventSettingsBestPaintedLineEdit->displayText().toInt();
-    }
+    if(m_EventSettingsWidget.isVisible())
+        m_EventSettingsWidget.hide();
+
     saveEventData();
 }
 
@@ -130,14 +112,21 @@ void MainWindow::on_backTournamentCreatorButton_clicked()
     loadStartPage();
 }
 
-void MainWindow::on_usingSeededPlayersCheckBox_stateChanged(int arg1)
+void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, std::string firstTiebreaker, std::string secondTiebreaker, std::string thirdTiebreaker, std::string fourthTiebreaker)
 {
-    if(arg1 == 2)
-    {
-        m_UsingSeed = true;
-    }
-    else
-    {
-        m_UsingSeed = false;
-    }
+    utilDebug("Event Settings Changed");
+
+    if(winTPs > 0)
+        m_WinValue = winTPs;
+    if(drawTPs > 0)
+        m_DrawValue = drawTPs;
+    if(lossTPs > 0)
+        m_LossValue = lossTPs;
+    if(mostSportingTPs >= 0)
+        m_MostSportingValue = mostSportingTPs;
+    if(bestPaintedTPs >= 0)
+        m_BestPaintedValue = bestPaintedTPs;
+    m_UsingSeed = usingSeeded;
+    if(numberOfRounds > 0)
+        m_NumberOfRounds = numberOfRounds;
 }

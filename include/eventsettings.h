@@ -2,6 +2,7 @@
 #define EVENTSETTINGS_H
 
 #include <QWidget>
+#include "util.h"
 
 namespace Ui {
 class EventSettings;
@@ -14,6 +15,9 @@ class EventSettings : public QWidget
 public:
     explicit EventSettings(QWidget *parent = 0);
     ~EventSettings();
+
+signals:
+    void SettingsComplete(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, std::string firstTiebreaker, std::string secondTiebreaker, std::string thirdTiebreaker, std::string fourthTiebreaker);
 
 private slots:
     void on_donePushButton_clicked();

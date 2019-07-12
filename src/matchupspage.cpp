@@ -645,6 +645,8 @@ TiebreakerResult MainWindow::checkTiebreaker(Tiebreak::Tiebreaker tiebreak, cons
         return checkTiebreakerValue(highestRank.getMostSportingVotes(), player.getMostSportingVotes());
     case Tiebreak::Tiebreaker::BEST_PAINTED:
         return checkTiebreakerValue(highestRank.getBestPaintedArmyVotes(), player.getBestPaintedArmyVotes());
+    case Tiebreak::Tiebreaker::NONE:
+        return TiebreakerResult::EQUAL;
     }
 }
 

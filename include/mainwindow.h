@@ -52,7 +52,7 @@ private slots:
     void on_eventSettingsButton_clicked();
     void on_continueTournamentCreatorButton_clicked();
     void on_backTournamentCreatorButton_clicked();
-    void receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, std::string firstTiebreaker, std::string secondTiebreaker, std::string thirdTiebreaker, std::string fourthTiebreaker);
+    void receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, const std::string &firstTiebreaker, const std::string &secondTiebreaker, const std::string &thirdTiebreaker, const std::string &fourthTiebreaker);
 
     //Matchups Slots
     void on_matchupsBackButton_clicked();

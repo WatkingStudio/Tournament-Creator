@@ -112,7 +112,7 @@ void MainWindow::on_backTournamentCreatorButton_clicked()
     loadStartPage();
 }
 
-void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, std::string firstTiebreaker, std::string secondTiebreaker, std::string thirdTiebreaker, std::string fourthTiebreaker)
+void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, const std::string &firstTiebreaker, const std::string &secondTiebreaker, const std::string &thirdTiebreaker, const std::string &fourthTiebreaker)
 {
     utilDebug("Event Settings Changed");
 
@@ -129,12 +129,8 @@ void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int 
     m_UsingSeed = usingSeeded;
     if(numberOfRounds > 0)
         m_NumberOfRounds = numberOfRounds;
-    if(firstTiebreaker != *Tiebreak::NoneString)
-        m_FirstTiebreaker = Tiebreak::StringToTiebreaker(firstTiebreaker);
-    if(secondTiebreaker != *Tiebreak::NoneString)
-        m_SecondTiebreaker = Tiebreak::StringToTiebreaker(secondTiebreaker);
-    if(thirdTiebreaker != *Tiebreak::NoneString)
-        m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(thirdTiebreaker);
-    if(fourthTiebreaker != *Tiebreak::NoneString)
-        m_FourthTiebreaker = Tiebreak::StringToTiebreaker(fourthTiebreaker);
+    m_FirstTiebreaker = Tiebreak::StringToTiebreaker(firstTiebreaker);
+    m_SecondTiebreaker = Tiebreak::StringToTiebreaker(secondTiebreaker);
+    m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(thirdTiebreaker);
+    m_FourthTiebreaker = Tiebreak::StringToTiebreaker(fourthTiebreaker);
 }

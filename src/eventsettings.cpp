@@ -7,6 +7,7 @@ EventSettings::EventSettings(QWidget *parent) :
 {
     ui->setupUi(this);
     PopulateComboBox();
+    SetupWidget();
 }
 
 EventSettings::~EventSettings()

@@ -24,8 +24,8 @@ QString intToQString(int num);
 
 static bool debugging = false;
 void setDebugging(bool debug);
-bool fileExists(QString path);
-bool createFile(QString path, QString directory);
+bool fileExists(const QString &path);
+bool createFile(const QString &path, const QString &directory);
 
 typedef unsigned int uint;
 typedef unsigned char uchar;

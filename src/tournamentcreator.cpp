@@ -3,8 +3,6 @@
 
 void MainWindow::loadTournamentCreatorPage()
 {
-    //Check for existing events
-    //Assign ID to this event
     int i = 0;
     QString filePath;
     while(true)

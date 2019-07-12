@@ -77,7 +77,7 @@ QString intToQString(int num)
     return QString::fromStdString(std::to_string(num));
 }
 
-bool fileExists(QString path)
+bool fileExists(const QString &path)
 {
     QFileInfo checkFile(path);
     utilLog("Checking File: " + path.toStdString());
@@ -88,7 +88,7 @@ bool fileExists(QString path)
         return false;
 }
 
-bool createFile(QString path, QString directory)
+bool createFile(const QString &path, const QString &directory)
 {
     QFile file(path);
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))

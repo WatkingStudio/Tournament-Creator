@@ -3,6 +3,22 @@
 
 void MainWindow::loadTournamentCreatorPage()
 {
+    //Check for existing events
+    //Assign ID to this event
+    int i = 0;
+    QString filePath;
+    while(true)
+    {
+        filePath = m_EventDirectory + m_EventDefaultFileName + std::to_string(i).c_str() + ".json";
+        if(!fileExists(filePath))
+        {
+            m_EventDataFileName = filePath.toStdString();
+            break;
+        }
+        i++;
+    }
+    createFile(m_EventDataFileName.c_str(), m_EventDirectory);
+
     ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
     ui->pageTitleWidget->setText("Tournament Creator");
 

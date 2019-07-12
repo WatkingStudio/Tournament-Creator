@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QFile>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -83,6 +84,8 @@ void MainWindow::saveEventData()
         jsonObject[m_FourthTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_FourthTiebreaker).c_str();
     }
 
+    jsonObject[m_EventDataFileNameTag.c_str()] = m_EventDataFileName.c_str();
+
     //Player Data
     for(auto player : m_MainPlayerList)
     {
@@ -127,14 +130,34 @@ void MainWindow::saveEventData()
     //Convert data into a document so we can save it to file
     QJsonDocument doc(jsonObject);
     QFile file(m_EventDataFileName.c_str());
-    file.open(QIODevice::WriteOnly);
-    file.write(doc.toJson());
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        file.write(doc.toJson());
+        file.close();
+    }
+    else
+    {
+        utilLog("ERROR: Unable to open file " + file.fileName().toStdString());
+        utilLog("Attempting to create another file");
+        createFile(m_EventDataFileName.c_str(), m_EventDirectory);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            file.write(doc.toJson());
+            file.close();
+        }
+        else
+        {
+            utilLog("Failed to create file, closing the program");
+            std::terminate();
+        }
+    }
 
     utilLog("Event Data Saved");
 }
 
 void MainWindow::loadEventData()
 {
+    //This nee to be changed to use a QFileDialog
     //Read the data from the .json file
     QFile file(m_EventDataFileName.c_str());
     file.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -165,6 +188,8 @@ void MainWindow::loadEventData()
         m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(object[m_ThirdTiebreakerTag.c_str()].toString().toStdString());
         m_FourthTiebreaker = Tiebreak::StringToTiebreaker(object[m_FourthTiebreakerTag.c_str()].toString().toStdString());
     }
+
+    m_EventDataFileName = object[m_EventDataFileNameTag.c_str()].toString().toStdString();
 
     //Get array of player data
     QJsonValue playerValue = object.value(m_PlayerDataTag.c_str());

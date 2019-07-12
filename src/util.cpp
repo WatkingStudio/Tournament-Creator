@@ -76,3 +76,32 @@ QString intToQString(int num)
 {
     return QString::fromStdString(std::to_string(num));
 }
+
+bool fileExists(QString path)
+{
+    QFileInfo checkFile(path);
+    utilLog("Checking File: " + path.toStdString());
+    //check if file exists and if yes: Is it really a file and no directory?
+    if(checkFile.exists() && checkFile.isFile())
+        return true;
+    else
+        return false;
+}
+
+bool createFile(QString path, QString directory)
+{
+    QFile file(path);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        if(!QDir(directory).exists())
+        {
+            QDir().mkdir(directory);
+        }
+        if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            utilLog("ERROR: Unable to create file or directory");
+            return false;
+        }
+    }
+    return true;
+}

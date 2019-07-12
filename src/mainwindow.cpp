@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
     connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
     connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
+    connect(&m_EventSettingsWidget, SIGNAL(SettingsComplete(int, int, int, int, int, bool, int, const std::string &, const std::string &, const std::string &, const std::string &)), this, SLOT(receiveEventSettings(int, int, int, int, int, bool, int, const std::string &, const std::string &, const std::string &, const std::string &)));
 
     ui->matchupsPlayerOneComboBox->addItem(QString(""));
     ui->matchupsPlayerOneComboBox->addItem(QString("Win"));
@@ -72,6 +73,14 @@ void MainWindow::saveEventData()
         jsonObject[m_LossValueTag.c_str()] = m_LossValue;
         jsonObject[m_MostSportingValueTag.c_str()] = m_MostSportingValue;
         jsonObject[m_BestPaintedValueTag.c_str()] = m_BestPaintedValue;
+    }
+
+    //Tiebreaker Settings
+    {
+        jsonObject[m_FirstTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_FirstTiebreaker).c_str();
+        jsonObject[m_SecondTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_SecondTiebreaker).c_str();
+        jsonObject[m_ThirdTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_ThirdTiebreaker).c_str();
+        jsonObject[m_FourthTiebreakerTag.c_str()] = Tiebreak::TiebreakerToString(m_FourthTiebreaker).c_str();
     }
 
     //Player Data
@@ -147,6 +156,14 @@ void MainWindow::loadEventData()
         m_LossValue = object[m_LossValueTag.c_str()].toInt();
         m_MostSportingValue = object[m_MostSportingValueTag.c_str()].toInt();
         m_BestPaintedValue = object[m_BestPaintedValueTag.c_str()].toInt();
+    }
+
+    //Tiebreaker Settings
+    {
+        m_FirstTiebreaker = Tiebreak::StringToTiebreaker(object[m_FirstTiebreakerTag.c_str()].toString().toStdString());
+        m_SecondTiebreaker = Tiebreak::StringToTiebreaker(object[m_SecondTiebreakerTag.c_str()].toString().toStdString());
+        m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(object[m_ThirdTiebreakerTag.c_str()].toString().toStdString());
+        m_FourthTiebreaker = Tiebreak::StringToTiebreaker(object[m_FourthTiebreakerTag.c_str()].toString().toStdString());
     }
 
     //Get array of player data

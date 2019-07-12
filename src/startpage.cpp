@@ -15,7 +15,6 @@ void MainWindow::loadStartPage()
 
 void MainWindow::on_loadEventButton_clicked()
 {
-    loadEventData();
-    utilLog("Debug Point");
-    loadMatchupsPageFromLoadedEvent();
+    if(loadEventData())
+        loadMatchupsPageFromLoadedEvent();
 }

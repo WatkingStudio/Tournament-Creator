@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include "directmatchupswap.h"
 #include "eventsettings.h"
+#include <QStandardPaths>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;
@@ -85,7 +87,7 @@ private:
     int m_NumMostSportingVotes = 0;
 
     void saveEventData();
-    void loadEventData();
+    bool loadEventData();
 
     //Start Page Functions and Variables
     void loadStartPage();
@@ -95,6 +97,8 @@ private:
     void updatePlayerTable();
     void resetPlayerTable();
 
+    QString m_EventDirectory = "TournamentData";
+    QString m_EventDefaultFileName = "/EventData_";
     std::vector<Player> m_TempPlayerList;
     int m_TournamentCreatorSelectedRow = -1;
     int m_TournamentCreatorSelectedCol = -1;
@@ -173,6 +177,7 @@ private: //Json Strings
     std::string m_SecondTiebreakerTag = "second_tiebreaker";
     std::string m_ThirdTiebreakerTag = "third_tiebreaker";
     std::string m_FourthTiebreakerTag = "fourth_tiebreaker";
+    std::string m_EventDataFileNameTag = "event_file";
 };
 
 #endif // MAINWINDOW_H

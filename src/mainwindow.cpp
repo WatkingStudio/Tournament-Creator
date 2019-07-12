@@ -155,11 +155,14 @@ void MainWindow::saveEventData()
     utilLog("Event Data Saved");
 }
 
-void MainWindow::loadEventData()
+bool MainWindow::loadEventData()
 {
-    //This nee to be changed to use a QFileDialog
+    //This needs to be changed to use a QFileDialog
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Event Data"), "", tr("Json (*.json)"));
     //Read the data from the .json file
-    QFile file(m_EventDataFileName.c_str());
+    if(fileName == "")
+        return false;
+    QFile file(fileName);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsonData = file.readAll();
     file.close();
@@ -226,4 +229,5 @@ void MainWindow::loadEventData()
     }
 
     utilLog("Event Data Loaded");
+    return true;
 }

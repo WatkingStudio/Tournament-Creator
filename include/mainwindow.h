@@ -8,6 +8,7 @@
 #include "directmatchupswap.h"
 #include "eventsettings.h"
 #include <QStandardPaths>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;
@@ -86,7 +87,7 @@ private:
     int m_NumMostSportingVotes = 0;
 
     void saveEventData();
-    void loadEventData();
+    bool loadEventData();
 
     //Start Page Functions and Variables
     void loadStartPage();

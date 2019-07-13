@@ -21,21 +21,6 @@ std::string getDate()
 {
     time_t rawtime;
     struct tm * timeinfo;
-    char buffer[80];
-
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-
-    strftime(buffer, sizeof(buffer), "[%d-%m-%Y] [%I:%M:%S]", timeinfo);
-    std::string str(buffer);
-
-    return str;
-}
-
-std::string getDateFileName()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
     char buffer [80];
 
     time(&rawtime);
@@ -56,7 +41,7 @@ std::string getTime()
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
-    strftime(buffer, sizeof(buffer), "[%I:%M:%S]", timeinfo);
+    strftime(buffer, sizeof(buffer), "%I:%M:%S", timeinfo);
     std::string str(buffer);
 
     return str;
@@ -66,7 +51,9 @@ std::string getTime()
 void utilLog(const int &message)
 {
     std::string logMessage = "[int]";
+    logMessage += "[";
     logMessage += getDate();
+    logMessage += "]";
     logMessage += " LogMessage: ";
     logMessage += std::to_string(message);
 
@@ -78,7 +65,9 @@ void utilLog(const int &message)
 void utilLog(const std::string &message)
 {
     std::string logMessage = "[string]";
+    logMessage += "[";
     logMessage += getDate();
+    logMessage += "]";
     logMessage += " LogMessage: ";
     logMessage += message;
 
@@ -91,7 +80,9 @@ void utilDebug(const std::string &message)
     if(debugging)
     {
         std::string logMessage = "[string]";
+        logMessage += "[";
         logMessage += getDate();
+        logMessage += "]";
         logMessage += " DebugMessage: ";
         logMessage += message;
 
@@ -140,14 +131,14 @@ bool createFile(const QString &path, const QString &directory)
 
 void saveLog(const std::string &message)
 {
-    std::string file = "Logs/log_" + getDateFileName() + ".txt";
+    std::string file = "Logs/log_" + getDate() + ".txt";
     if(!fileExists(file.c_str()))
         createFile(file.c_str(), "Logs");
 
     QFile logFile(file.c_str());
     logFile.open(QIODevice::ReadWrite | QIODevice::Text);
     QByteArray data = logFile.readAll();
-    std::string array = getTime() + message + "\n";
+    std::string array = "[" + getTime() + "]" + message + "\n";
     logFile.write(array.c_str());
     logFile.close();
 }

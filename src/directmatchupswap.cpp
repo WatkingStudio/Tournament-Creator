@@ -30,6 +30,7 @@ void DirectMatchupSwap::SetUp(const std::vector<Player> &playerList, const std::
 
 void DirectMatchupSwap::on_okPushButton_clicked()
 {
+    utilDebug("Direct Matchup Ok Clicked");
     Player playerOne;
     Player playerTwo;
     Player playerThree;
@@ -61,6 +62,7 @@ void DirectMatchupSwap::on_okPushButton_clicked()
 
 void DirectMatchupSwap::on_playerAComboBox_currentIndexChanged(const QString &arg1)
 {
+    utilDebug("Player A ComboBox Changed: " + arg1.toStdString());
     for(auto it: m_TempPlayerMatchup)
     {
         if(it.first.getName() == arg1.toStdString())
@@ -78,6 +80,7 @@ void DirectMatchupSwap::on_playerAComboBox_currentIndexChanged(const QString &ar
 
 void DirectMatchupSwap::on_playerBComboBox_currentIndexChanged(const QString &arg1)
 {
+    utilDebug("Player B ComboBox Changed: " + arg1.toStdString());
     for(auto it: m_TempPlayerMatchup)
     {
         if(it.first.getName() == arg1.toStdString())

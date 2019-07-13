@@ -21,12 +21,27 @@ std::string getDate()
 {
     time_t rawtime;
     struct tm * timeinfo;
-    char buffer[80];
+    char buffer [80];
 
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
-    strftime(buffer, sizeof(buffer), "[%d-%m-%Y] [%I:%M:%S]", timeinfo);
+    strftime(buffer, sizeof(buffer), "%d_%m_%Y", timeinfo);
+    std::string str(buffer);
+
+    return str;
+}
+
+std::string getTime()
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer [80];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, sizeof(buffer), "%I:%M:%S", timeinfo);
     std::string str(buffer);
 
     return str;
@@ -36,22 +51,28 @@ std::string getDate()
 void utilLog(const int &message)
 {
     std::string logMessage = "[int]";
+    logMessage += "[";
     logMessage += getDate();
+    logMessage += "]";
     logMessage += " LogMessage: ";
     logMessage += std::to_string(message);
 
     std::cout<<logMessage<<std::endl;
+    saveLog(logMessage);
 }
 
 //example message- [string][24/07/28][12:38] Log Message: This is a log message
 void utilLog(const std::string &message)
 {
     std::string logMessage = "[string]";
+    logMessage += "[";
     logMessage += getDate();
+    logMessage += "]";
     logMessage += " LogMessage: ";
     logMessage += message;
 
     std::cout<<logMessage<<std::endl;
+    saveLog(logMessage);
 }
 
 void utilDebug(const std::string &message)
@@ -59,11 +80,14 @@ void utilDebug(const std::string &message)
     if(debugging)
     {
         std::string logMessage = "[string]";
+        logMessage += "[";
         logMessage += getDate();
+        logMessage += "]";
         logMessage += " DebugMessage: ";
         logMessage += message;
 
         std::cout<<logMessage<<std::endl;
+        saveLog(logMessage);
     }
 }
 
@@ -80,7 +104,6 @@ QString intToQString(int num)
 bool fileExists(const QString &path)
 {
     QFileInfo checkFile(path);
-    utilLog("Checking File: " + path.toStdString());
     //check if file exists and if yes: Is it really a file and no directory?
     if(checkFile.exists() && checkFile.isFile())
         return true;
@@ -104,4 +127,18 @@ bool createFile(const QString &path, const QString &directory)
         }
     }
     return true;
+}
+
+void saveLog(const std::string &message)
+{
+    std::string file = "Logs/log_" + getDate() + ".txt";
+    if(!fileExists(file.c_str()))
+        createFile(file.c_str(), "Logs");
+
+    QFile logFile(file.c_str());
+    logFile.open(QIODevice::ReadWrite | QIODevice::Text);
+    QByteArray data = logFile.readAll();
+    std::string array = "[" + getTime() + "]" + message + "\n";
+    logFile.write(array.c_str());
+    logFile.close();
 }

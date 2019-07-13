@@ -8,6 +8,7 @@
 #include <QString>
 #include <QFileInfo>
 #include <QDir>
+#include <QTextStream>
 
 namespace util {
 
@@ -20,6 +21,7 @@ std::string getWorkingDirectory();
 void utilLog(const std::string &message);
 void utilLog(const int &message);
 void utilDebug(const std::string &message);
+void saveLog(const std::string &message);
 QString intToQString(int num);
 
 static bool debugging = false;

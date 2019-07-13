@@ -15,6 +15,7 @@ void MainWindow::loadStartPage()
 
 void MainWindow::on_loadEventButton_clicked()
 {
+    utilDebug("Load Event Clicked");
     if(loadEventData())
         loadMatchupsPageFromLoadedEvent();
 }

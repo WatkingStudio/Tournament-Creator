@@ -3,6 +3,7 @@
 
 void MainWindow::loadTournamentCreatorPage()
 {
+    utilDebug("Load Tournament Creator Page");
     int i = 0;
     QString filePath;
     while(true)
@@ -70,6 +71,7 @@ void MainWindow::on_removePlayerButton_clicked()
 
 void MainWindow::on_addPlayerButton_clicked()
 {
+    utilDebug("Add Player Clicked");
     if(ui->playerNameInputLineEdit->displayText() != "")
     {
         utilDebug("Add Player");
@@ -94,6 +96,7 @@ void MainWindow::on_saveEventTournamentCreatorButton_clicked()
 
 void MainWindow::on_eventSettingsButton_clicked()
 {
+    utilDebug("Event Settings Clicked");
     m_EventSettingsWidget.show();
 }
 

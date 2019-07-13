@@ -14,7 +14,7 @@ void MainWindow::on_matchupsEnterResultsButton_clicked()
     utilDebug("Enter Results Button Selected");
     if(resultsValid())
     {
-        utilDebug("Results are valid");
+        utilLog("Results are valid");
         if(ui->matchupsPlayerTableWidget->item(m_MatchupsSelectedRow, 0)->text() == ui->matchupsPlayerOneNameLabel->text() && ui->matchupsPlayerTableWidget->item(m_MatchupsSelectedRow, 3)->text() == ui->matchupsPlayerTwoNameLabel->text())
         {
             ui->matchupsPlayerTableWidget->setItem(m_MatchupsSelectedRow, 1, new QTableWidgetItem(ui->matchupsPlayerOneComboBox->currentText()));
@@ -36,7 +36,7 @@ void MainWindow::on_matchupsEnterResultsButton_clicked()
     }
     else
     {
-        utilDebug("Results aren't valid");
+        utilLog("Results aren't valid");
         QMessageBox::warning(this, "Invalid Results", "Input results are not valid. Please make sure you have input them correctly.");
     }
 }
@@ -47,8 +47,8 @@ void MainWindow::on_matchupsModifyMatchupsButton_clicked()
 
     if(ui->matchupsPlayerTableWidget->rowCount() > m_MatchupsSelectedRow + 1)
     {
-        utilDebug(std::to_string(ui->matchupsPlayerTableWidget->rowCount()));
-        utilDebug(std::to_string(m_MatchupsSelectedRow));
+        utilLog(std::to_string(ui->matchupsPlayerTableWidget->rowCount()));
+        utilLog(std::to_string(m_MatchupsSelectedRow));
         //Get a temporary copy of both matchups
         std::pair<Player, Player> tempMatchupOne;
         tempMatchupOne = m_CurrentRoundMatchups.at(m_MatchupsSelectedRow);
@@ -87,13 +87,13 @@ void MainWindow::on_matchupsNextRoundButton_clicked()
         updateRankings();
         createRankedMatchup();
 
-        utilDebug("Round " + std::to_string(m_CurrentRoundNumber) + " Finished");
+        utilLog("Round " + std::to_string(m_CurrentRoundNumber) + " Finished");
 
         m_CurrentRoundNumber++;
         m_ActiveRoundNumber = m_CurrentRoundNumber;
 
         ui->matchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
-        utilDebug("Round " + std::to_string(m_CurrentRoundNumber) + " Started");
+        utilLog("Round " + std::to_string(m_CurrentRoundNumber) + " Started");
     }
     else
     {
@@ -104,19 +104,21 @@ void MainWindow::on_matchupsNextRoundButton_clicked()
 
     if(m_CurrentRoundNumber > m_NumberOfRounds)
     {
-        utilDebug("Finished Final Round");
+        utilLog("Finished Final Round");
         loadResultsPage();
     }
 }
 
 void MainWindow::on_matchupsResetMatchupTable_clicked()
 {
+    utilDebug("Reset Matchups Clicked");
     m_CurrentRoundMatchups = m_AllRoundMatchups.at(m_CurrentRoundNumber - 1);
     updateMatchupsTable();
 }
 
 void MainWindow::on_matchupsDirectMatchupSwapButton_clicked()
 {
+    utilDebug("Direct Matchup Clicked");
     m_MatchUpSwapWidget.show();
     m_MatchUpSwapWidget.SetUp(m_MainPlayerList, m_CurrentRoundMatchups);
 }
@@ -153,6 +155,7 @@ void MainWindow::loadMatchupsPage()
 
 void MainWindow::updatePlayerRankingList()
 {
+    utilDebug("Update Player Rankings List");
     ui->matchupsPlayerListWidget->clear();
 
     for(auto it = m_MainPlayerList.begin(); it != m_MainPlayerList.end(); ++it)
@@ -163,7 +166,7 @@ void MainWindow::updatePlayerRankingList()
 
 void MainWindow::loadMatchupsPageFromLoadedEvent()
 {
-    utilLog("Load Matchups Page from Loaded Event");
+    utilDebug("Load Matchups Page from Loaded Event");
     ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
     ui->matchupsPreviousRoundButton->setEnabled(false);
     ui->matchupsCurrentRoundButton->setEnabled(false);
@@ -184,6 +187,7 @@ void MainWindow::loadMatchupsPageFromLoadedEvent()
 
 void MainWindow::setLoadedEventMatchups()
 {
+    utilDebug("Event Matchups Loaded");
     m_CurrentRoundMatchups = m_AllRoundMatchups.at(m_CurrentRoundNumber - 1);
 
     updateMatchupsTable();
@@ -283,6 +287,7 @@ void MainWindow::createRandomMatchup()
 
 void MainWindow::updateScores()
 {
+    utilDebug("Update Scores");
     int rowCount = ui->matchupsPlayerTableWidget->rowCount();
     
     //For each row in the table
@@ -317,8 +322,6 @@ void MainWindow::updateScores()
     }
 }
 
-
-
 void MainWindow::createRankedMatchup()
 {
     utilDebug("Create Ranked Matchup");
@@ -336,6 +339,7 @@ void MainWindow::createRankedMatchup()
 
 void MainWindow::updateRankings()
 {
+    utilDebug("Update Rankings");
     std::vector<Player> tempList = m_MainPlayerList;
     std::vector<Player> tempRankings;
     Player highestRank;
@@ -509,6 +513,7 @@ bool MainWindow::resultsValid() const
 
 void MainWindow::addResult(const std::string &result, int playerIndex)
 {
+    utilLog("Add Result: " + result);
     if(result == "Win")
     {
         m_MainPlayerList.at(playerIndex).addWin(m_WinValue);
@@ -525,6 +530,7 @@ void MainWindow::addResult(const std::string &result, int playerIndex)
 
 void MainWindow::setMatchUp(const Player &playerOne, const Player &playerTwo)
 {
+    utilLog("Set Matchup: " + playerOne.getName() + " vs " + playerTwo.getName());
     for(int i = 0; i < m_CurrentRoundMatchups.size(); ++i)
     {
         if(m_CurrentRoundMatchups.at(i).first.getName() == playerOne.getName())

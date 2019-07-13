@@ -13,6 +13,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     //Get Player Names
     std::string votingPlayer = ui->bestPaintedVotingLineEdit->text().toStdString();
     std::string votedPlayer = ui->bestPaintedVotedLineEdit->text().toStdString();
+    utilLog("Best Pained Vote: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
 
@@ -77,6 +78,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
             {
                 if(m_MainPlayerList.at(i).getName() == votedPlayer)
                 {
+                    utilLog("Adding Best Painted Vote");
                     m_MainPlayerList.at(i).addBestPaintedArmyVote(m_BestPaintedValue);
                     m_NumBestPaintedVotes++;
                     break;
@@ -95,6 +97,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
     //Get Player Names
     std::string votingPlayer = ui->mostSportingVotingLineEdit->text().toStdString();
     std::string votedPlayer = ui->mostSportingVotedLineEdit->text().toStdString();
+    utilLog("Most Sporting: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
 
@@ -158,6 +161,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
             {
                 if(m_MainPlayerList.at(i).getName() == votedPlayer)
                 {
+                    utilLog("Most Sportin Vote Added");
                     m_MainPlayerList.at(i).addMostSportingVote(m_MostSportingValue);
                     m_NumMostSportingVotes++;
                     break;
@@ -174,6 +178,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
 
 void MainWindow::on_displayResultsPushButton_clicked()
 {
+    utilDebug("Display Results Clicked");
     bool display = true;
     if(m_NumBestPaintedVotes < m_MainPlayerList.size())
     {
@@ -195,6 +200,7 @@ void MainWindow::on_displayResultsPushButton_clicked()
     }
     if(display)
     {
+        utilLog("Displaying Results");
         resetPage();
         updateRankings();
 
@@ -213,10 +219,13 @@ void MainWindow::on_displayResultsPushButton_clicked()
 
         populateResultsTable();
     }
+    else
+        utilLog("Results not being displayed");
 }
 
 std::string MainWindow::getMostSportingPlayer()
 {
+    utilLog("Get Most Sporting Player");
     std::string mostSportingPlayer;
     int mostSportingVotes = 0;
 
@@ -234,6 +243,7 @@ std::string MainWindow::getMostSportingPlayer()
 
 std::string MainWindow::getBestPaintedPlayer()
 {
+    utilLog("Get Best Painted Player");
     std::string bestPaintedPlayer;
     int bestPaintedVotes = 0;
 
@@ -251,11 +261,13 @@ std::string MainWindow::getBestPaintedPlayer()
 
 std::string MainWindow::getWoodenSpoonPlayer()
 {
+    utilLog("Get Wooden Spoon Player");
     return m_MainPlayerList.at(m_MainPlayerList.size() - 1).getName();
 }
 
 std::vector<std::string> MainWindow::getPodiumPlayers()
 {
+    utilLog("Get Podium Players");
     std::vector<std::string> podiumPlayers;
     podiumPlayers.push_back(m_MainPlayerList.at(0).getName());
     podiumPlayers.push_back(m_MainPlayerList.at(1).getName());
@@ -266,6 +278,7 @@ std::vector<std::string> MainWindow::getPodiumPlayers()
 
 void MainWindow::populateResultsTable()
 {
+    utilDebug("Populate Results Table");
     for(auto player : m_MainPlayerList)
     {
         int rowCount = ui->fullResultsTable->rowCount();

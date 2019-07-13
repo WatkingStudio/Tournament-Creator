@@ -145,6 +145,7 @@ void Player::addVPDiff(int points)
 
 void Player::addResult(const std::string &result, int value)
 {
+    utilDebug("Add Result: " + m_Name + " " + result);
     if(result == "Win")
     {
         addWin(value);

@@ -32,6 +32,36 @@ std::string getDate()
     return str;
 }
 
+std::string getDateFileName()
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer [80];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, sizeof(buffer), "%d_%m_%Y", timeinfo);
+    std::string str(buffer);
+
+    return str;
+}
+
+std::string getTime()
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer [80];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, sizeof(buffer), "[%I:%M:%S]", timeinfo);
+    std::string str(buffer);
+
+    return str;
+}
+
 //example message- [int][24/07/28][12:38] Log Message: 80
 void utilLog(const int &message)
 {
@@ -41,6 +71,7 @@ void utilLog(const int &message)
     logMessage += std::to_string(message);
 
     std::cout<<logMessage<<std::endl;
+    saveLog(logMessage);
 }
 
 //example message- [string][24/07/28][12:38] Log Message: This is a log message
@@ -52,6 +83,7 @@ void utilLog(const std::string &message)
     logMessage += message;
 
     std::cout<<logMessage<<std::endl;
+    saveLog(logMessage);
 }
 
 void utilDebug(const std::string &message)
@@ -64,6 +96,7 @@ void utilDebug(const std::string &message)
         logMessage += message;
 
         std::cout<<logMessage<<std::endl;
+        saveLog(logMessage);
     }
 }
 
@@ -80,7 +113,6 @@ QString intToQString(int num)
 bool fileExists(const QString &path)
 {
     QFileInfo checkFile(path);
-    utilLog("Checking File: " + path.toStdString());
     //check if file exists and if yes: Is it really a file and no directory?
     if(checkFile.exists() && checkFile.isFile())
         return true;
@@ -104,4 +136,18 @@ bool createFile(const QString &path, const QString &directory)
         }
     }
     return true;
+}
+
+void saveLog(const std::string &message)
+{
+    std::string file = "Logs/log_" + getDateFileName() + ".txt";
+    if(!fileExists(file.c_str()))
+        createFile(file.c_str(), "Logs");
+
+    QFile logFile(file.c_str());
+    logFile.open(QIODevice::ReadWrite | QIODevice::Text);
+    QByteArray data = logFile.readAll();
+    std::string array = getTime() + message + "\n";
+    logFile.write(array.c_str());
+    logFile.close();
 }

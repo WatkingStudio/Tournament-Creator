@@ -149,6 +149,9 @@
              <pointsize>14</pointsize>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Select Player A</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -208,6 +211,9 @@
              <family>Calibri</family>
              <pointsize>14</pointsize>
             </font>
+           </property>
+           <property name="toolTip">
+            <string>Select Player B</string>
            </property>
           </widget>
          </item>
@@ -567,6 +573,9 @@ this click on the OK button, if not press CANCEL.</string>
              <pointsize>14</pointsize>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Confirm New Matchups</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">border: 1px solid; background:white;</string>
            </property>
@@ -588,6 +597,9 @@ this click on the OK button, if not press CANCEL.</string>
              <family>Calibri</family>
              <pointsize>14</pointsize>
             </font>
+           </property>
+           <property name="toolTip">
+            <string>Cancel Matchup Swap</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border: 1px solid; background:white;</string>

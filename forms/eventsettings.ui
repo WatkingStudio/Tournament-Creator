@@ -143,6 +143,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>Tournament Points Earned for a Win</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -195,6 +198,9 @@
                 <family>Calibri</family>
                 <pointsize>12</pointsize>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>Tournament Points Earned for a Draw</string>
               </property>
              </widget>
             </item>
@@ -249,6 +255,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>Tournament Points Earned for a Loss</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -301,6 +310,9 @@
                 <family>Calibri</family>
                 <pointsize>12</pointsize>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>Tournament Points Earned for a Most Sporting Vote</string>
               </property>
              </widget>
             </item>
@@ -355,6 +367,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>Tournament Points Earned for a Best Painted Vote</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -385,6 +400,9 @@
              <family>Calibri</family>
              <pointsize>12</pointsize>
             </font>
+           </property>
+           <property name="toolTip">
+            <string>For the First Round use Players Seeds</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border: 1px solid; background:white;</string>
@@ -444,6 +462,9 @@
                 <family>Calibri</family>
                 <pointsize>12</pointsize>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>The Number of Rounds in the Event</string>
               </property>
              </widget>
             </item>
@@ -510,6 +531,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>The First Tiebreaker for the Event</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -562,6 +586,9 @@
                 <family>Calibri</family>
                 <pointsize>12</pointsize>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>The Second Tiebreaker for the Event</string>
               </property>
              </widget>
             </item>
@@ -616,6 +643,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>The Third Tiebreaker for the Event</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -669,6 +699,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="toolTip">
+               <string>The Fourth Tiebreaker for the Event</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -717,6 +750,9 @@
           <family>Calibri</family>
           <pointsize>14</pointsize>
          </font>
+        </property>
+        <property name="toolTip">
+         <string>Confirm the Event Settings</string>
         </property>
         <property name="styleSheet">
          <string notr="true">border: 1px solid; background:white;</string>

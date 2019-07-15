@@ -135,7 +135,7 @@
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="startScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -185,6 +185,9 @@
                       <pointsize>14</pointsize>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>Create a Brand New Event</string>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
                     </property>
@@ -206,6 +209,9 @@
                       <family>Calibri</family>
                       <pointsize>14</pointsize>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Load a Previously Saved Event</string>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
@@ -371,6 +377,9 @@
                          <pointsize>16</pointsize>
                         </font>
                        </property>
+                       <property name="toolTip">
+                        <string>Name of the Player to Add</string>
+                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -442,6 +451,9 @@
                          <pointsize>16</pointsize>
                         </font>
                        </property>
+                       <property name="toolTip">
+                        <string>Seed of the Player to Add</string>
+                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -470,6 +482,9 @@
                    <pointsize>16</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Remove Selected Player</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -497,6 +512,9 @@
                    <family>Calibri</family>
                    <pointsize>16</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Add New Player</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -529,6 +547,9 @@
                    <pointsize>16</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Save Event Details</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -559,6 +580,9 @@
                    <family>Calibri</family>
                    <pointsize>16</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Open Event Settings Window</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -604,6 +628,9 @@
                    <pointsize>16</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Start Event with Listed Players</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -631,6 +658,9 @@
                    <family>Calibri</family>
                    <pointsize>16</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Go Back to Previous Page</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -933,6 +963,9 @@
                       <pointsize>14</pointsize>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>Set a Specific Matchup</string>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
                     </property>
@@ -957,6 +990,9 @@
                       <pointsize>14</pointsize>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>Change Matchup to Closest Alternative</string>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
                     </property>
@@ -980,6 +1016,9 @@
                       <family>Calibri</family>
                       <pointsize>14</pointsize>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Reset Matchups to Original Matchups</string>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
@@ -1017,6 +1056,9 @@
                       <family>Calibri</family>
                       <pointsize>14</pointsize>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Proceed to the Next Round</string>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border: 1px solid; background:white;</string>
@@ -1226,6 +1268,9 @@
                    <pointsize>14</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Go Back to the Previous Page</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -1298,6 +1343,9 @@
                    <pointsize>14</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Input Player One's Result</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -1322,6 +1370,9 @@
                    <family>Calibri</family>
                    <pointsize>14</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Input Player One's Victory Points (max 12)</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -1392,6 +1443,9 @@
                    <pointsize>14</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Input Player Two's Result</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
                  </property>
@@ -1416,6 +1470,9 @@
                    <family>Calibri</family>
                    <pointsize>14</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Input Player Two's Victory Points (max 12)</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -1457,6 +1514,9 @@
                    <family>Calibri</family>
                    <pointsize>14</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Enter Results for the Current Matchup</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border: 1px solid; background:white;</string>
@@ -1579,6 +1639,9 @@
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="toolTip">
+                              <string>Name of the Player Who is Voting</string>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">border:1px solid;</string>
                              </property>
@@ -1617,6 +1680,9 @@
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="toolTip">
+                              <string>Name of the Player Who is Being Voted For</string>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">border:1px solid;</string>
                              </property>
@@ -1635,6 +1701,9 @@
                          <family>Calibri</family>
                          <pointsize>14</pointsize>
                         </font>
+                       </property>
+                       <property name="toolTip">
+                        <string>Submit Best Painted Vote</string>
                        </property>
                        <property name="text">
                         <string>Submit Vote</string>
@@ -1750,6 +1819,9 @@
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="toolTip">
+                              <string>Name of the Player Who is Voting</string>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">border:1px solid;</string>
                              </property>
@@ -1788,6 +1860,9 @@
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="toolTip">
+                              <string>Name of the Player Who is Being Voted For</string>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">border:1px solid;</string>
                              </property>
@@ -1819,6 +1894,9 @@
                          <pointsize>14</pointsize>
                         </font>
                        </property>
+                       <property name="toolTip">
+                        <string>Submit Most Sporting Vote</string>
+                       </property>
                        <property name="text">
                         <string>Submit Vote</string>
                        </property>
@@ -1840,6 +1918,9 @@
                       <family>Calibri</family>
                       <pointsize>16</pointsize>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Display Final Results of the Event</string>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">background:white; border:1px solid;</string>

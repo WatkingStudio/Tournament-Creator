@@ -106,3 +106,8 @@ void DirectMatchupSwap::ResetWidget()
     ui->newMatchUpTwoPlayerCName->setText("");
     ui->newMatchUpTwoPlayerDName->setText("");
 }
+
+void DirectMatchupSwap::on_cancelPushButton_clicked()
+{
+    this->hide();
+}

@@ -28,6 +28,8 @@ private slots:
 
     void on_playerBComboBox_currentIndexChanged(const QString &arg1);
 
+    void on_cancelPushButton_clicked();
+
 private:
     Ui::DirectMatchupSwap *ui;
 

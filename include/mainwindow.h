@@ -9,6 +9,7 @@
 #include "eventsettings.h"
 #include <QStandardPaths>
 #include <QFileDialog>
+#include <QComboBox>
 
 namespace Ui {
 class MainWindow;
@@ -149,6 +150,7 @@ private:
 
     //Results Page Functions and Vartiables
     void loadResultsPage();
+    void populateComboBox(QComboBox &comboBox);
     std::string getMostSportingPlayer();
     std::string getBestPaintedPlayer();
     std::string getWoodenSpoonPlayer();

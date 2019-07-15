@@ -5,19 +5,36 @@ void MainWindow::loadResultsPage()
 {
     ui->stackedWidget->setCurrentIndex(Pages::RESULTS_PAGE);
 
+    populateComboBox(*ui->bestPaintedVotedComboBox);
+    populateComboBox(*ui->bestPaintedVotingComboBox);
+    populateComboBox(*ui->mostSportingVotedComboBox);
+    populateComboBox(*ui->mostSportingVotingComboBox);
+
     resetPage();
+}
+
+void MainWindow::populateComboBox(QComboBox &comboBox)
+{
+    comboBox.addItem("");
+    for(auto it : m_MainPlayerList)
+    {
+        comboBox.addItem(it.getName().c_str());
+    }
 }
 
 void MainWindow::on_bestPaintedPushButton_clicked()
 {
     //Get Player Names
-    std::string votingPlayer = ui->bestPaintedVotingLineEdit->text().toStdString();
-    std::string votedPlayer = ui->bestPaintedVotedLineEdit->text().toStdString();
+    std::string votingPlayer = ui->bestPaintedVotingComboBox->currentText().toStdString();
+    std::string votedPlayer = ui->bestPaintedVotedComboBox->currentText().toStdString();
     utilLog("Best Pained Vote: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
 
-    if(votingPlayer == votedPlayer)
+    if(votingPlayer == "" || votedPlayer == "")
+        processVote = false;
+
+    if(votingPlayer == votedPlayer && processVote)
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Voting for Themselves", "This player is voting for themselves. Do you wish to still process the vote?", QMessageBox::Yes|QMessageBox::No);
@@ -88,18 +105,21 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     }
 
     //clear field
-    ui->bestPaintedVotedLineEdit->clear();
-    ui->bestPaintedVotingLineEdit->clear();
+    ui->bestPaintedVotedComboBox->setCurrentIndex(0);
+    ui->bestPaintedVotingComboBox->setCurrentIndex(0);
 }
 
 void MainWindow::on_mostSportingPushButton_clicked()
 {
     //Get Player Names
-    std::string votingPlayer = ui->mostSportingVotingLineEdit->text().toStdString();
-    std::string votedPlayer = ui->mostSportingVotedLineEdit->text().toStdString();
+    std::string votingPlayer = ui->mostSportingVotingComboBox->currentText().toStdString();
+    std::string votedPlayer = ui->mostSportingVotedComboBox->currentText().toStdString();
     utilLog("Most Sporting: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
+
+    if(votingPlayer == "" || votedPlayer == "")
+        processVote = false;
 
     if(votingPlayer == votedPlayer)
     {
@@ -172,8 +192,8 @@ void MainWindow::on_mostSportingPushButton_clicked()
 
 
     //clear field
-    ui->mostSportingVotingLineEdit->clear();
-    ui->mostSportingVotedLineEdit->clear();
+    ui->mostSportingVotedComboBox->setCurrentIndex(0);
+    ui->mostSportingVotingComboBox->setCurrentIndex(0);
 }
 
 void MainWindow::on_displayResultsPushButton_clicked()
@@ -303,12 +323,12 @@ void MainWindow::resetPage()
     ui->bestPaintedInputLabel->clear();
 
     ui->bestPaintedInputLabel->setText("Not Set");
-    ui->bestPaintedVotedLineEdit->clear();
-    ui->bestPaintedVotingLineEdit->clear();
+    ui->bestPaintedVotedComboBox->setCurrentIndex(0);
+    ui->bestPaintedVotingComboBox->setCurrentIndex(0);
 
     ui->mostSportingInputLabel->setText("Not Set");
-    ui->mostSportingVotedLineEdit->clear();
-    ui->mostSportingVotingLineEdit->clear();
+    ui->mostSportingVotedComboBox->setCurrentIndex(0);
+    ui->mostSportingVotingComboBox->setCurrentIndex(0);
 
     ui->firstPlaceInputLabel->setText("Not Set");
     ui->secondPlaceInputLabel->setText("Not Set");

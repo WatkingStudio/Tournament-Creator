@@ -692,8 +692,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>934</width>
-                 <height>663</height>
+                 <width>200</width>
+                 <height>430</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1632,7 +1632,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="bestPaintedVotingLineEdit">
+                            <widget class="QComboBox" name="bestPaintedVotingComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1643,7 +1643,7 @@
                               <string>Name of the Player Who is Voting</string>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border:1px solid;</string>
+                              <string notr="true"> border:1px solid;</string>
                              </property>
                             </widget>
                            </item>
@@ -1673,7 +1673,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="bestPaintedVotedLineEdit">
+                            <widget class="QComboBox" name="bestPaintedVotedComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1684,7 +1684,7 @@
                               <string>Name of the Player Who is Being Voted For</string>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border:1px solid;</string>
+                              <string notr="true"> border:1px solid;</string>
                              </property>
                             </widget>
                            </item>
@@ -1812,7 +1812,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="mostSportingVotingLineEdit">
+                            <widget class="QComboBox" name="mostSportingVotingComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1823,7 +1823,7 @@
                               <string>Name of the Player Who is Voting</string>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border:1px solid;</string>
+                              <string notr="true"> border:1px solid;</string>
                              </property>
                             </widget>
                            </item>
@@ -1853,7 +1853,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="mostSportingVotedLineEdit">
+                            <widget class="QComboBox" name="mostSportingVotedComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1864,7 +1864,7 @@
                               <string>Name of the Player Who is Being Voted For</string>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">border:1px solid;</string>
+                              <string notr="true"> border:1px solid;</string>
                              </property>
                             </widget>
                            </item>

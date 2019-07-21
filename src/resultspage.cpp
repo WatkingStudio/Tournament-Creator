@@ -59,7 +59,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
                         {
                             if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getBestPaintedVote())
                             {
-                                m_MainPlayerList.at(j).removeBestPaintedArmyVote();
+                                m_MainPlayerList.at(j).removeBestPaintedArmyVote(m_BestPaintedValue);
                                 break;
                             }
                         }
@@ -146,7 +146,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
                         {
                             if(m_MainPlayerList.at(j).getName() == m_MainPlayerList.at(i).getMostSportingVote())
                             {
-                                m_MainPlayerList.at(j).removeMostSportingVote();
+                                m_MainPlayerList.at(j).removeMostSportingVote(m_MostSportingValue);
                                 break;
                             }
                         }

@@ -874,6 +874,9 @@
                      </item>
                      <item>
                       <widget class="QComboBox" name="matchupsRoundNumberComboBox">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
                        <property name="minimumSize">
                         <size>
                          <width>100</width>
@@ -893,6 +896,9 @@
                      </item>
                      <item>
                       <widget class="QPushButton" name="matchupsPreviousRoundButton">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
                        <property name="minimumSize">
                         <size>
                          <width>82</width>
@@ -917,6 +923,9 @@
                      </item>
                      <item>
                       <widget class="QPushButton" name="matchupsCurrentRoundButton">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
                        <property name="minimumSize">
                         <size>
                          <width>82</width>
@@ -1617,6 +1626,12 @@
                           <layout class="QVBoxLayout" name="verticalLayout_14">
                            <item>
                             <widget class="QLabel" name="bestPaintedVotingLabel">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1658,6 +1673,12 @@
                           <layout class="QVBoxLayout" name="verticalLayout_15">
                            <item>
                             <widget class="QLabel" name="bestPaintedVotedLabel">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1797,6 +1818,12 @@
                           <layout class="QVBoxLayout" name="verticalLayout_18">
                            <item>
                             <widget class="QLabel" name="mostSportingVotingLabel">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1838,6 +1865,12 @@
                           <layout class="QVBoxLayout" name="verticalLayout_17">
                            <item>
                             <widget class="QLabel" name="mostSportingVotedLabel">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="font">
                               <font>
                                <family>Calibri</family>

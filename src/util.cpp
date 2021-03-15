@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
-#include <dirent.h>
+#include <direct.h>
 
 namespace util{
 

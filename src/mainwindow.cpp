@@ -52,10 +52,6 @@ void MainWindow::matchupSelected(int row, int col)
     updateRoundInput();
 }
 
-//Possible optimisation is to only save the name and seed of
-// the player, and then on load search for the player in the
-// player list and copy over. This will reduce the size of
-// the .json file.
 void MainWindow::saveEventData()
 {
     QJsonObject jsonObject; //This will be saved to the JsonDocument
@@ -97,28 +93,28 @@ void MainWindow::saveEventData()
 
     //Matchup Data
     {
-        QJsonArray currentMatchupsArray;
+        QJsonArray currentMatchups;
         //Current Round Data
-        for(auto matchup : m_CurrentRoundMatchups)
+        for(const auto player : m_CurrentRoundMatchups)
         {
-            QJsonObject object;
-            object[m_PairFirstTag.c_str()] = matchup.first.getPlayerData();
-            object[m_PairSecondTag.c_str()] = matchup.second.getPlayerData();
-            currentMatchupsArray.append(object);
+            QJsonObject matchup;
+            matchup[m_PairFirstTag.c_str()] = player.first.getPlayerData();
+            matchup[m_PairSecondTag.c_str()] = player.second.getPlayerData();
+            currentMatchups.append(matchup);
         }
-        jsonObject[m_CurrentMatchupsTag.c_str()] = currentMatchupsArray;
+        jsonObject[m_CurrentMatchupsTag.c_str()] = currentMatchups;
 
         QJsonArray allMatchupsArray;
         //All Round Data
         for(auto round : m_AllRoundMatchups)
         {
             QJsonArray matchupsArray;
-            for(auto matchup : round)
+            for(auto player : round)
             {
-                QJsonObject object;
-                object[m_PairFirstTag.c_str()] = matchup.first.getPlayerData();
-                object[m_PairSecondTag.c_str()] = matchup.second.getPlayerData();
-                matchupsArray.append(object);
+                QJsonObject matchup;
+                matchup[m_PairFirstTag.c_str()] = player.first.getPlayerData();
+                matchup[m_PairSecondTag.c_str()] = player.second.getPlayerData();
+                matchupsArray.append(matchup);
             }
             allMatchupsArray.append(matchupsArray);
         }
@@ -146,7 +142,8 @@ void MainWindow::saveEventData()
         else
         {
             UtilLog("Failed to create file, closing the program");
-            std::terminate();
+            QMessageBox messageBox;
+            messageBox.critical(0, "Error", "Failed to create file!");
         }
     }
 

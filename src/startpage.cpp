@@ -3,7 +3,7 @@
 
 void MainWindow::on_createNewEventButton_clicked()
 {
-    loadTournamentCreatorPage();
+    LoadTournamentCreatorPage();
 }
 
 void MainWindow::loadStartPage()

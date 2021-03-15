@@ -6,7 +6,7 @@
 void MainWindow::on_matchupsBackButton_clicked()
 {
     UtilDebug("Matchups Back Button Selected");
-    loadTournamentCreatorPage();
+    LoadTournamentCreatorPage();
 }
 
 void MainWindow::on_matchupsEnterResultsButton_clicked()

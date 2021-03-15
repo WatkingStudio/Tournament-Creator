@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
     connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
     connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
-    connect(&m_EventSettingsWidget, SIGNAL(SettingsComplete(int, int, int, int, int, bool, int, const std::string &, const std::string &, const std::string &, const std::string &)), this, SLOT(receiveEventSettings(int, int, int, int, int, bool, int, const std::string &, const std::string &, const std::string &, const std::string &)));
+    connect(&m_EventSettingsWidget, SIGNAL(SettingsComplete(EventSettingsData)), this, SLOT(ReceiveEventSettings(EventSettingsData)));
 
     ui->matchupsPlayerOneComboBox->addItem(QString(""));
     ui->matchupsPlayerOneComboBox->addItem(QString("Win"));
@@ -137,7 +137,7 @@ void MainWindow::saveEventData()
     {
         UtilLog("ERROR: Unable to open file " + file.fileName().toStdString());
         UtilLog("Attempting to create another file");
-        CreateFile(m_EventDataFileName.c_str(), m_EventDirectory);
+        CreateFile(m_EventDataFileName.c_str(), *m_EventDirectory);
         if(file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             file.write(doc.toJson());

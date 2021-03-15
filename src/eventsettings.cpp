@@ -60,6 +60,19 @@ void EventSettings::PopulateComboBox()
 void EventSettings::on_donePushButton_clicked()
 {
     UtilDebug("Event Settings Done Clicked");
-    emit SettingsComplete(ui->winLineEdit->text().toInt(), ui->drawLineEdit->text().toInt(), ui->lossLineEdit->text().toInt(), ui->mostSportingLineEdit->text().toInt(), ui->bestPaintedLineEdit->text().toInt(), ui->seededPlayersCheckBox->isChecked(), ui->numberOfRoundsLineEdit->text().toInt(), ui->firstTiebreakerComboBox->currentText().toStdString(), ui->secondTiebreakerComboBox->currentText().toStdString(), ui->thirdTiebreakerComboBox->currentText().toStdString(), ui->fourthTieBreakerComboBox->currentText().toStdString());
+    EventSettingsData data = {
+        ui->winLineEdit->text().toInt(),
+        ui->drawLineEdit->text().toInt(),
+        ui->lossLineEdit->text().toInt(),
+        ui->mostSportingLineEdit->text().toInt(),
+        ui->bestPaintedLineEdit->text().toInt(),
+        ui->seededPlayersCheckBox->isChecked(),
+        ui->numberOfRoundsLineEdit->text().toInt(),
+        ui->firstTiebreakerComboBox->currentText().toStdString(),
+        ui->secondTiebreakerComboBox->currentText().toStdString(),
+        ui->thirdTiebreakerComboBox->currentText().toStdString(),
+        ui->fourthTieBreakerComboBox->currentText().toStdString()
+    };
+    emit SettingsComplete(data);
     this->hide();
 }

@@ -130,7 +130,7 @@ void MainWindow::on_BackTournamentCreatorButton_clicked()
     loadStartPage();
 }
 
-void MainWindow::ReceiveEventSettings(EventSettingsData eventSettingsData)
+void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData)
 {
     UtilDebug("Event Settings Changed");
 

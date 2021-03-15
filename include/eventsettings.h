@@ -36,7 +36,7 @@ public:
     void PopulateComboBox();
 
 signals:
-    void SettingsComplete(EventSettingsData settings);
+    void SettingsComplete(const EventSettingsData &settings);
 
 private slots:
     void on_donePushButton_clicked();

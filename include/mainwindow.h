@@ -56,7 +56,7 @@ private slots:
     void on_EventSettingsButton_clicked();
     void on_ContinueTournamentCreatorButton_clicked();
     void on_BackTournamentCreatorButton_clicked();
-    void ReceiveEventSettings(EventSettingsData eventSettingsData);
+    void ReceiveEventSettings(const EventSettingsData &eventSettingsData);
 
     //Matchups Slots
     void on_matchupsBackButton_clicked();

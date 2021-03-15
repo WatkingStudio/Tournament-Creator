@@ -142,7 +142,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="playerAComboBox">
+          <widget class="QComboBox" name="PlayerAComboBox">
            <property name="font">
             <font>
              <family>Calibri</family>
@@ -205,7 +205,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="playerBComboBox">
+          <widget class="QComboBox" name="PlayerBComboBox">
            <property name="font">
             <font>
              <family>Calibri</family>
@@ -560,7 +560,7 @@ this click on the OK button, if not press CANCEL.</string>
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="okPushButton">
+          <widget class="QPushButton" name="OkPushButton">
            <property name="minimumSize">
             <size>
              <width>50</width>
@@ -585,7 +585,7 @@ this click on the OK button, if not press CANCEL.</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="cancelPushButton">
+          <widget class="QPushButton" name="CancelPushButton">
            <property name="minimumSize">
             <size>
              <width>50</width>

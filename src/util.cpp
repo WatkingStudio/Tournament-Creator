@@ -2,22 +2,67 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+#include <dirent.h>
 
 namespace util{
 
-void writeToFile(const std::string &file){
+    std::string GetWorkingDirectory()
+    {
+        char* cwd = _getcwd(0,0);
+        std::string working_directory(cwd);
+        std::free(cwd);
+        return working_directory;
+    }
+
+    void WriteToFile(const std::string &message, const std::string &file, const std::string &directory){
+        if(!FileExists(file.c_str()))
+        {
+            CreateFile(file.c_str(), directory.c_str());
+        }
+
+        QFile writeToFile(file.c_str());
+        writeToFile.open(QIODevice::ReadWrite | QIODevice::Text);
+        QByteArray data = writeToFile.readAll();
+        writeToFile.write(message.c_str());
+        writeToFile.close();
+    }
 
 }
 
-std::string getWorkingDirectory()
+bool CreateFile(const QString &path, const QString &directory)
 {
-    std::cout<<"This path has been hard-coded"<<std::endl;
-    return "C:/Users/gethi/Documents/Coding/Repositories/tournament_creator/";
+    QFile file(path);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        if(!QDir(directory).exists())
+        {
+            QDir().mkdir(directory);
+        }
+        if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            UtilLog("ERROR: Unable to create file or directory");
+            return false;
+        }
+    }
+    return true;
 }
 
+bool FileExists(const QString &path)
+{
+    QFileInfo checkFile(path);
+    //check if file exists and if yes: Is it really a file and not a directory?
+    if(checkFile.exists()
+            && checkFile.isFile())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-std::string getDate()
+std::string GetDate()
 {
     time_t rawtime;
     struct tm * timeinfo;
@@ -32,7 +77,7 @@ std::string getDate()
     return str;
 }
 
-std::string getTime()
+std::string GetTime()
 {
     time_t rawtime;
     struct tm * timeinfo;
@@ -47,98 +92,75 @@ std::string getTime()
     return str;
 }
 
-//example message- [int][24/07/28][12:38] Log Message: 80
-void utilLog(const int &message)
+QString IntToQString(const int num)
 {
-    std::string logMessage = "[int]";
-    logMessage += "[";
-    logMessage += getDate();
-    logMessage += "]";
-    logMessage += " LogMessage: ";
-    logMessage += std::to_string(message);
-
-    std::cout<<logMessage<<std::endl;
-    saveLog(logMessage);
+    return QString::fromStdString(std::to_string(num));
 }
 
-//example message- [string][24/07/28][12:38] Log Message: This is a log message
-void utilLog(const std::string &message)
+void SaveDebug(const std::string &message)
 {
-    std::string logMessage = "[string]";
-    logMessage += "[";
-    logMessage += getDate();
-    logMessage += "]";
-    logMessage += " LogMessage: ";
-    logMessage += message;
-
-    std::cout<<logMessage<<std::endl;
-    saveLog(logMessage);
+    std::string file = "DebugLogs/debug_" + GetDate() + ".txt";
+    std::string array = "[" + GetTime() + "]" + message + "\n";
+    util::WriteToFile(array, file, "DebugLogs");
 }
 
-void utilDebug(const std::string &message)
+void SaveLog(const std::string &message)
 {
-    if(debugging)
+    std::string file = "Logs/log_" + GetDate() + ".txt";
+    std::string array = "[" + GetTime() + "]" + message + "\n";
+    util::WriteToFile(array, file, "Logs");
+}
+
+//example message- [string][24/07/28][12:38:15] Debug Message: This is a log message
+void UtilDebug(const std::string &message)
+{
+    if(Debugging)
     {
         std::string logMessage = "[string]";
         logMessage += "[";
-        logMessage += getDate();
+        logMessage += GetDate();
+        logMessage += "]";
+        logMessage += "[";
+        logMessage += GetTime();
         logMessage += "]";
         logMessage += " DebugMessage: ";
         logMessage += message;
 
         std::cout<<logMessage<<std::endl;
-        saveLog(logMessage);
+        SaveDebug(logMessage);
     }
 }
 
-void setDebugging(bool debug)
+//example message- [float][24/07/28][12:38:15] Log Message: 80.5
+void UtilLog(const float &message)
 {
-    debugging = debug;
+    std::string logMessage = "[float]";
+    logMessage += "[";
+    logMessage += GetDate();
+    logMessage += "]";
+    logMessage += "[";
+    logMessage += GetTime();
+    logMessage += "]";
+    logMessage += " LogMessage: ";
+    logMessage += std::to_string(message);
+
+    std::cout<<logMessage<<std::endl;
+    SaveLog(logMessage);
 }
 
-QString intToQString(int num)
+//example message- [string][24/07/28][12:38:15] Log Message: This is a log message
+void UtilLog(const std::string &message)
 {
-    return QString::fromStdString(std::to_string(num));
-}
+    std::string logMessage = "[string]";
+    logMessage += "[";
+    logMessage += GetDate();
+    logMessage += "]";
+    logMessage += "[";
+    logMessage += GetTime();
+    logMessage += "]";
+    logMessage += " LogMessage: ";
+    logMessage += message;
 
-bool fileExists(const QString &path)
-{
-    QFileInfo checkFile(path);
-    //check if file exists and if yes: Is it really a file and no directory?
-    if(checkFile.exists() && checkFile.isFile())
-        return true;
-    else
-        return false;
-}
-
-bool createFile(const QString &path, const QString &directory)
-{
-    QFile file(path);
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        if(!QDir(directory).exists())
-        {
-            QDir().mkdir(directory);
-        }
-        if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        {
-            utilLog("ERROR: Unable to create file or directory");
-            return false;
-        }
-    }
-    return true;
-}
-
-void saveLog(const std::string &message)
-{
-    std::string file = "Logs/log_" + getDate() + ".txt";
-    if(!fileExists(file.c_str()))
-        createFile(file.c_str(), "Logs");
-
-    QFile logFile(file.c_str());
-    logFile.open(QIODevice::ReadWrite | QIODevice::Text);
-    QByteArray data = logFile.readAll();
-    std::string array = "[" + getTime() + "]" + message + "\n";
-    logFile.write(array.c_str());
-    logFile.close();
+    std::cout<<logMessage<<std::endl;
+    SaveLog(logMessage);
 }

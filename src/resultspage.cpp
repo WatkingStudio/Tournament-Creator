@@ -27,7 +27,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     //Get Player Names
     std::string votingPlayer = ui->bestPaintedVotingComboBox->currentText().toStdString();
     std::string votedPlayer = ui->bestPaintedVotedComboBox->currentText().toStdString();
-    utilLog("Best Pained Vote: " + votingPlayer + " voting for " + votedPlayer);
+    UtilLog("Best Pained Vote: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
 
@@ -95,7 +95,7 @@ void MainWindow::on_bestPaintedPushButton_clicked()
             {
                 if(m_MainPlayerList.at(i).getName() == votedPlayer)
                 {
-                    utilLog("Adding Best Painted Vote");
+                    UtilLog("Adding Best Painted Vote");
                     m_MainPlayerList.at(i).addBestPaintedArmyVote(m_BestPaintedValue);
                     m_NumBestPaintedVotes++;
                     break;
@@ -114,7 +114,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
     //Get Player Names
     std::string votingPlayer = ui->mostSportingVotingComboBox->currentText().toStdString();
     std::string votedPlayer = ui->mostSportingVotedComboBox->currentText().toStdString();
-    utilLog("Most Sporting: " + votingPlayer + " voting for " + votedPlayer);
+    UtilLog("Most Sporting: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
 
@@ -181,7 +181,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
             {
                 if(m_MainPlayerList.at(i).getName() == votedPlayer)
                 {
-                    utilLog("Most Sportin Vote Added");
+                    UtilLog("Most Sportin Vote Added");
                     m_MainPlayerList.at(i).addMostSportingVote(m_MostSportingValue);
                     m_NumMostSportingVotes++;
                     break;
@@ -198,7 +198,7 @@ void MainWindow::on_mostSportingPushButton_clicked()
 
 void MainWindow::on_displayResultsPushButton_clicked()
 {
-    utilDebug("Display Results Clicked");
+    UtilDebug("Display Results Clicked");
     bool display = true;
     if(m_NumBestPaintedVotes < m_MainPlayerList.size())
     {
@@ -220,7 +220,7 @@ void MainWindow::on_displayResultsPushButton_clicked()
     }
     if(display)
     {
-        utilLog("Displaying Results");
+        UtilLog("Displaying Results");
         resetPage();
         updateRankings();
 
@@ -240,12 +240,12 @@ void MainWindow::on_displayResultsPushButton_clicked()
         populateResultsTable();
     }
     else
-        utilLog("Results not being displayed");
+        UtilLog("Results not being displayed");
 }
 
 std::string MainWindow::getMostSportingPlayer()
 {
-    utilLog("Get Most Sporting Player");
+    UtilLog("Get Most Sporting Player");
     std::string mostSportingPlayer;
     int mostSportingVotes = 0;
 
@@ -263,7 +263,7 @@ std::string MainWindow::getMostSportingPlayer()
 
 std::string MainWindow::getBestPaintedPlayer()
 {
-    utilLog("Get Best Painted Player");
+    UtilLog("Get Best Painted Player");
     std::string bestPaintedPlayer;
     int bestPaintedVotes = 0;
 
@@ -281,13 +281,13 @@ std::string MainWindow::getBestPaintedPlayer()
 
 std::string MainWindow::getWoodenSpoonPlayer()
 {
-    utilLog("Get Wooden Spoon Player");
+    UtilLog("Get Wooden Spoon Player");
     return m_MainPlayerList.at(m_MainPlayerList.size() - 1).getName();
 }
 
 std::vector<std::string> MainWindow::getPodiumPlayers()
 {
-    utilLog("Get Podium Players");
+    UtilLog("Get Podium Players");
     std::vector<std::string> podiumPlayers;
     podiumPlayers.push_back(m_MainPlayerList.at(0).getName());
     podiumPlayers.push_back(m_MainPlayerList.at(1).getName());
@@ -298,18 +298,18 @@ std::vector<std::string> MainWindow::getPodiumPlayers()
 
 void MainWindow::populateResultsTable()
 {
-    utilDebug("Populate Results Table");
+    UtilDebug("Populate Results Table");
     for(auto player : m_MainPlayerList)
     {
         int rowCount = ui->fullResultsTable->rowCount();
         ui->fullResultsTable->insertRow(rowCount);
-        ui->fullResultsTable->setItem(rowCount, 0, new QTableWidgetItem(intToQString(rowCount + 1)));
+        ui->fullResultsTable->setItem(rowCount, 0, new QTableWidgetItem(IntToQString(rowCount + 1)));
         ui->fullResultsTable->setItem(rowCount, 1, new QTableWidgetItem(player.getName().c_str()));
-        ui->fullResultsTable->setItem(rowCount, 2, new QTableWidgetItem(intToQString(player.getTPs())));
-        ui->fullResultsTable->setItem(rowCount, 3, new QTableWidgetItem(intToQString(player.getVPs())));
-        ui->fullResultsTable->setItem(rowCount, 4, new QTableWidgetItem(intToQString(player.getVPDiff())));
-        ui->fullResultsTable->setItem(rowCount, 5, new QTableWidgetItem(intToQString(player.getBestPaintedArmyVotes())));
-        ui->fullResultsTable->setItem(rowCount, 6, new QTableWidgetItem(intToQString(player.getMostSportingVotes())));
+        ui->fullResultsTable->setItem(rowCount, 2, new QTableWidgetItem(IntToQString(player.getTPs())));
+        ui->fullResultsTable->setItem(rowCount, 3, new QTableWidgetItem(IntToQString(player.getVPs())));
+        ui->fullResultsTable->setItem(rowCount, 4, new QTableWidgetItem(IntToQString(player.getVPDiff())));
+        ui->fullResultsTable->setItem(rowCount, 5, new QTableWidgetItem(IntToQString(player.getBestPaintedArmyVotes())));
+        ui->fullResultsTable->setItem(rowCount, 6, new QTableWidgetItem(IntToQString(player.getMostSportingVotes())));
     }
 }
 

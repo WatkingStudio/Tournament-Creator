@@ -9,6 +9,21 @@ namespace Ui {
 class EventSettings;
 }
 
+struct EventSettingsData
+{
+    int winTPs = 0;
+    int drawTPs = 0;
+    int lossTPs = 0;
+    int mostSportingTPs = 0;
+    int bestPaintedTPs = 0;
+    bool usingSeeded = false;
+    int numberOfRounds = 0;
+    std::string firstTiebreaker;
+    std::string secondTiebreaker;
+    std::string thirdTiebreaker;
+    std::string fourthTiebreaker;
+};
+
 class EventSettings : public QWidget
 {
     Q_OBJECT
@@ -21,7 +36,7 @@ public:
     void PopulateComboBox();
 
 signals:
-    void SettingsComplete(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, const std::string &firstTiebreaker, const std::string &secondTiebreaker, const std::string &thirdTiebreaker, const std::string &fourthTiebreaker);
+    void SettingsComplete(EventSettingsData settings);
 
 private slots:
     void on_donePushButton_clicked();

@@ -10,6 +10,7 @@
 #include <QStandardPaths>
 #include <QFileDialog>
 #include <QComboBox>
+#include <memory>
 
 namespace Ui {
 class MainWindow;
@@ -49,13 +50,13 @@ private slots:
     void on_loadEventButton_clicked();
 
     //Tournament Creator Slots
-    void on_removePlayerButton_clicked();
-    void on_addPlayerButton_clicked();
-    void on_saveEventTournamentCreatorButton_clicked();
-    void on_eventSettingsButton_clicked();
-    void on_continueTournamentCreatorButton_clicked();
-    void on_backTournamentCreatorButton_clicked();
-    void receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, const std::string &firstTiebreaker, const std::string &secondTiebreaker, const std::string &thirdTiebreaker, const std::string &fourthTiebreaker);
+    void on_RemovePlayerButton_clicked();
+    void on_AddPlayerButton_clicked();
+    void on_SaveEventTournamentCreatorButton_clicked();
+    void on_EventSettingsButton_clicked();
+    void on_ContinueTournamentCreatorButton_clicked();
+    void on_BackTournamentCreatorButton_clicked();
+    void ReceiveEventSettings(EventSettingsData eventSettingsData);
 
     //Matchups Slots
     void on_matchupsBackButton_clicked();
@@ -93,14 +94,19 @@ private:
     //Start Page Functions and Variables
     void loadStartPage();
 
-    //Tournament Creator Page Functions and Variables
-    void loadTournamentCreatorPage();
-    void updatePlayerTable();
-    void resetPlayerTable();
+    // Tournament Creator Page Functions and Variables
+    // Loads the Tournament Creator Page
+    void LoadTournamentCreatorPage();
 
-    QString m_EventDirectory = "TournamentData";
-    QString m_EventDefaultFileName = "/EventData_";
-    std::vector<Player> m_TempPlayerList;
+    // Updates the Player table to use the current Player list
+    void UpdatePlayerTable();
+
+    // Resets the Player table
+    void ResetPlayerTable();
+
+    std::unique_ptr<QString> m_EventDirectory = std::make_unique<QString>("TournamentData");
+    std::unique_ptr<QString> m_EventDefaultFileName = std::make_unique<QString>("/EventData_");
+    std::unique_ptr<std::vector<Player>> m_TempPlayerList = std::make_unique<std::vector<Player>>();
     int m_TournamentCreatorSelectedRow = -1;
     int m_TournamentCreatorSelectedCol = -1;
     bool m_EventSettingsActive = false;

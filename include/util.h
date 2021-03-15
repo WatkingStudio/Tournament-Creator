@@ -52,5 +52,4 @@ const bool Debugging = true;
 typedef unsigned char uchar;
 typedef unsigned int uint;
 
-
 #endif // UTIL_H

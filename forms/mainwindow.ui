@@ -135,7 +135,7 @@
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="startScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -463,7 +463,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="removePlayerButton">
+                <widget class="QPushButton" name="RemovePlayerButton">
                  <property name="minimumSize">
                   <size>
                    <width>120</width>
@@ -494,7 +494,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="addPlayerButton">
+                <widget class="QPushButton" name="AddPlayerButton">
                  <property name="minimumSize">
                   <size>
                    <width>120</width>
@@ -525,7 +525,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="saveEventTournamentCreatorButton">
+                <widget class="QPushButton" name="SaveEventTournamentCreatorButton">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -559,7 +559,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="eventSettingsButton">
+                <widget class="QPushButton" name="EventSettingsButton">
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
@@ -609,7 +609,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="continueTournamentCreatorButton">
+                <widget class="QPushButton" name="ContinueTournamentCreatorButton">
                  <property name="minimumSize">
                   <size>
                    <width>120</width>
@@ -640,7 +640,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="backTournamentCreatorButton">
+                <widget class="QPushButton" name="BackTournamentCreatorButton">
                  <property name="minimumSize">
                   <size>
                    <width>120</width>
@@ -692,8 +692,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>200</width>
-                 <height>430</height>
+                 <width>934</width>
+                 <height>663</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">

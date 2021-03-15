@@ -3,20 +3,20 @@
 
 void MainWindow::loadTournamentCreatorPage()
 {
-    utilDebug("Load Tournament Creator Page");
+    UtilDebug("Load Tournament Creator Page");
     int i = 0;
     QString filePath;
     while(true)
     {
         filePath = m_EventDirectory + m_EventDefaultFileName + std::to_string(i).c_str() + ".json";
-        if(!fileExists(filePath))
+        if(!FileExists(filePath))
         {
             m_EventDataFileName = filePath.toStdString();
             break;
         }
         i++;
     }
-    createFile(m_EventDataFileName.c_str(), m_EventDirectory);
+    CreateFile(m_EventDataFileName.c_str(), m_EventDirectory);
 
     ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
     ui->pageTitleWidget->setText("Tournament Creator");
@@ -29,7 +29,7 @@ void MainWindow::loadTournamentCreatorPage()
 
 void MainWindow::updatePlayerTable()
 {
-    utilDebug("Updating Player Table");
+    UtilDebug("Updating Player Table");
     resetPlayerTable();
 
     for(auto it = m_TempPlayerList.begin(); it != m_TempPlayerList.end(); ++it)
@@ -46,7 +46,7 @@ void MainWindow::updatePlayerTable()
 
 void MainWindow::resetPlayerTable()
 {
-    utilDebug("Reset Player Table");
+    UtilDebug("Reset Player Table");
 
     int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
     for(int j = 0; j < i; ++j)
@@ -60,7 +60,7 @@ void MainWindow::resetPlayerTable()
 
 void MainWindow::on_removePlayerButton_clicked()
 {
-    utilDebug("Remove Player Clicked");
+    UtilDebug("Remove Player Clicked");
     if(m_TournamentCreatorSelectedRow != -1)
     {
         ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
@@ -71,10 +71,10 @@ void MainWindow::on_removePlayerButton_clicked()
 
 void MainWindow::on_addPlayerButton_clicked()
 {
-    utilDebug("Add Player Clicked");
+    UtilDebug("Add Player Clicked");
     if(ui->playerNameInputLineEdit->displayText() != "")
     {
-        utilDebug("Add Player");
+        UtilDebug("Add Player");
 
         Player newPlayer;
         newPlayer.setName(ui->playerNameInputLineEdit->text().toStdString());
@@ -90,19 +90,19 @@ void MainWindow::on_addPlayerButton_clicked()
 
 void MainWindow::on_saveEventTournamentCreatorButton_clicked()
 {
-    utilDebug("Tournament Creator Save Event Button Clicked");
+    UtilDebug("Tournament Creator Save Event Button Clicked");
     saveEventData();
 }
 
 void MainWindow::on_eventSettingsButton_clicked()
 {
-    utilDebug("Event Settings Clicked");
+    UtilDebug("Event Settings Clicked");
     m_EventSettingsWidget.show();
 }
 
 void MainWindow::on_continueTournamentCreatorButton_clicked()
 {
-    utilDebug("Tournament Creator Continue Button Clicked");
+    UtilDebug("Tournament Creator Continue Button Clicked");
     if(m_TempPlayerList.size() > 0)
     {
         m_MainPlayerList.clear();
@@ -131,7 +131,7 @@ void MainWindow::on_backTournamentCreatorButton_clicked()
 
 void MainWindow::receiveEventSettings(int winTPs, int drawTPs, int lossTPs, int mostSportingTPs, int bestPaintedTPs, bool usingSeeded, int numberOfRounds, const std::string &firstTiebreaker, const std::string &secondTiebreaker, const std::string &thirdTiebreaker, const std::string &fourthTiebreaker)
 {
-    utilDebug("Event Settings Changed");
+    UtilDebug("Event Settings Changed");
 
     if(winTPs > 0)
         m_WinValue = winTPs;

@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setDebugging(m_DebugMessagesOn);
-
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
     connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
     connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
@@ -137,9 +135,9 @@ void MainWindow::saveEventData()
     }
     else
     {
-        utilLog("ERROR: Unable to open file " + file.fileName().toStdString());
-        utilLog("Attempting to create another file");
-        createFile(m_EventDataFileName.c_str(), m_EventDirectory);
+        UtilLog("ERROR: Unable to open file " + file.fileName().toStdString());
+        UtilLog("Attempting to create another file");
+        CreateFile(m_EventDataFileName.c_str(), m_EventDirectory);
         if(file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             file.write(doc.toJson());
@@ -147,12 +145,12 @@ void MainWindow::saveEventData()
         }
         else
         {
-            utilLog("Failed to create file, closing the program");
+            UtilLog("Failed to create file, closing the program");
             std::terminate();
         }
     }
 
-    utilLog("Event Data Saved");
+    UtilLog("Event Data Saved");
 }
 
 bool MainWindow::loadEventData()
@@ -228,6 +226,6 @@ bool MainWindow::loadEventData()
         m_AllRoundMatchups.push_back(tempRoundMatchups);
     }
 
-    utilLog("Event Data Loaded");
+    UtilLog("Event Data Loaded");
     return true;
 }

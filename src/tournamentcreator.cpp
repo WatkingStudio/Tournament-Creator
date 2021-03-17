@@ -36,8 +36,8 @@ void MainWindow::on_AddPlayerButton_clicked()
         UtilDebug("Add Player");
 
         Player newPlayer;
-        newPlayer.setName(m_Ui->playerNameInputLineEdit->text().toStdString());
-        newPlayer.setSeed(m_Ui->playerSeedInputLineEdit->text().toInt());
+        newPlayer.SetName(m_Ui->playerNameInputLineEdit->text().toStdString());
+        newPlayer.SetSeed(m_Ui->playerSeedInputLineEdit->text().toInt());
 
         m_TempPlayerList->push_back(newPlayer);
 
@@ -158,12 +158,12 @@ void MainWindow::UpdatePlayerTable()
 
     for(const auto &player : *m_TempPlayerList)
     {
-        if(player.getName() != "")
+        if(player.GetName() != "")
         {
             int i = m_Ui->tournamentCreatorPlayerTableWidget->rowCount();
             m_Ui->tournamentCreatorPlayerTableWidget->insertRow(i);
-            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.getName().c_str()));
-            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.getSeed()))));
+            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.GetName().c_str()));
+            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.GetSeed()))));
         }
     }
 }

@@ -101,7 +101,7 @@ bool MainWindow::LoadEventData()
         //Convert each element of the array into an object and use it to set player data
         QJsonObject item = playerArray.at(i).toObject();
         Player newPlayer;
-        newPlayer.setPlayerData(item);
+        newPlayer.SetPlayerData(item);
         m_MainPlayerList.push_back(newPlayer);
     }
 
@@ -117,8 +117,8 @@ bool MainWindow::LoadEventData()
         {
             QJsonObject item = singleMatchupArray.at(j).toObject();
             std::pair<Player, Player> tempMatchup;
-            tempMatchup.first.setPlayerData(item[m_PairFirstTag.c_str()].toObject());
-            tempMatchup.second.setPlayerData(item[m_PairSecondTag.c_str()].toObject());
+            tempMatchup.first.SetPlayerData(item[m_PairFirstTag.c_str()].toObject());
+            tempMatchup.second.SetPlayerData(item[m_PairSecondTag.c_str()].toObject());
 
             tempRoundMatchups.push_back(tempMatchup);
         }
@@ -160,7 +160,7 @@ void MainWindow::SaveEventData() const
     //Player Data
     for(const auto &player : m_MainPlayerList)
     {
-        playerArray.append(player.getPlayerData());
+        playerArray.append(player.GetPlayerData());
     }
 
     jsonObject[m_PlayerDataTag.c_str()] = playerArray;
@@ -172,8 +172,8 @@ void MainWindow::SaveEventData() const
         for(const auto &matchup : *m_CurrentRoundMatchups)
         {
             QJsonObject tempMatchup;
-            tempMatchup[m_PairFirstTag.c_str()] = matchup.first.getPlayerData();
-            tempMatchup[m_PairSecondTag.c_str()] = matchup.second.getPlayerData();
+            tempMatchup[m_PairFirstTag.c_str()] = matchup.first.GetPlayerData();
+            tempMatchup[m_PairSecondTag.c_str()] = matchup.second.GetPlayerData();
             currentMatchupsArray.append(tempMatchup);
         }
         jsonObject[m_CurrentMatchupsTag.c_str()] = currentMatchupsArray;
@@ -186,8 +186,8 @@ void MainWindow::SaveEventData() const
             for(const auto &matchup : round)
             {
                 QJsonObject tempMatchup;
-                tempMatchup[m_PairFirstTag.c_str()] = matchup.first.getPlayerData();
-                tempMatchup[m_PairSecondTag.c_str()] = matchup.second.getPlayerData();
+                tempMatchup[m_PairFirstTag.c_str()] = matchup.first.GetPlayerData();
+                tempMatchup[m_PairSecondTag.c_str()] = matchup.second.GetPlayerData();
                 matchupsArray.append(tempMatchup);
             }
             allMatchupsArray.append(matchupsArray);

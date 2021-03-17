@@ -21,8 +21,8 @@ void DirectMatchupSwap::SetUp(const std::vector<Player> &playerList, const std::
     //Populate the DropDown with players
     for(const auto &it : *m_TempPlayerList)
     {
-        m_Ui->PlayerAComboBox->addItem(it.getName().c_str());
-        m_Ui->PlayerBComboBox->addItem(it.getName().c_str());
+        m_Ui->PlayerAComboBox->addItem(it.GetName().c_str());
+        m_Ui->PlayerBComboBox->addItem(it.GetName().c_str());
     }
     //Set the temp matchups to current matchups
     *m_TempPlayerMatchup = currentRound;
@@ -31,33 +31,34 @@ void DirectMatchupSwap::SetUp(const std::vector<Player> &playerList, const std::
 void DirectMatchupSwap::on_OkPushButton_clicked()
 {
     UtilDebug("Direct Matchup Ok Clicked");
-    Player playerOne;
-    Player playerTwo;
-    Player playerThree;
-    Player playerFour;
 
-    for(const auto &it : *m_TempPlayerList)
+    std::vector<Player>::iterator playerOne;
+    std::vector<Player>::iterator playerTwo;
+    std::vector<Player>::iterator playerThree;
+    std::vector<Player>::iterator playerFour;
+
+    for(auto it = m_TempPlayerList->begin(); it != m_TempPlayerList->end(); it++)
     {
-        if(it.getName() == m_Ui->newMatchUpOnePlayerAName->text().toStdString())
+        if(it->GetName() == m_Ui->newMatchUpOnePlayerAName->text().toStdString())
         {
             playerOne = it;
         }
-        else if(it.getName() == m_Ui->newMatchUpOnePlayerBName->text().toStdString())
+        else if(it->GetName() == m_Ui->newMatchUpOnePlayerBName->text().toStdString())
         {
             playerTwo = it;
         }
-        else if(it.getName() == m_Ui->newMatchUpTwoPlayerCName->text().toStdString())
+        else if(it->GetName() == m_Ui->newMatchUpTwoPlayerCName->text().toStdString())
         {
             playerThree = it;
         }
-        else if(it.getName() == m_Ui->newMatchUpTwoPlayerDName->text().toStdString())
+        else if(it->GetName() == m_Ui->newMatchUpTwoPlayerDName->text().toStdString())
         {
             playerFour = it;
         }
     }
 
     this->hide();
-    emit SwapComplete(playerOne, playerTwo, playerThree, playerFour);
+    emit SwapComplete(*playerOne, *playerTwo, *playerThree, *playerFour);
 }
 
 void DirectMatchupSwap::on_PlayerAComboBox_currentIndexChanged(const QString &arg1)
@@ -65,15 +66,15 @@ void DirectMatchupSwap::on_PlayerAComboBox_currentIndexChanged(const QString &ar
     UtilDebug("Player A ComboBox Changed: " + arg1.toStdString());
     for(const auto &it: *m_TempPlayerMatchup)
     {
-        if(it.first.getName() == arg1.toStdString())
+        if(it.first.GetName() == arg1.toStdString())
         {
             m_Ui->newMatchUpOnePlayerAName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerCName->setText(it.second.getName().c_str());
+            m_Ui->newMatchUpTwoPlayerCName->setText(it.second.GetName().c_str());
         }
-        else if(it.second.getName() == arg1.toStdString())
+        else if(it.second.GetName() == arg1.toStdString())
         {
             m_Ui->newMatchUpOnePlayerAName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerCName->setText(it.first.getName().c_str());
+            m_Ui->newMatchUpTwoPlayerCName->setText(it.first.GetName().c_str());
         }
     }
 }
@@ -83,15 +84,15 @@ void DirectMatchupSwap::on_PlayerBComboBox_currentIndexChanged(const QString &ar
     UtilDebug("Player B ComboBox Changed: " + arg1.toStdString());
     for(const auto &it: *m_TempPlayerMatchup)
     {
-        if(it.first.getName() == arg1.toStdString())
+        if(it.first.GetName() == arg1.toStdString())
         {
             m_Ui->newMatchUpOnePlayerBName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerDName->setText(it.second.getName().c_str());
+            m_Ui->newMatchUpTwoPlayerDName->setText(it.second.GetName().c_str());
         }
-        else if(it.second.getName() == arg1.toStdString())
+        else if(it.second.GetName() == arg1.toStdString())
         {
             m_Ui->newMatchUpOnePlayerBName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerDName->setText(it.first.getName().c_str());
+            m_Ui->newMatchUpTwoPlayerDName->setText(it.first.GetName().c_str());
         }
     }
 }

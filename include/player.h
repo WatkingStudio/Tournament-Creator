@@ -51,7 +51,7 @@ public:
     void setBestPaintedVote(const std::string &name);
     void setMostSportingVote(const std::string &name);
 
-    QJsonObject getPlayerData();
+    QJsonObject getPlayerData() const;
     void setPlayerData(QJsonObject object);
 
 private:

@@ -3,12 +3,12 @@
 
 void MainWindow::loadResultsPage()
 {
-    ui->stackedWidget->setCurrentIndex(Pages::RESULTS_PAGE);
+    m_Ui->stackedWidget->setCurrentIndex(Pages::RESULTS_PAGE);
 
-    populateComboBox(*ui->bestPaintedVotedComboBox);
-    populateComboBox(*ui->bestPaintedVotingComboBox);
-    populateComboBox(*ui->mostSportingVotedComboBox);
-    populateComboBox(*ui->mostSportingVotingComboBox);
+    populateComboBox(*m_Ui->bestPaintedVotedComboBox);
+    populateComboBox(*m_Ui->bestPaintedVotingComboBox);
+    populateComboBox(*m_Ui->mostSportingVotedComboBox);
+    populateComboBox(*m_Ui->mostSportingVotingComboBox);
 
     resetPage();
 }
@@ -25,8 +25,8 @@ void MainWindow::populateComboBox(QComboBox &comboBox)
 void MainWindow::on_bestPaintedPushButton_clicked()
 {
     //Get Player Names
-    std::string votingPlayer = ui->bestPaintedVotingComboBox->currentText().toStdString();
-    std::string votedPlayer = ui->bestPaintedVotedComboBox->currentText().toStdString();
+    std::string votingPlayer = m_Ui->bestPaintedVotingComboBox->currentText().toStdString();
+    std::string votedPlayer = m_Ui->bestPaintedVotedComboBox->currentText().toStdString();
     UtilLog("Best Pained Vote: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
@@ -105,15 +105,15 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     }
 
     //clear field
-    ui->bestPaintedVotedComboBox->setCurrentIndex(0);
-    ui->bestPaintedVotingComboBox->setCurrentIndex(0);
+    m_Ui->bestPaintedVotedComboBox->setCurrentIndex(0);
+    m_Ui->bestPaintedVotingComboBox->setCurrentIndex(0);
 }
 
 void MainWindow::on_mostSportingPushButton_clicked()
 {
     //Get Player Names
-    std::string votingPlayer = ui->mostSportingVotingComboBox->currentText().toStdString();
-    std::string votedPlayer = ui->mostSportingVotedComboBox->currentText().toStdString();
+    std::string votingPlayer = m_Ui->mostSportingVotingComboBox->currentText().toStdString();
+    std::string votedPlayer = m_Ui->mostSportingVotedComboBox->currentText().toStdString();
     UtilLog("Most Sporting: " + votingPlayer + " voting for " + votedPlayer);
     bool addVote = false;
     bool processVote = true;
@@ -192,8 +192,8 @@ void MainWindow::on_mostSportingPushButton_clicked()
 
 
     //clear field
-    ui->mostSportingVotedComboBox->setCurrentIndex(0);
-    ui->mostSportingVotingComboBox->setCurrentIndex(0);
+    m_Ui->mostSportingVotedComboBox->setCurrentIndex(0);
+    m_Ui->mostSportingVotingComboBox->setCurrentIndex(0);
 }
 
 void MainWindow::on_displayResultsPushButton_clicked()
@@ -230,12 +230,12 @@ void MainWindow::on_displayResultsPushButton_clicked()
         std::string woodenSpoonPlayer = getWoodenSpoonPlayer();
         std::vector<std::string> podiumPlayers = getPodiumPlayers();
 
-        ui->mostSportingInputLabel->setText(mostSportingPlayer.c_str());
-        ui->bestPaintedInputLabel->setText(bestPaintedPlayer.c_str());
-        ui->woodenSpoonInputLabel->setText(woodenSpoonPlayer.c_str());
-        ui->firstPlaceInputLabel->setText(podiumPlayers.at(0).c_str());
-        ui->secondPlaceInputLabel->setText(podiumPlayers.at(1).c_str());
-        ui->thirdPlaceInputLabel->setText(podiumPlayers.at(2).c_str());
+        m_Ui->mostSportingInputLabel->setText(mostSportingPlayer.c_str());
+        m_Ui->bestPaintedInputLabel->setText(bestPaintedPlayer.c_str());
+        m_Ui->woodenSpoonInputLabel->setText(woodenSpoonPlayer.c_str());
+        m_Ui->firstPlaceInputLabel->setText(podiumPlayers.at(0).c_str());
+        m_Ui->secondPlaceInputLabel->setText(podiumPlayers.at(1).c_str());
+        m_Ui->thirdPlaceInputLabel->setText(podiumPlayers.at(2).c_str());
 
         populateResultsTable();
     }
@@ -301,45 +301,45 @@ void MainWindow::populateResultsTable()
     UtilDebug("Populate Results Table");
     for(auto player : m_MainPlayerList)
     {
-        int rowCount = ui->fullResultsTable->rowCount();
-        ui->fullResultsTable->insertRow(rowCount);
-        ui->fullResultsTable->setItem(rowCount, 0, new QTableWidgetItem(IntToQString(rowCount + 1)));
-        ui->fullResultsTable->setItem(rowCount, 1, new QTableWidgetItem(player.getName().c_str()));
-        ui->fullResultsTable->setItem(rowCount, 2, new QTableWidgetItem(IntToQString(player.getTPs())));
-        ui->fullResultsTable->setItem(rowCount, 3, new QTableWidgetItem(IntToQString(player.getVPs())));
-        ui->fullResultsTable->setItem(rowCount, 4, new QTableWidgetItem(IntToQString(player.getVPDiff())));
-        ui->fullResultsTable->setItem(rowCount, 5, new QTableWidgetItem(IntToQString(player.getBestPaintedArmyVotes())));
-        ui->fullResultsTable->setItem(rowCount, 6, new QTableWidgetItem(IntToQString(player.getMostSportingVotes())));
+        int rowCount = m_Ui->fullResultsTable->rowCount();
+        m_Ui->fullResultsTable->insertRow(rowCount);
+        m_Ui->fullResultsTable->setItem(rowCount, 0, new QTableWidgetItem(IntToQString(rowCount + 1)));
+        m_Ui->fullResultsTable->setItem(rowCount, 1, new QTableWidgetItem(player.getName().c_str()));
+        m_Ui->fullResultsTable->setItem(rowCount, 2, new QTableWidgetItem(IntToQString(player.getTPs())));
+        m_Ui->fullResultsTable->setItem(rowCount, 3, new QTableWidgetItem(IntToQString(player.getVPs())));
+        m_Ui->fullResultsTable->setItem(rowCount, 4, new QTableWidgetItem(IntToQString(player.getVPDiff())));
+        m_Ui->fullResultsTable->setItem(rowCount, 5, new QTableWidgetItem(IntToQString(player.getBestPaintedArmyVotes())));
+        m_Ui->fullResultsTable->setItem(rowCount, 6, new QTableWidgetItem(IntToQString(player.getMostSportingVotes())));
     }
 }
 
 void MainWindow::resetPage()
 {
-    ui->firstPlaceInputLabel->clear();
-    ui->secondPlaceInputLabel->clear();
-    ui->thirdPlaceInputLabel->clear();
-    ui->woodenSpoonInputLabel->clear();
-    ui->mostSportingInputLabel->clear();
-    ui->bestPaintedInputLabel->clear();
+    m_Ui->firstPlaceInputLabel->clear();
+    m_Ui->secondPlaceInputLabel->clear();
+    m_Ui->thirdPlaceInputLabel->clear();
+    m_Ui->woodenSpoonInputLabel->clear();
+    m_Ui->mostSportingInputLabel->clear();
+    m_Ui->bestPaintedInputLabel->clear();
 
-    ui->bestPaintedInputLabel->setText("Not Set");
-    ui->bestPaintedVotedComboBox->setCurrentIndex(0);
-    ui->bestPaintedVotingComboBox->setCurrentIndex(0);
+    m_Ui->bestPaintedInputLabel->setText("Not Set");
+    m_Ui->bestPaintedVotedComboBox->setCurrentIndex(0);
+    m_Ui->bestPaintedVotingComboBox->setCurrentIndex(0);
 
-    ui->mostSportingInputLabel->setText("Not Set");
-    ui->mostSportingVotedComboBox->setCurrentIndex(0);
-    ui->mostSportingVotingComboBox->setCurrentIndex(0);
+    m_Ui->mostSportingInputLabel->setText("Not Set");
+    m_Ui->mostSportingVotedComboBox->setCurrentIndex(0);
+    m_Ui->mostSportingVotingComboBox->setCurrentIndex(0);
 
-    ui->firstPlaceInputLabel->setText("Not Set");
-    ui->secondPlaceInputLabel->setText("Not Set");
-    ui->thirdPlaceInputLabel->setText("Not Set");
-    ui->woodenSpoonInputLabel->setText("Not Set");
+    m_Ui->firstPlaceInputLabel->setText("Not Set");
+    m_Ui->secondPlaceInputLabel->setText("Not Set");
+    m_Ui->thirdPlaceInputLabel->setText("Not Set");
+    m_Ui->woodenSpoonInputLabel->setText("Not Set");
 
-    ui->fullResultsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Position"));
-    ui->fullResultsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Name"));
-    ui->fullResultsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("TPs"));
-    ui->fullResultsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("VPs"));
-    ui->fullResultsTable->setHorizontalHeaderItem(4, new QTableWidgetItem("VP Difference"));
-    ui->fullResultsTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Best Painted"));
-    ui->fullResultsTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Most Sporting"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Position"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Name"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("TPs"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("VPs"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(4, new QTableWidgetItem("VP Difference"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Best Painted"));
+    m_Ui->fullResultsTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Most Sporting"));
 }

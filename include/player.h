@@ -9,86 +9,176 @@ class Player
 {
 public:
     Player() = default;
+    Player(const std::string &name, const uint seed);
+    Player(const Player &player);
 
-    std::string getName() const;
-    int getSeed() const;
-    int getMostSportingVotes() const;
-    int getBestPaintedArmyVotes() const;
+    // Add a Best Painted Army vote.
+    void AddBestPaintedArmyVote(const int value = 0);
 
-    int getWins() const;
-    int getDraws() const;
-    int getLosses() const;
-    int getTPs() const;
-    int getVPs() const;
-    int getVPDiff() const;
+    // Add a Draw result.
+    void AddDraw(const int value);
 
-    void addWin(int value);
-    void addDraw(int value);
-    void addLoss(int value);
+    // Add a Loss result.
+    void AddLoss(const int value);
 
-    bool isFirstRoundSet() const;
-    bool hasVotedBestPainted() const;
-    bool hasVotedMostSporting() const;
-    std::string getBestPaintedVote() const;
-    std::string getMostSportingVote() const;
+    // Add a Most Sporting vote.
+    void AddMostSportingVote(const int value = 0);
 
-    void setName(const std::string &name);
-    void setSeed(int seed);
+    // Add a Game result.
+    void AddResult(const std::string &result, const int value);
 
-    void addMostSportingVote(int value = 0);
-    void addBestPaintedArmyVote(int value = 0);
-    void removeMostSportingVote(int value = 0);
-    void removeBestPaintedArmyVote(int value = 0);
+    // Add Tournament Points.
+    void AddTPs(const int points);
 
-    void addTPs(int points);
-    void addVPs(int points);
-    void addVPDiff(int points);
-    void addResult(const std::string &result, int value);
+    // Add Victory Points Difference.
+    void AddVPDiff(const int points);
 
-    void setFirstRoundSet(bool set);
-    void setVotedBestPainted(bool set);
-    void setVotedMostSporting(bool set);
-    void setBestPaintedVote(const std::string &name);
-    void setMostSportingVote(const std::string &name);
+    // Add Victory Points.
+    void AddVPs(const int points);
 
-    QJsonObject getPlayerData() const;
-    void setPlayerData(QJsonObject object);
+    // Add a Win result.
+    void AddWin(const int value);
 
+
+    // Who did this player vote for, for Best Painted.
+    // @return The name of the player who was voted for.
+    std::string GetBestPaintedVote() const;
+
+    // How many Best Painted votes this player has.
+    // @return The amount of Best Painted votes this player has.
+    int GetBestPaintedArmyVotes() const;
+
+    // How many Draws this player has.
+    // @return The number of Draws this player has.
+    int GetDraws() const;
+
+    // How many Losses this player has.
+    // @return The number of Losses this player has.
+    int GetLosses() const;
+
+    // Who did this player vote for, for Most Sporting
+    // @return The name of the player who was voted for.
+    std::string GetMostSportingVote() const;
+
+    // How many Most Sporting votes this player has.
+    // @return The amount of Most Sporting votes this player has.
+    int GetMostSportingVotes() const;
+
+    // Get this players Name.
+    // @return The Name of this player.
+    std::string GetName() const;
+
+    // Gets the Player Data and constructs it into a QJson Object.
+    // @return The Players Data as a QJsonObject.
+    QJsonObject GetPlayerData() const;
+
+    // Gets this players Seed.
+    // @return The Seed of this player.
+    int GetSeed() const;
+
+    // Gets this players Tournament Points.
+    // @return The amount of Tournament Points this player has.
+    int GetTPs() const;
+
+    // Gets this players Victory Point Difference.
+    // @return The Victory Point Difference of this player.
+    int GetVPDiff() const;
+
+    // Gets this players Victory Points.
+    // @return The amount of Victory Points this player has.
+    int GetVPs() const;
+
+    // Gets the amount of Wins this player has.
+    // @return The amount of Wins this player has.
+    int GetWins() const;
+
+
+    // The overload of the = operator.
+    void operator=(const Player &player);
+
+
+    // Checks if this player has voted for Best Painted.
+    // @return True if the player has voted, False if not.
+    bool HasVotedBestPainted() const;
+
+    // Checks if this player has voted for Most Sporting.
+    // @return True if the player has voted, False if not.
+    bool HasVotedMostSporting() const;
+
+    // Check if this player has had their First Round Matchup set.
+    // @return True if the it has been set, False if not.
+    bool IsFirstRoundSet() const;
+
+
+    // Removes a Best Painted Army vote.
+    void RemoveBestPaintedArmyVote(const int value = 0);
+
+    // Removes a Most Sporting vote.
+    void RemoveMostSportingVote(const int value = 0);
+
+
+    // Set which player this player voted for, for Best Painted.
+    void SetBestPaintedVote(const std::string &name);
+
+    // Set that this player has their First Round Matchup set.
+    void SetFirstRoundSet(const bool set);
+
+    // Set which player this player voted for, for Most Sporting
+    void SetMostSportingVote(const std::string &name);
+
+    // Set this players Name.
+    void SetName(const std::string &name);
+
+    // Set this Players Data from a QJsonObject.
+    void SetPlayerData(const QJsonObject &object);
+
+    // Set this players Seed.
+    void SetSeed(const int seed);
+
+    // Set if this player has voted for Best Painted.
+    void SetVotedBestPainted(const bool set);
+
+    // Set if this player has voted for Most Sporting.
+    void SetVotedMostSporting(const bool set);
 private:
-    std::string m_Name = "";
-    int m_Seed = -1;
-    int m_MostSportingVotes = 0;
-    int m_BestPaintedArmyVotes = 0;
+    std::unique_ptr<std::string> m_Name = std::make_unique<std::string>("");
+    std::unique_ptr<int> m_NumberDraws = std::make_unique<int>(0);
+    std::unique_ptr<int> m_NumberLosses = std::make_unique<int>(0);
+    std::unique_ptr<int> m_NumberWins = std::make_unique<int>(0);
+    std::unique_ptr<int> m_Seed = std::make_unique<int>(-1);
 
-    int m_NumberWins = 0;
-    int m_NumberDraws = 0;
-    int m_NumberLosses = 0;
-    int m_VPs = 0;
-    int m_TPs = 0;
-    int m_VPDiff = 0;
+    std::unique_ptr<int> m_TPs = std::make_unique<int>(0);
+    std::unique_ptr<int> m_VPDiff = std::make_unique<int>(0);
+    std::unique_ptr<int> m_VPs = std::make_unique<int>(0);
 
-    bool m_FirstRoundSet{false};
-    bool m_VotedBestPainted{false};
-    std::string m_BestPaintedVote = "";
-    bool m_VotedMostSporting{false};
-    std::string m_MostSportingVote = "";
+    std::unique_ptr<std::string> m_BestPaintedVote = std::make_unique<std::string>("");
+    std::unique_ptr<int> m_BestPaintedArmyVotes = std::make_unique<int>(0);
+    std::unique_ptr<std::string> m_MostSportingVote = std::make_unique<std::string>("");
+    std::unique_ptr<int> m_MostSportingVotes = std::make_unique<int>(0);
+    std::unique_ptr<bool> m_VotedBestPainted = std::make_unique<bool>(false);
+    std::unique_ptr<bool> m_VotedMostSporting = std::make_unique<bool>(false);
+
+    std::unique_ptr<bool> m_FirstRoundSet = std::make_unique<bool>(false);
 
 private: //Json Tags
-    std::string m_NameTag = "name";
-    std::string m_SeedTag = "seed";
-    std::string m_MostSportingTag = "most_sporting";
-    std::string m_BestPaintedTag = "best_painted";
-    std::string m_WinsTag = "wins";
-    std::string m_DrawsTag = "draws";
-    std::string m_LossesTag = "losses";
-    std::string m_VPsTag = "vps";
-    std::string m_TPsTag = "tps";
-    std::string m_VPDiffTag = "vp_diff";
-    std::string m_FirstRoundSetTag = "first_round_set";
-    std::string m_VotedBestPaintedTag = "voted_best_painted";
-    std::string m_VotedMostSportingTag = "voted_most_sporting";
-    std::string m_BestPaintedVoteTag = "best_painted_vote";
-    std::string m_MostSportingVoteTag = "most_sporting_vote";
+    const std::unique_ptr<std::string> m_NameTag = std::make_unique<std::string>("name");
+    const std::unique_ptr<std::string> m_DrawsTag = std::make_unique<std::string>("draws");
+    const std::unique_ptr<std::string> m_LossesTag = std::make_unique<std::string>("losses");
+    const std::unique_ptr<std::string> m_WinsTag = std::make_unique<std::string>("wins");
+    const std::unique_ptr<std::string> m_SeedTag = std::make_unique<std::string>("seed");
+
+    const std::unique_ptr<std::string> m_TPsTag = std::make_unique<std::string>("tps");
+    const std::unique_ptr<std::string> m_VPDiffTag = std::make_unique<std::string>("vp_diff");
+    const std::unique_ptr<std::string> m_VPsTag = std::make_unique<std::string>("vps");
+
+    const std::unique_ptr<std::string> m_BestPaintedVoteTag = std::make_unique<std::string>("best_painted_vote");
+    const std::unique_ptr<std::string> m_BestPaintedTag = std::make_unique<std::string>("best_painted");
+    const std::unique_ptr<std::string> m_MostSportingTag = std::make_unique<std::string>("most_sporting");
+    const std::unique_ptr<std::string> m_MostSportingVoteTag = std::make_unique<std::string>("most_sporting_vote");
+    const std::unique_ptr<std::string> m_VotedBestPaintedTag = std::make_unique<std::string>("voted_best_painted");
+    const std::unique_ptr<std::string> m_VotedMostSportingTag = std::make_unique<std::string>("voted_most_sporting");
+
+    const std::unique_ptr<std::string> m_FirstRoundSetTag = std::make_unique<std::string>("first_round_set");
 };
 
 #endif // INCLUDEPLAYER_H

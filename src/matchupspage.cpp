@@ -10,15 +10,15 @@ void MainWindow::AddResult(const std::string &result, int const playerIndex)
     UtilLog("Add Result: " + result);
     if(result == "Win")
     {
-        m_MainPlayerList.at(playerIndex).addWin(*m_WinValue);
+        m_MainPlayerList.at(playerIndex).AddWin(*m_WinValue);
     }
     else if(result == "Draw")
     {
-        m_MainPlayerList.at(playerIndex).addDraw(*m_DrawValue);
+        m_MainPlayerList.at(playerIndex).AddDraw(*m_DrawValue);
     }
     else if(result == "Loss")
     {
-        m_MainPlayerList.at(playerIndex).addLoss(*m_LossValue);
+        m_MainPlayerList.at(playerIndex).AddLoss(*m_LossValue);
     }
 }
 
@@ -46,13 +46,13 @@ TiebreakerResult MainWindow::CheckTiebreaker(const Tiebreak::Tiebreaker tiebreak
 {
     switch (tiebreak) {
     case Tiebreak::Tiebreaker::VP_TOTAL:
-        return CheckTiebreakerValue(playerOne.getVPs(), playerTwo.getVPs());
+        return CheckTiebreakerValue(playerOne.GetVPs(), playerTwo.GetVPs());
     case Tiebreak::Tiebreaker::VP_DIFF:
-        return CheckTiebreakerValue(playerOne.getVPDiff(), playerTwo.getVPDiff());
+        return CheckTiebreakerValue(playerOne.GetVPDiff(), playerTwo.GetVPDiff());
     case Tiebreak::Tiebreaker::MOST_SPORTING:
-        return CheckTiebreakerValue(playerOne.getMostSportingVotes(), playerTwo.getMostSportingVotes());
+        return CheckTiebreakerValue(playerOne.GetMostSportingVotes(), playerTwo.GetMostSportingVotes());
     case Tiebreak::Tiebreaker::BEST_PAINTED:
-        return CheckTiebreakerValue(playerOne.getBestPaintedArmyVotes(), playerTwo.getBestPaintedArmyVotes());
+        return CheckTiebreakerValue(playerOne.GetBestPaintedArmyVotes(), playerTwo.GetBestPaintedArmyVotes());
     case Tiebreak::Tiebreaker::NONE:
     default:
         return TiebreakerResult::EQUAL;
@@ -120,20 +120,10 @@ void MainWindow::CreateInitialMatchups()
     if(m_MainPlayerList.size() % 2 != 0)
     {
         UtilLog("Added Ringer");
-        Player ringer;
-        ringer.setName("Ringer");
-        ringer.setSeed(0);
-        m_MainPlayerList.push_back(ringer);
+        m_MainPlayerList.emplace_back("Ringer", 0);
     }
 
-    if(m_UsingSeed)
-    {
-        CreateSeededMatchup();
-    }
-    else
-    {
-        CreateRandomMatchup();
-    }
+    m_UsingSeed ? CreateSeededMatchup() : CreateRandomMatchup();
 }
 
 void MainWindow::CreateRandomMatchup()
@@ -141,9 +131,9 @@ void MainWindow::CreateRandomMatchup()
     UtilDebug("Create Random Matchups");
     int playerNumber = m_MainPlayerList.size();
 
-    for(auto it : m_MainPlayerList)
+    for(auto &it : m_MainPlayerList)
     {
-        it.setFirstRoundSet(false);
+        it.SetFirstRoundSet(false);
     }
 
     for(int i = 1; i < playerNumber/2 + 1; ++i)
@@ -177,12 +167,12 @@ void MainWindow::CreateSeededMatchup()
     UtilDebug("Create Seeded Matchups");
 
     auto playerSeedComparison = [](Player one, Player two){
-        return one.getSeed() < two.getSeed() ? true : false;
+        return one.GetSeed() < two.GetSeed() ? true : false;
     };
     std::set<Player, decltype(playerSeedComparison)> temporarySet(playerSeedComparison);
     for(auto &player : m_MainPlayerList)
     {
-        player.setFirstRoundSet(false);
+        player.SetFirstRoundSet(false);
         temporarySet.insert(player);
     }
 
@@ -238,9 +228,9 @@ Player MainWindow::FindRandomPlayer(const int playerCount)
     while(searching)
     {
         number = rand() % playerCount;
-        if(!m_MainPlayerList.at(number).isFirstRoundSet())
+        if(!m_MainPlayerList.at(number).IsFirstRoundSet())
         {
-            m_MainPlayerList.at(number).setFirstRoundSet(true);
+            m_MainPlayerList.at(number).SetFirstRoundSet(true);
             searching = false;
         }
     }
@@ -305,7 +295,7 @@ void MainWindow::LoadMatchupsPageFromLoadedEvent()
 
     for(const auto &player : m_MainPlayerList)
     {
-        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
+        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.GetName()));
     }
 }
 
@@ -504,10 +494,10 @@ void MainWindow::UpdateMatchupsTable()
     for(uint i = 0; i < m_CurrentRoundMatchups->size(); ++i)
     {
         m_Ui->MatchupsPlayerTableWidget->insertRow(m_Ui->MatchupsPlayerTableWidget->rowCount());
-        m_Ui->MatchupsPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).first.getName())));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).first.GetName())));
         m_Ui->MatchupsPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString("")));
         m_Ui->MatchupsPlayerTableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString("")));
-        m_Ui->MatchupsPlayerTableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).second.getName())));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).second.GetName())));
         m_Ui->MatchupsPlayerTableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString("")));
         m_Ui->MatchupsPlayerTableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("")));
     }
@@ -520,7 +510,7 @@ void MainWindow::UpdatePlayerRankingList()
 
     for(const auto &player : m_MainPlayerList)
     {
-        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
+        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.GetName()));
     }
 }
 
@@ -538,11 +528,11 @@ void MainWindow::UpdateRankings()
 
         for(auto it = tempList.begin() + 1; it != tempList.end(); ++it)
         {
-            if(it->getTPs() > highestRankPlayer->getTPs())
+            if(it->GetTPs() > highestRankPlayer->GetTPs())
             {
                 highestRankPlayer = it;
             }
-            else if(it->getTPs() == highestRankPlayer->getTPs())
+            else if(it->GetTPs() == highestRankPlayer->GetTPs())
             {
                 if(CheckTiebreakers(*highestRankPlayer, *it))
                 {
@@ -567,8 +557,8 @@ void MainWindow::UpdateRoundInput()
     std::pair<Player, Player> tempMatchup;
     tempMatchup = m_CurrentRoundMatchups->at(*m_MatchupsSelectedRow);
 
-    m_Ui->MatchupsPlayerOneNameLabel->setText(QString::fromStdString(tempMatchup.first.getName()));
-    m_Ui->MatchupsPlayerTwoNameLabel->setText(QString::fromStdString(tempMatchup.second.getName()));
+    m_Ui->MatchupsPlayerOneNameLabel->setText(QString::fromStdString(tempMatchup.first.GetName()));
+    m_Ui->MatchupsPlayerTwoNameLabel->setText(QString::fromStdString(tempMatchup.second.GetName()));
 }
 
 void MainWindow::UpdateScores()
@@ -592,16 +582,16 @@ void MainWindow::UpdateScores()
         for(uint i = 0; i < m_MainPlayerList.size(); ++i)
         {
             //Update the players values.
-            if(m_MainPlayerList.at(i).getName() == playerOneName)
+            if(m_MainPlayerList.at(i).GetName() == playerOneName)
             {
-                m_MainPlayerList.at(i).addVPs(playerOneScore);
-                m_MainPlayerList.at(i).addVPDiff(playerOneScore - playerTwoScore);
+                m_MainPlayerList.at(i).AddVPs(playerOneScore);
+                m_MainPlayerList.at(i).AddVPDiff(playerOneScore - playerTwoScore);
                 AddResult(playerOneResult, i);
             }
-            else if(m_MainPlayerList.at(i).getName() == playerTwoName)
+            else if(m_MainPlayerList.at(i).GetName() == playerTwoName)
             {
-                m_MainPlayerList.at(i).addVPs(playerTwoScore);
-                m_MainPlayerList.at(i).addVPDiff(playerTwoScore - playerOneScore);
+                m_MainPlayerList.at(i).AddVPs(playerTwoScore);
+                m_MainPlayerList.at(i).AddVPDiff(playerTwoScore - playerOneScore);
                 AddResult(playerTwoResult, i);
             }
         }
@@ -610,25 +600,25 @@ void MainWindow::UpdateScores()
 
 void MainWindow::UpdateTableMatchUp(const Player &playerOne, const Player &playerTwo)
 {
-    UtilLog("Set Matchup: " + playerOne.getName() + " vs " + playerTwo.getName());
+    UtilLog("Set Matchup: " + playerOne.GetName() + " vs " + playerTwo.GetName());
     for(uint i = 0; i < m_CurrentRoundMatchups->size(); ++i)
     {
-        if(m_CurrentRoundMatchups->at(i).first.getName() == playerOne.getName())
+        if(m_CurrentRoundMatchups->at(i).first.GetName() == playerOne.GetName())
         {
             m_CurrentRoundMatchups->at(i).second = playerTwo;
             break;
         }
-        else if(m_CurrentRoundMatchups->at(i).second.getName() == playerOne.getName())
+        else if(m_CurrentRoundMatchups->at(i).second.GetName() == playerOne.GetName())
         {
             m_CurrentRoundMatchups->at(i).first = playerTwo;
             break;
         }
-        else if(m_CurrentRoundMatchups->at(i).first.getName() == playerTwo.getName())
+        else if(m_CurrentRoundMatchups->at(i).first.GetName() == playerTwo.GetName())
         {
             m_CurrentRoundMatchups->at(i).second = playerOne;
             break;
         }
-        else if(m_CurrentRoundMatchups->at(i).second.getName() == playerTwo.getName())
+        else if(m_CurrentRoundMatchups->at(i).second.GetName() == playerTwo.GetName())
         {
             m_CurrentRoundMatchups->at(i).first = playerOne;
             break;

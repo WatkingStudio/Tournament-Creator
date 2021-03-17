@@ -55,7 +55,6 @@ void MainWindow::InitialiseResultsComboBox(QComboBox* comboBox)
 
 bool MainWindow::LoadEventData()
 {
-    //This needs to be changed to use a QFileDialog
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Event Data"), "", tr("Json (*.json)"));
     //Read the data from the .json file
     if(fileName == "")

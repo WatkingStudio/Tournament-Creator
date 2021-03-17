@@ -120,6 +120,7 @@ private:
     void InitialiseResultsComboBox(QComboBox* comboBox);
 
     // Loads the event data from a chosen .json file
+    // @return True if the load is successful, False if it is not
     bool LoadEventData();
 
     // Saves the event data into a .json file tied to the event

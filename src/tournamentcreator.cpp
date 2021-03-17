@@ -49,7 +49,7 @@ void MainWindow::on_AddPlayerButton_clicked()
 
 void MainWindow::on_BackTournamentCreatorButton_clicked()
 {
-    loadStartPage();
+    LoadStartPage();
 }
 
 void MainWindow::on_ContinueTournamentCreatorButton_clicked()

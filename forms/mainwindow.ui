@@ -766,7 +766,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="matchupsPage">
+          <widget class="QWidget" name="MatchupsPage">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <property name="spacing">
              <number>0</number>
@@ -784,7 +784,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QWidget" name="matchupsUpperWidget" native="true">
+             <widget class="QWidget" name="MatchupsUpperWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -793,7 +793,7 @@
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_8">
                <item>
-                <widget class="QWidget" name="matchupsSidebarWidget" native="true">
+                <widget class="QWidget" name="MatchupsSidebarWidget" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
@@ -817,7 +817,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QWidget" name="matchupsRoundWidget" native="true">
+                   <widget class="QWidget" name="MatchupsRoundWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>100</width>
@@ -873,7 +873,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QComboBox" name="matchupsRoundNumberComboBox">
+                      <widget class="QComboBox" name="MatchupsRoundNumberComboBox">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
@@ -895,7 +895,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="matchupsPreviousRoundButton">
+                      <widget class="QPushButton" name="MatchupsPreviousRoundButton">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
@@ -922,7 +922,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="matchupsCurrentRoundButton">
+                      <widget class="QPushButton" name="MatchupsCurrentRoundButton">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
@@ -965,7 +965,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="matchupsDirectMatchupSwapButton">
+                   <widget class="QPushButton" name="MatchupsDirectMatchupSwapButton">
                     <property name="font">
                      <font>
                       <family>Calibri</family>
@@ -986,7 +986,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="matchupsModifyMatchupsButton">
+                   <widget class="QPushButton" name="MatchupsModifyMatchupsButton">
                     <property name="minimumSize">
                      <size>
                       <width>100</width>
@@ -1019,7 +1019,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="matchupsResetMatchupTable">
+                   <widget class="QPushButton" name="MatchupsResetMatchupTable">
                     <property name="font">
                      <font>
                       <family>Calibri</family>
@@ -1053,7 +1053,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="matchupsNextRoundButton">
+                   <widget class="QPushButton" name="MatchupsNextRoundButton">
                     <property name="minimumSize">
                      <size>
                       <width>100</width>
@@ -1095,7 +1095,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="matchupsListWidget" native="true">
+                <widget class="QWidget" name="MatchupsListWidget" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>220</width>
@@ -1116,7 +1116,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="matchupsListWidgetTitleLabel">
+                   <widget class="QLabel" name="MatchupsListWidgetTitleLabel">
                     <property name="minimumSize">
                      <size>
                       <width>200</width>
@@ -1147,7 +1147,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QListWidget" name="matchupsPlayerListWidget">
+                   <widget class="QListWidget" name="MatchupsPlayerListWidget">
                     <property name="minimumSize">
                      <size>
                       <width>200</width>
@@ -1163,7 +1163,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="matchupsTableWidget" native="true">
+                <widget class="QWidget" name="MatchupsTableWidget" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>320</width>
@@ -1178,7 +1178,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="matchupsCurrentRoundNumberLabel">
+                   <widget class="QLabel" name="MatchupsCurrentRoundNumberLabel">
                     <property name="minimumSize">
                      <size>
                       <width>300</width>
@@ -1203,7 +1203,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTableWidget" name="matchupsPlayerTableWidget">
+                   <widget class="QTableWidget" name="MatchupsPlayerTableWidget">
                     <property name="minimumSize">
                      <size>
                       <width>300</width>
@@ -1240,7 +1240,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QWidget" name="matchupsFooterWidget" native="true">
+             <widget class="QWidget" name="MatchupsFooterWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>1036</width>
@@ -1258,7 +1258,7 @@
                 <number>3</number>
                </property>
                <item>
-                <widget class="QPushButton" name="matchupsBackButton">
+                <widget class="QPushButton" name="MatchupsBackButton">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1302,7 +1302,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="matchupsPlayerOneNameLabel">
+                <widget class="QLabel" name="MatchupsPlayerOneNameLabel">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1333,7 +1333,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="matchupsPlayerOneComboBox">
+                <widget class="QComboBox" name="MatchupsPlayerOneComboBox">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1361,7 +1361,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="matchupsPlayerOneSpinBox">
+                <widget class="QSpinBox" name="MatchupsPlayerOneSpinBox">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1405,7 +1405,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="matchupsPlayerTwoNameLabel">
+                <widget class="QLabel" name="MatchupsPlayerTwoNameLabel">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1433,7 +1433,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="matchupsPlayerTwoComboBox">
+                <widget class="QComboBox" name="MatchupsPlayerTwoComboBox">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1461,7 +1461,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="matchupsPlayerTwoSpinBox">
+                <widget class="QSpinBox" name="MatchupsPlayerTwoSpinBox">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>
@@ -1505,7 +1505,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="matchupsEnterResultsButton">
+                <widget class="QPushButton" name="MatchupsEnterResultsButton">
                  <property name="minimumSize">
                   <size>
                    <width>125</width>

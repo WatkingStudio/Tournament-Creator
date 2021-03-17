@@ -1,6 +1,8 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
+// This .cpp file is used to handle the tournament creator page
+
 void MainWindow::LoadTournamentCreatorPage()
 {
     UtilDebug("Load Tournament Creator Page");
@@ -110,7 +112,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
             m_MainPlayerList.push_back(player);
         }
 
-        loadMatchupsPage();
+        LoadMatchupsPage();
     }
     else
     {
@@ -136,15 +138,15 @@ void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData
 
     if(eventSettingsData.winTPs > 0)
     {
-        m_WinValue = eventSettingsData.winTPs;
+        *m_WinValue = eventSettingsData.winTPs;
     }
     if(eventSettingsData.drawTPs > 0)
     {
-        m_DrawValue = eventSettingsData.drawTPs;
+        *m_DrawValue = eventSettingsData.drawTPs;
     }
     if(eventSettingsData.lossTPs > 0)
     {
-        m_LossValue = eventSettingsData.lossTPs;
+        *m_LossValue = eventSettingsData.lossTPs;
     }
     if(eventSettingsData.mostSportingTPs >= 0)
     {

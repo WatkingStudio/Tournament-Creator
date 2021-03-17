@@ -14,14 +14,17 @@ enum Tiebreaker{
     NONE
 };
 
-extern std::shared_ptr<std::string> VPTotalString;
-extern std::shared_ptr<std::string> VPDiffString;
-extern std::shared_ptr<std::string> MostSportingString;
-extern std::shared_ptr<std::string> BestPaintedString;
-extern std::shared_ptr<std::string> NoneString;
+extern std::unique_ptr<std::string> VPTotalString;
+extern std::unique_ptr<std::string> VPDiffString;
+extern std::unique_ptr<std::string> MostSportingString;
+extern std::unique_ptr<std::string> BestPaintedString;
+extern std::unique_ptr<std::string> NoneString;
 
-std::string TiebreakerToString(Tiebreaker tiebreaker);
+// Converts a string into a Tiebreaker enum
 Tiebreaker StringToTiebreaker(const std::string &string);
+
+// Converts a Tiebreaker enum into a string
+std::string TiebreakerToString(Tiebreaker tiebreaker);
 
 }
 

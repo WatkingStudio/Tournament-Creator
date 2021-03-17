@@ -4,8 +4,8 @@
 void MainWindow::LoadStartPage()
 {
     UtilDebug("Load Start Page");
-    ui->stackedWidget->setCurrentIndex(Pages::START_SCREEN);
-    ui->pageTitleWidget->setText(QString("Start Page"));
+    m_Ui->stackedWidget->setCurrentIndex(Pages::START_SCREEN);
+    m_Ui->pageTitleWidget->setText(QString("Start Page"));
 }
 
 void MainWindow::on_CreateNewEventButton_clicked()
@@ -16,7 +16,7 @@ void MainWindow::on_CreateNewEventButton_clicked()
 void MainWindow::on_LoadEventButton_clicked()
 {
     UtilDebug("Load Event Clicked");
-    if(loadEventData())
+    if(LoadEventData())
     {
         LoadMatchupsPageFromLoadedEvent();
     }

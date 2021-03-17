@@ -104,21 +104,27 @@ private slots:
 
 private:
     //General Functions and Variables
-    Ui::MainWindow *ui;
+    Ui::MainWindow *m_Ui;
+
+    int m_ActiveRoundNumber = 0;
+    int m_CurrentRoundNumber = 0;
     bool m_DebugMessagesOn{true};
     std::string m_EventDataFileName = "eventData.json";
-
     std::vector<Player> m_MainPlayerList;
-
-    int m_NumberOfRounds = 6;
-    int m_CurrentRoundNumber = 0;
-    int m_ActiveRoundNumber = 0;
-    bool m_UsingSeed{false};
     int m_NumBestPaintedVotes = 0;
     int m_NumMostSportingVotes = 0;
+    int m_NumberOfRounds = 6;
+    bool m_UsingSeed{false};
 
-    void saveEventData();
-    bool loadEventData();
+    // Initialises the passed combo box with the results strings
+    void InitialiseResultsComboBox(QComboBox* comboBox);
+
+    // Loads the event data from a chosen .json file
+    // @return True if the load is successful, False if it is not
+    bool LoadEventData();
+
+    // Saves the event data into a .json file tied to the event
+    void SaveEventData() const;
 
     //Start Page Functions and Variables
     // Loads the start page

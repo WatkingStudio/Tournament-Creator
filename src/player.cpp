@@ -185,7 +185,7 @@ void Player::setMostSportingVote(const std::string &name)
     m_MostSportingVote = name;
 }
 
-QJsonObject Player::getPlayerData()
+QJsonObject Player::getPlayerData() const
 {
     QJsonObject object;
 

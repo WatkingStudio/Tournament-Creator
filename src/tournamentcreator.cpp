@@ -19,8 +19,8 @@ void MainWindow::LoadTournamentCreatorPage()
     }
     CreateFile(m_EventDataFileName.c_str(), *m_EventDirectory);
 
-    ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
-    ui->pageTitleWidget->setText("Tournament Creator");
+    m_Ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
+    m_Ui->pageTitleWidget->setText("Tournament Creator");
 
     m_TournamentCreatorSelectedCol = -1;
     m_TournamentCreatorSelectedRow = -1;
@@ -31,19 +31,19 @@ void MainWindow::LoadTournamentCreatorPage()
 void MainWindow::on_AddPlayerButton_clicked()
 {
     UtilDebug("Add Player Clicked");
-    if(ui->playerNameInputLineEdit->displayText() != "")
+    if(m_Ui->playerNameInputLineEdit->displayText() != "")
     {
         UtilDebug("Add Player");
 
         Player newPlayer;
-        newPlayer.setName(ui->playerNameInputLineEdit->text().toStdString());
-        newPlayer.setSeed(ui->playerSeedInputLineEdit->text().toInt());
+        newPlayer.setName(m_Ui->playerNameInputLineEdit->text().toStdString());
+        newPlayer.setSeed(m_Ui->playerSeedInputLineEdit->text().toInt());
 
         m_TempPlayerList->push_back(newPlayer);
 
         UpdatePlayerTable();
-        ui->playerNameInputLineEdit->clear();
-        ui->playerSeedInputLineEdit->clear();
+        m_Ui->playerNameInputLineEdit->clear();
+        m_Ui->playerSeedInputLineEdit->clear();
     }
 }
 
@@ -75,7 +75,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
         m_EventSettingsWidget.hide();
     }
 
-    saveEventData();
+    SaveEventData();
 }
 
 void MainWindow::on_EventSettingsButton_clicked()
@@ -89,7 +89,7 @@ void MainWindow::on_RemovePlayerButton_clicked()
     UtilDebug("Remove Player Clicked");
     if(m_TournamentCreatorSelectedRow != -1)
     {
-        ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
+        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
         m_TempPlayerList->erase(m_TempPlayerList->begin() + m_TournamentCreatorSelectedRow);
         m_TournamentCreatorSelectedRow = -1;
     }
@@ -98,7 +98,7 @@ void MainWindow::on_RemovePlayerButton_clicked()
 void MainWindow::on_SaveEventTournamentCreatorButton_clicked()
 {
     UtilDebug("Tournament Creator Save Event Button Clicked");
-    saveEventData();
+    SaveEventData();
 }
 
 void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData)
@@ -141,14 +141,14 @@ void MainWindow::ResetPlayerTable()
 {
     UtilDebug("Reset Player Table");
 
-    int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
+    int i = m_Ui->tournamentCreatorPlayerTableWidget->rowCount();
     for(int j = 0; j < i; ++j)
     {
-        ui->tournamentCreatorPlayerTableWidget->removeRow(0);
+        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(0);
     }
 
-    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
-    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
+    m_Ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
+    m_Ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
 }
 
 void MainWindow::UpdatePlayerTable()
@@ -160,10 +160,10 @@ void MainWindow::UpdatePlayerTable()
     {
         if(player.getName() != "")
         {
-            int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
-            ui->tournamentCreatorPlayerTableWidget->insertRow(i);
-            ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.getName().c_str()));
-            ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.getSeed()))));
+            int i = m_Ui->tournamentCreatorPlayerTableWidget->rowCount();
+            m_Ui->tournamentCreatorPlayerTableWidget->insertRow(i);
+            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.getName().c_str()));
+            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.getSeed()))));
         }
     }
 }

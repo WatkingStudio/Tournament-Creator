@@ -208,25 +208,25 @@ void MainWindow::CreateSeededMatchup()
 void MainWindow::DisableRoundInput()
 {
     UtilDebug("Disable Round Input");
-    ui->MatchupsPlayerOneComboBox->setEnabled(false);
-    ui->MatchupsPlayerOneNameLabel->setEnabled(false);
-    ui->MatchupsPlayerOneSpinBox->setEnabled(false);
-    ui->MatchupsPlayerTwoComboBox->setEnabled(false);
-    ui->MatchupsPlayerTwoNameLabel->setEnabled(false);
-    ui->MatchupsPlayerTwoSpinBox->setEnabled(false);
-    ui->MatchupsEnterResultsButton->setEnabled(false);
+    m_Ui->MatchupsPlayerOneComboBox->setEnabled(false);
+    m_Ui->MatchupsPlayerOneNameLabel->setEnabled(false);
+    m_Ui->MatchupsPlayerOneSpinBox->setEnabled(false);
+    m_Ui->MatchupsPlayerTwoComboBox->setEnabled(false);
+    m_Ui->MatchupsPlayerTwoNameLabel->setEnabled(false);
+    m_Ui->MatchupsPlayerTwoSpinBox->setEnabled(false);
+    m_Ui->MatchupsEnterResultsButton->setEnabled(false);
 }
 
 void MainWindow::EnableRoundInput()
 {
     UtilDebug("Enable Round Input");
-    ui->MatchupsPlayerOneComboBox->setEnabled(true);
-    ui->MatchupsPlayerOneNameLabel->setEnabled(true);
-    ui->MatchupsPlayerOneSpinBox->setEnabled(true);
-    ui->MatchupsPlayerTwoComboBox->setEnabled(true);
-    ui->MatchupsPlayerTwoNameLabel->setEnabled(true);
-    ui->MatchupsPlayerTwoSpinBox->setEnabled(true);
-    ui->MatchupsEnterResultsButton->setEnabled(true);
+    m_Ui->MatchupsPlayerOneComboBox->setEnabled(true);
+    m_Ui->MatchupsPlayerOneNameLabel->setEnabled(true);
+    m_Ui->MatchupsPlayerOneSpinBox->setEnabled(true);
+    m_Ui->MatchupsPlayerTwoComboBox->setEnabled(true);
+    m_Ui->MatchupsPlayerTwoNameLabel->setEnabled(true);
+    m_Ui->MatchupsPlayerTwoSpinBox->setEnabled(true);
+    m_Ui->MatchupsEnterResultsButton->setEnabled(true);
 }
 
 Player MainWindow::FindRandomPlayer(const int playerCount)
@@ -249,10 +249,10 @@ Player MainWindow::FindRandomPlayer(const int playerCount)
 
 bool MainWindow::IsRoundFinished() const
 {
-    for(int i = 0; i < ui->MatchupsPlayerTableWidget->rowCount(); ++i)
+    for(int i = 0; i < m_Ui->MatchupsPlayerTableWidget->rowCount(); ++i)
     {
-        if(ui->MatchupsPlayerTableWidget->item(i, 1)->text() == QString::fromStdString("")
-                || ui->MatchupsPlayerTableWidget->item(i, 4)->text() == QString::fromStdString(""))
+        if(m_Ui->MatchupsPlayerTableWidget->item(i, 1)->text() == QString::fromStdString("")
+                || m_Ui->MatchupsPlayerTableWidget->item(i, 4)->text() == QString::fromStdString(""))
         {
             return false;
         }
@@ -264,12 +264,12 @@ bool MainWindow::IsRoundFinished() const
 void MainWindow::LoadMatchupsPage()
 {
     UtilDebug("Load Matchups Page");
-    ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
-    ui->MatchupsPreviousRoundButton->setEnabled(false);
-    ui->MatchupsCurrentRoundButton->setEnabled(false);
-    ui->MatchupsModifyMatchupsButton->setEnabled(false);
+    m_Ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
+    m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
+    m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
+    m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
     m_CurrentRoundNumber = 1;
-    ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
+    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
     m_ActiveRoundNumber = 1;
     *m_MatchupsSelectedCol = -1;
     *m_MatchupsSelectedRow = -1;
@@ -287,11 +287,11 @@ void MainWindow::LoadMatchupsPage()
 void MainWindow::LoadMatchupsPageFromLoadedEvent()
 {
     UtilDebug("Load Matchups Page from Loaded Event");
-    ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
-    ui->MatchupsPreviousRoundButton->setEnabled(false);
-    ui->MatchupsCurrentRoundButton->setEnabled(false);
-    ui->MatchupsModifyMatchupsButton->setEnabled(false);
-    ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
+    m_Ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
+    m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
+    m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
+    m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
+    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
 
     ResetRoundInput();
 
@@ -301,11 +301,11 @@ void MainWindow::LoadMatchupsPageFromLoadedEvent()
     UpdateMatchupsTable();
 
     //List Players
-    ui->MatchupsPlayerListWidget->clear();
+    m_Ui->MatchupsPlayerListWidget->clear();
 
     for(const auto &player : m_MainPlayerList)
     {
-        ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
+        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
     }
 }
 
@@ -328,25 +328,25 @@ void MainWindow::on_MatchupsEnterResultsButton_clicked()
     if(ResultsValid())
     {
         UtilLog("Results are valid");
-        if(ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 0)->text() == ui->MatchupsPlayerOneNameLabel->text()
-                && ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 3)->text() == ui->MatchupsPlayerTwoNameLabel->text())
+        if(m_Ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 0)->text() == m_Ui->MatchupsPlayerOneNameLabel->text()
+                && m_Ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 3)->text() == m_Ui->MatchupsPlayerTwoNameLabel->text())
         {
-            ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 1, new QTableWidgetItem(ui->MatchupsPlayerOneComboBox->currentText()));
-            ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 2, new QTableWidgetItem(ui->MatchupsPlayerOneSpinBox->text()));
-            ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 4, new QTableWidgetItem(ui->MatchupsPlayerTwoComboBox->currentText()));
-            ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 5, new QTableWidgetItem(ui->MatchupsPlayerTwoSpinBox->text()));
+            m_Ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 1, new QTableWidgetItem(m_Ui->MatchupsPlayerOneComboBox->currentText()));
+            m_Ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 2, new QTableWidgetItem(m_Ui->MatchupsPlayerOneSpinBox->text()));
+            m_Ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 4, new QTableWidgetItem(m_Ui->MatchupsPlayerTwoComboBox->currentText()));
+            m_Ui->MatchupsPlayerTableWidget->setItem(*m_MatchupsSelectedRow, 5, new QTableWidgetItem(m_Ui->MatchupsPlayerTwoSpinBox->text()));
         }
         else
         {
             UtilLog("Error: Matchup doesnt match");
-            UtilLog(ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 0)->text().toStdString());
-            UtilLog(ui->MatchupsPlayerOneNameLabel->text().toStdString());
-            UtilLog(ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 3)->text().toStdString());
-            UtilLog(ui->MatchupsPlayerTwoNameLabel->text().toStdString());
+            UtilLog(m_Ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 0)->text().toStdString());
+            UtilLog(m_Ui->MatchupsPlayerOneNameLabel->text().toStdString());
+            UtilLog(m_Ui->MatchupsPlayerTableWidget->item(*m_MatchupsSelectedRow, 3)->text().toStdString());
+            UtilLog(m_Ui->MatchupsPlayerTwoNameLabel->text().toStdString());
         }
 
         ResetRoundInput();
-        ui->MatchupsModifyMatchupsButton->setEnabled(false);
+        m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
     }
     else
     {
@@ -359,9 +359,9 @@ void MainWindow::on_MatchupsModifyMatchupsButton_clicked()
 {
     UtilDebug("Modify Matchups");
 
-    if(ui->MatchupsPlayerTableWidget->rowCount() > *m_MatchupsSelectedRow + 1)
+    if(m_Ui->MatchupsPlayerTableWidget->rowCount() > *m_MatchupsSelectedRow + 1)
     {
-        UtilLog(std::to_string(ui->MatchupsPlayerTableWidget->rowCount()));
+        UtilLog(std::to_string(m_Ui->MatchupsPlayerTableWidget->rowCount()));
         UtilLog(std::to_string(*m_MatchupsSelectedRow));
 
         Player playerOne = m_CurrentRoundMatchups->at(*m_MatchupsSelectedRow).second;
@@ -372,7 +372,7 @@ void MainWindow::on_MatchupsModifyMatchupsButton_clicked()
 
         UpdateMatchupsTable();
         ResetRoundInput();
-        ui->MatchupsModifyMatchupsButton->setEnabled(false);
+        m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
     }
     else
     {
@@ -394,7 +394,7 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
 
         m_ActiveRoundNumber = ++m_CurrentRoundNumber;
 
-        ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
+        m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
         UtilLog("Round " + std::to_string(m_CurrentRoundNumber) + " Started");
     }
     else
@@ -402,7 +402,7 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
         QMessageBox::warning(this, "Unfinished Round", "Round has not finished. Please make sure that all matchup data has been set.");
     }
 
-    saveEventData();
+    SaveEventData();
 
     if(m_CurrentRoundNumber > m_NumberOfRounds)
     {
@@ -428,64 +428,64 @@ void MainWindow::on_MatchupsDirectMatchupSwapButton_clicked()
 void MainWindow::ResetMatchupsTable()
 {
     UtilDebug("Reset Matchups Table");
-    ui->MatchupsPlayerTableWidget->clear();
+    m_Ui->MatchupsPlayerTableWidget->clear();
 
-    int i = ui->MatchupsPlayerTableWidget->rowCount();
+    int i = m_Ui->MatchupsPlayerTableWidget->rowCount();
     for(int j = 0; j < i; ++j)
     {
-        ui->MatchupsPlayerTableWidget->removeRow(0);
+        m_Ui->MatchupsPlayerTableWidget->removeRow(0);
     }
 
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player One Name"));
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player One Result"));
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(2, new QTableWidgetItem("Player One VPs"));
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(3, new QTableWidgetItem("Player Two Name"));
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(4, new QTableWidgetItem("Player Two Result"));
-    ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(5, new QTableWidgetItem("Player Two VPs"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player One Name"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player One Result"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(2, new QTableWidgetItem("Player One VPs"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(3, new QTableWidgetItem("Player Two Name"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(4, new QTableWidgetItem("Player Two Result"));
+    m_Ui->MatchupsPlayerTableWidget->setHorizontalHeaderItem(5, new QTableWidgetItem("Player Two VPs"));
 }
 
 void MainWindow::ResetRoundInput()
 {
     UtilDebug("Reset Round Input");
-    ui->MatchupsPlayerOneNameLabel->setText(QString("Player One"));
-    ui->MatchupsPlayerOneComboBox->setCurrentIndex(0);
-    ui->MatchupsPlayerOneSpinBox->setValue(0);
-    ui->MatchupsPlayerTwoNameLabel->setText(QString("Player Two"));
-    ui->MatchupsPlayerTwoComboBox->setCurrentIndex(0);
-    ui->MatchupsPlayerTwoSpinBox->setValue(0);
+    m_Ui->MatchupsPlayerOneNameLabel->setText(QString("Player One"));
+    m_Ui->MatchupsPlayerOneComboBox->setCurrentIndex(0);
+    m_Ui->MatchupsPlayerOneSpinBox->setValue(0);
+    m_Ui->MatchupsPlayerTwoNameLabel->setText(QString("Player Two"));
+    m_Ui->MatchupsPlayerTwoComboBox->setCurrentIndex(0);
+    m_Ui->MatchupsPlayerTwoSpinBox->setValue(0);
 
     DisableRoundInput();
 }
 
 bool MainWindow::ResultsValid() const
 {
-    if(ui->MatchupsPlayerOneComboBox->currentText() == QString("Win")
-            && ui->MatchupsPlayerTwoComboBox->currentText() == QString("Loss"))
+    if(m_Ui->MatchupsPlayerOneComboBox->currentText() == QString("Win")
+            && m_Ui->MatchupsPlayerTwoComboBox->currentText() == QString("Loss"))
     {
         if(!*m_TableIsVictory)
         {
-            if(ui->MatchupsPlayerOneSpinBox->value() <= ui->MatchupsPlayerTwoSpinBox->value())
+            if(m_Ui->MatchupsPlayerOneSpinBox->value() <= m_Ui->MatchupsPlayerTwoSpinBox->value())
             {
                 return false;
             }
         }
         return true;
     }
-    else if(ui->MatchupsPlayerOneComboBox->currentText() == QString("Draw")
-            && ui->MatchupsPlayerTwoComboBox->currentText() == QString("Draw"))
+    else if(m_Ui->MatchupsPlayerOneComboBox->currentText() == QString("Draw")
+            && m_Ui->MatchupsPlayerTwoComboBox->currentText() == QString("Draw"))
     {
-        if(ui->MatchupsPlayerOneSpinBox->value() != ui->MatchupsPlayerTwoSpinBox->value())
+        if(m_Ui->MatchupsPlayerOneSpinBox->value() != m_Ui->MatchupsPlayerTwoSpinBox->value())
         {
             return false;
         }
         return true;
     }
-    else if(ui->MatchupsPlayerOneComboBox->currentText() == QString("Loss")
-            && ui->MatchupsPlayerTwoComboBox->currentText() == QString("Win"))
+    else if(m_Ui->MatchupsPlayerOneComboBox->currentText() == QString("Loss")
+            && m_Ui->MatchupsPlayerTwoComboBox->currentText() == QString("Win"))
     {
         if(!*m_TableIsVictory)
         {
-            if(ui->MatchupsPlayerOneSpinBox->value() >= ui->MatchupsPlayerTwoSpinBox->value())
+            if(m_Ui->MatchupsPlayerOneSpinBox->value() >= m_Ui->MatchupsPlayerTwoSpinBox->value())
             {
                 return false;
             }
@@ -503,24 +503,24 @@ void MainWindow::UpdateMatchupsTable()
 
     for(uint i = 0; i < m_CurrentRoundMatchups->size(); ++i)
     {
-        ui->MatchupsPlayerTableWidget->insertRow(ui->MatchupsPlayerTableWidget->rowCount());
-        ui->MatchupsPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).first.getName())));
-        ui->MatchupsPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString("")));
-        ui->MatchupsPlayerTableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString("")));
-        ui->MatchupsPlayerTableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).second.getName())));
-        ui->MatchupsPlayerTableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString("")));
-        ui->MatchupsPlayerTableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("")));
+        m_Ui->MatchupsPlayerTableWidget->insertRow(m_Ui->MatchupsPlayerTableWidget->rowCount());
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).first.getName())));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString("")));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString("")));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(m_CurrentRoundMatchups->at(i).second.getName())));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString("")));
+        m_Ui->MatchupsPlayerTableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("")));
     }
 }
 
 void MainWindow::UpdatePlayerRankingList()
 {
     UtilDebug("Update Player Rankings List");
-    ui->MatchupsPlayerListWidget->clear();
+    m_Ui->MatchupsPlayerListWidget->clear();
 
     for(const auto &player : m_MainPlayerList)
     {
-        ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
+        m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.getName()));
     }
 }
 
@@ -567,26 +567,26 @@ void MainWindow::UpdateRoundInput()
     std::pair<Player, Player> tempMatchup;
     tempMatchup = m_CurrentRoundMatchups->at(*m_MatchupsSelectedRow);
 
-    ui->MatchupsPlayerOneNameLabel->setText(QString::fromStdString(tempMatchup.first.getName()));
-    ui->MatchupsPlayerTwoNameLabel->setText(QString::fromStdString(tempMatchup.second.getName()));
+    m_Ui->MatchupsPlayerOneNameLabel->setText(QString::fromStdString(tempMatchup.first.getName()));
+    m_Ui->MatchupsPlayerTwoNameLabel->setText(QString::fromStdString(tempMatchup.second.getName()));
 }
 
 void MainWindow::UpdateScores()
 {
     UtilDebug("Update Scores");
-    int rowCount = ui->MatchupsPlayerTableWidget->rowCount();
+    int rowCount = m_Ui->MatchupsPlayerTableWidget->rowCount();
     
     //For each row in the table
     for(int i = 0; i < rowCount; ++i)
     {
         //Player one and player two
-        std::string playerOneName = ui->MatchupsPlayerTableWidget->item(i, 0)->text().toStdString();
-        std::string playerTwoName = ui->MatchupsPlayerTableWidget->item(i, 3)->text().toStdString();
+        std::string playerOneName = m_Ui->MatchupsPlayerTableWidget->item(i, 0)->text().toStdString();
+        std::string playerTwoName = m_Ui->MatchupsPlayerTableWidget->item(i, 3)->text().toStdString();
         
-        int playerOneScore = ui->MatchupsPlayerTableWidget->item(i, 2)->text().toInt();
-        int playerTwoScore = ui->MatchupsPlayerTableWidget->item(i, 5)->text().toInt();
-        std::string playerOneResult = ui->MatchupsPlayerTableWidget->item(i, 1)->text().toStdString();
-        std::string playerTwoResult = ui->MatchupsPlayerTableWidget->item(i, 4)->text().toStdString();
+        int playerOneScore = m_Ui->MatchupsPlayerTableWidget->item(i, 2)->text().toInt();
+        int playerTwoScore = m_Ui->MatchupsPlayerTableWidget->item(i, 5)->text().toInt();
+        std::string playerOneResult = m_Ui->MatchupsPlayerTableWidget->item(i, 1)->text().toStdString();
+        std::string playerTwoResult = m_Ui->MatchupsPlayerTableWidget->item(i, 4)->text().toStdString();
         
         //Find them in the player list
         for(uint i = 0; i < m_MainPlayerList.size(); ++i)

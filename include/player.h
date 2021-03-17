@@ -9,16 +9,17 @@ class Player
 {
 public:
     Player() = default;
+    Player(const std::string &name, const uint seed);
     Player(const Player &player);
 
     // Add a Best Painted Army vote.
     void AddBestPaintedArmyVote(const int value = 0);
 
     // Add a Draw result.
-    void AddDraw(int value);
+    void AddDraw(const int value);
 
     // Add a Loss result.
-    void AddLoss(int value);
+    void AddLoss(const int value);
 
     // Add a Most Sporting vote.
     void AddMostSportingVote(const int value = 0);
@@ -36,7 +37,7 @@ public:
     void AddVPs(const int points);
 
     // Add a Win result.
-    void AddWin(int value);
+    void AddWin(const int value);
 
 
     // Who did this player vote for, for Best Painted.
@@ -158,7 +159,6 @@ private:
     std::unique_ptr<bool> m_VotedMostSporting = std::make_unique<bool>(false);
 
     std::unique_ptr<bool> m_FirstRoundSet = std::make_unique<bool>(false);
-
 
 private: //Json Tags
     const std::unique_ptr<std::string> m_NameTag = std::make_unique<std::string>("name");

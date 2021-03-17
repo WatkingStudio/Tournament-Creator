@@ -35,11 +35,10 @@ void MainWindow::on_AddPlayerButton_clicked()
     {
         UtilDebug("Add Player");
 
-        Player newPlayer;
-        newPlayer.SetName(m_Ui->playerNameInputLineEdit->text().toStdString());
-        newPlayer.SetSeed(m_Ui->playerSeedInputLineEdit->text().toInt());
+        std::string name = m_Ui->playerNameInputLineEdit->text().toStdString();
+        uint seed = m_Ui->playerSeedInputLineEdit->text().toInt();
 
-        m_TempPlayerList->push_back(newPlayer);
+        m_TempPlayerList->emplace_back(name, seed);
 
         UpdatePlayerTable();
         m_Ui->playerNameInputLineEdit->clear();

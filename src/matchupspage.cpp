@@ -120,20 +120,10 @@ void MainWindow::CreateInitialMatchups()
     if(m_MainPlayerList.size() % 2 != 0)
     {
         UtilLog("Added Ringer");
-        Player ringer;
-        ringer.SetName("Ringer");
-        ringer.SetSeed(0);
-        m_MainPlayerList.push_back(ringer);
+        m_MainPlayerList.emplace_back("Ringer", 0);
     }
 
-    if(m_UsingSeed)
-    {
-        CreateSeededMatchup();
-    }
-    else
-    {
-        CreateRandomMatchup();
-    }
+    m_UsingSeed ? CreateSeededMatchup() : CreateRandomMatchup();
 }
 
 void MainWindow::CreateRandomMatchup()

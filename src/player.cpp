@@ -1,6 +1,12 @@
 #include "include\player.h"
 #include <string>
 
+Player::Player(const std::string &name, const uint seed)
+{
+    *m_Name = name;
+    *m_Seed = seed;
+}
+
 Player::Player(const Player &player)
 {
     *m_Name = player.GetName();

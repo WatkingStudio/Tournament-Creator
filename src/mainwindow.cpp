@@ -14,19 +14,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->tournamentCreatorPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(playerEntrySelected(int, int)));
-    connect(ui->matchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(matchupSelected(int,int)));
-    connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(newMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
+    connect(ui->MatchupsPlayerTableWidget, SIGNAL(cellClicked(int,int)), this, SLOT(MatchupSelected(int,int)));
+    connect(&m_MatchUpSwapWidget, SIGNAL(SwapComplete(const Player &, const Player &, const Player &, const Player &)), this, SLOT(NewMatchUpsFromSwap(const Player &, const Player &, const Player &, const Player &)));
     connect(&m_EventSettingsWidget, SIGNAL(SettingsComplete(EventSettingsData)), this, SLOT(ReceiveEventSettings(EventSettingsData)));
 
-    ui->matchupsPlayerOneComboBox->addItem(QString(""));
-    ui->matchupsPlayerOneComboBox->addItem(QString("Win"));
-    ui->matchupsPlayerOneComboBox->addItem(QString("Draw"));
-    ui->matchupsPlayerOneComboBox->addItem(QString("Loss"));
+    ui->MatchupsPlayerOneComboBox->addItem(QString(""));
+    ui->MatchupsPlayerOneComboBox->addItem(QString("Win"));
+    ui->MatchupsPlayerOneComboBox->addItem(QString("Draw"));
+    ui->MatchupsPlayerOneComboBox->addItem(QString("Loss"));
 
-    ui->matchupsPlayerTwoComboBox->addItem(QString(""));
-    ui->matchupsPlayerTwoComboBox->addItem(QString("Win"));
-    ui->matchupsPlayerTwoComboBox->addItem(QString("Draw"));
-    ui->matchupsPlayerTwoComboBox->addItem(QString("Loss"));
+    ui->MatchupsPlayerTwoComboBox->addItem(QString(""));
+    ui->MatchupsPlayerTwoComboBox->addItem(QString("Win"));
+    ui->MatchupsPlayerTwoComboBox->addItem(QString("Draw"));
+    ui->MatchupsPlayerTwoComboBox->addItem(QString("Loss"));
 
     loadStartPage();
 }
@@ -42,14 +42,14 @@ void MainWindow::playerEntrySelected(int row, int col)
     m_TournamentCreatorSelectedCol = col;
 }
 
-void MainWindow::matchupSelected(int row, int col)
+void MainWindow::MatchupSelected(int row, int col)
 {
-    m_MatchupsSelectedRow = row;
-    m_MatchupsSelectedCol = col;
+    *m_MatchupsSelectedRow = row;
+    *m_MatchupsSelectedCol = col;
 
-    ui->matchupsModifyMatchupsButton->setEnabled(true);
+    ui->MatchupsModifyMatchupsButton->setEnabled(true);
 
-    updateRoundInput();
+    UpdateRoundInput();
 }
 
 //Possible optimisation is to only save the name and seed of
@@ -67,9 +67,9 @@ void MainWindow::saveEventData()
         jsonObject[m_CurrentRoundTag.c_str()] = m_CurrentRoundNumber;
         jsonObject[m_ActiveRoundTag.c_str()] = m_ActiveRoundNumber;
         jsonObject[m_UsingSeedTag.c_str()] = m_UsingSeed;
-        jsonObject[m_WinValueTag.c_str()] = m_WinValue;
-        jsonObject[m_DrawValueTag.c_str()] = m_DrawValue;
-        jsonObject[m_LossValueTag.c_str()] = m_LossValue;
+        jsonObject[m_WinValueTag.c_str()] = *m_WinValue;
+        jsonObject[m_DrawValueTag.c_str()] = *m_DrawValue;
+        jsonObject[m_LossValueTag.c_str()] = *m_LossValue;
         jsonObject[m_MostSportingValueTag.c_str()] = m_MostSportingValue;
         jsonObject[m_BestPaintedValueTag.c_str()] = m_BestPaintedValue;
     }
@@ -99,7 +99,7 @@ void MainWindow::saveEventData()
     {
         QJsonArray currentMatchupsArray;
         //Current Round Data
-        for(auto matchup : m_CurrentRoundMatchups)
+        for(auto matchup : *m_CurrentRoundMatchups)
         {
             QJsonObject object;
             object[m_PairFirstTag.c_str()] = matchup.first.getPlayerData();
@@ -110,7 +110,7 @@ void MainWindow::saveEventData()
 
         QJsonArray allMatchupsArray;
         //All Round Data
-        for(auto round : m_AllRoundMatchups)
+        for(auto round : *m_AllRoundMatchups)
         {
             QJsonArray matchupsArray;
             for(auto matchup : round)
@@ -175,9 +175,9 @@ bool MainWindow::loadEventData()
         m_CurrentRoundNumber = object[m_CurrentRoundTag.c_str()].toInt();
         m_ActiveRoundNumber = object[m_ActiveRoundTag.c_str()].toInt();
         m_UsingSeed = object[m_UsingSeedTag.c_str()].toBool();
-        m_WinValue = object[m_WinValueTag.c_str()].toInt();
-        m_DrawValue = object[m_DrawValueTag.c_str()].toInt();
-        m_LossValue = object[m_LossValueTag.c_str()].toInt();
+        *m_WinValue = object[m_WinValueTag.c_str()].toInt();
+        *m_DrawValue = object[m_DrawValueTag.c_str()].toInt();
+        *m_LossValue = object[m_LossValueTag.c_str()].toInt();
         m_MostSportingValue = object[m_MostSportingValueTag.c_str()].toInt();
         m_BestPaintedValue = object[m_BestPaintedValueTag.c_str()].toInt();
     }
@@ -223,7 +223,7 @@ bool MainWindow::loadEventData()
 
             tempRoundMatchups.push_back(tempMatchup);
         }
-        m_AllRoundMatchups.push_back(tempRoundMatchups);
+        m_AllRoundMatchups->push_back(tempRoundMatchups);
     }
 
     UtilLog("Event Data Loaded");

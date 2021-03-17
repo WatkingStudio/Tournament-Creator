@@ -1,6 +1,8 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
+// This .cpp file is used to handle the tournament creator page
+
 void MainWindow::LoadTournamentCreatorPage()
 {
     UtilDebug("Load Tournament Creator Page");
@@ -26,48 +28,6 @@ void MainWindow::LoadTournamentCreatorPage()
     ResetPlayerTable();
 }
 
-void MainWindow::UpdatePlayerTable()
-{
-    UtilDebug("Updating Player Table");
-    ResetPlayerTable();
-
-    for(const auto &player : *m_TempPlayerList)
-    {
-        if(player.getName() != "")
-        {
-            int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
-            ui->tournamentCreatorPlayerTableWidget->insertRow(i);
-            ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.getName().c_str()));
-            ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.getSeed()))));
-        }
-    }
-}
-
-void MainWindow::ResetPlayerTable()
-{
-    UtilDebug("Reset Player Table");
-
-    int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
-    for(int j = 0; j < i; ++j)
-    {
-        ui->tournamentCreatorPlayerTableWidget->removeRow(0);
-    }
-
-    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
-    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
-}
-
-void MainWindow::on_RemovePlayerButton_clicked()
-{
-    UtilDebug("Remove Player Clicked");
-    if(m_TournamentCreatorSelectedRow != -1)
-    {
-        ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
-        m_TempPlayerList->erase(m_TempPlayerList->begin() + m_TournamentCreatorSelectedRow);
-        m_TournamentCreatorSelectedRow = -1;
-    }
-}
-
 void MainWindow::on_AddPlayerButton_clicked()
 {
     UtilDebug("Add Player Clicked");
@@ -87,16 +47,9 @@ void MainWindow::on_AddPlayerButton_clicked()
     }
 }
 
-void MainWindow::on_SaveEventTournamentCreatorButton_clicked()
+void MainWindow::on_BackTournamentCreatorButton_clicked()
 {
-    UtilDebug("Tournament Creator Save Event Button Clicked");
-    saveEventData();
-}
-
-void MainWindow::on_EventSettingsButton_clicked()
-{
-    UtilDebug("Event Settings Clicked");
-    m_EventSettingsWidget.show();
+    loadStartPage();
 }
 
 void MainWindow::on_ContinueTournamentCreatorButton_clicked()
@@ -110,7 +63,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
             m_MainPlayerList.push_back(player);
         }
 
-        loadMatchupsPage();
+        LoadMatchupsPage();
     }
     else
     {
@@ -125,9 +78,27 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
     saveEventData();
 }
 
-void MainWindow::on_BackTournamentCreatorButton_clicked()
+void MainWindow::on_EventSettingsButton_clicked()
 {
-    loadStartPage();
+    UtilDebug("Event Settings Clicked");
+    m_EventSettingsWidget.show();
+}
+
+void MainWindow::on_RemovePlayerButton_clicked()
+{
+    UtilDebug("Remove Player Clicked");
+    if(m_TournamentCreatorSelectedRow != -1)
+    {
+        ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
+        m_TempPlayerList->erase(m_TempPlayerList->begin() + m_TournamentCreatorSelectedRow);
+        m_TournamentCreatorSelectedRow = -1;
+    }
+}
+
+void MainWindow::on_SaveEventTournamentCreatorButton_clicked()
+{
+    UtilDebug("Tournament Creator Save Event Button Clicked");
+    saveEventData();
 }
 
 void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData)
@@ -136,15 +107,15 @@ void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData
 
     if(eventSettingsData.winTPs > 0)
     {
-        m_WinValue = eventSettingsData.winTPs;
+        *m_WinValue = eventSettingsData.winTPs;
     }
     if(eventSettingsData.drawTPs > 0)
     {
-        m_DrawValue = eventSettingsData.drawTPs;
+        *m_DrawValue = eventSettingsData.drawTPs;
     }
     if(eventSettingsData.lossTPs > 0)
     {
-        m_LossValue = eventSettingsData.lossTPs;
+        *m_LossValue = eventSettingsData.lossTPs;
     }
     if(eventSettingsData.mostSportingTPs >= 0)
     {
@@ -164,4 +135,35 @@ void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData
     m_SecondTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.secondTiebreaker);
     m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.thirdTiebreaker);
     m_FourthTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.fourthTiebreaker);
+}
+
+void MainWindow::ResetPlayerTable()
+{
+    UtilDebug("Reset Player Table");
+
+    int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
+    for(int j = 0; j < i; ++j)
+    {
+        ui->tournamentCreatorPlayerTableWidget->removeRow(0);
+    }
+
+    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
+    ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
+}
+
+void MainWindow::UpdatePlayerTable()
+{
+    UtilDebug("Updating Player Table");
+    ResetPlayerTable();
+
+    for(const auto &player : *m_TempPlayerList)
+    {
+        if(player.getName() != "")
+        {
+            int i = ui->tournamentCreatorPlayerTableWidget->rowCount();
+            ui->tournamentCreatorPlayerTableWidget->insertRow(i);
+            ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.getName().c_str()));
+            ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.getSeed()))));
+        }
+    }
 }

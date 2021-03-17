@@ -50,23 +50,52 @@ private slots:
     void on_loadEventButton_clicked();
 
     //Tournament Creator Slots
-    void on_RemovePlayerButton_clicked();
+    // Add the new player
     void on_AddPlayerButton_clicked();
-    void on_SaveEventTournamentCreatorButton_clicked();
-    void on_EventSettingsButton_clicked();
-    void on_ContinueTournamentCreatorButton_clicked();
+
+    // Return to the previous page
     void on_BackTournamentCreatorButton_clicked();
+
+    // Continue to the matchups page
+    void on_ContinueTournamentCreatorButton_clicked();
+
+    // Load the event settings widget
+    void on_EventSettingsButton_clicked();
+
+    // Remove the selected player from the list
+    void on_RemovePlayerButton_clicked();
+
+    // Save the current event data
+    void on_SaveEventTournamentCreatorButton_clicked();
+
+    // Receive the event settings when they are set
     void ReceiveEventSettings(const EventSettingsData &eventSettingsData);
 
     //Matchups Slots
-    void on_matchupsBackButton_clicked();
-    void matchupSelected(int, int);
-    void on_matchupsEnterResultsButton_clicked();
-    void on_matchupsModifyMatchupsButton_clicked();
-    void on_matchupsNextRoundButton_clicked();
-    void on_matchupsResetMatchupTable_clicked();
-    void on_matchupsDirectMatchupSwapButton_clicked();
-    void newMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour);
+    // When a matchup is selected in the MatchupTable handle it
+    void MatchupSelected(int row, int col);
+
+    // A new matchup has been determined, modify the event data to observe the change
+    void NewMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour);
+
+    // Return to the Tournament Creator page
+    void on_MatchupsBackButton_clicked();
+
+    // Perform a direct matchup swap between four players
+    void on_MatchupsDirectMatchupSwapButton_clicked();
+
+    // Enter the results of the specified matchup
+    void on_MatchupsEnterResultsButton_clicked();
+
+    // Modify the matchup with the least impact to the event
+    void on_MatchupsModifyMatchupsButton_clicked();
+
+    // Take the event to the next round
+    void on_MatchupsNextRoundButton_clicked();
+
+    // Reset the matchup table to what it was at the beginning of the round
+    void on_MatchupsResetMatchupTable_clicked();
+
 
     //Result Page Slots
     void on_bestPaintedPushButton_clicked();
@@ -115,44 +144,107 @@ private:
     Tiebreak::Tiebreaker m_ThirdTiebreaker = Tiebreak::Tiebreaker::MOST_SPORTING;
     Tiebreak::Tiebreaker m_FourthTiebreaker = Tiebreak::Tiebreaker::BEST_PAINTED;
 
-    //Matchups Page Functions and Variables
-    void loadMatchupsPage();
-    void updatePlayerRankingList();
-    void loadMatchupsPageFromLoadedEvent();
-    void setLoadedEventMatchups();
-    void setInitialMatchups();
-    void createSeededMatchup();
-    void createRandomMatchup();
-    void updateScores();
-    void createRankedMatchup();
-    void updateRankings();
-    void resetMatchupsTable();
-    void updateMatchupsTable();
-    void resetRoundInput();
-    void disableRoundInput();
-    void enableRoundInput();
-    void updateRoundInput();
-    bool isRoundFinished() const;
-    bool resultsValid() const;
-    void addResult(const std::string &result, int playerIndex);
-    void setMatchUp(const Player &playerOne, const Player &playerTwo);
-    Player findRandomPlayer(int playerCount);
-    bool checkTiebreakers(const Player &highestRank, const Player &player);
-    TiebreakerResult checkFirstTiebreaker(const Player &highestRank, const Player &player);
-    TiebreakerResult checkSecondTiebreaker(const Player &highestRank, const Player &player);
-    TiebreakerResult checkThirdTiebreaker(const Player &highestRank, const Player &player);
-    TiebreakerResult checkFourthTiebreaker(const Player &highestRank, const Player &player);
-    TiebreakerResult checkTiebreaker(Tiebreak::Tiebreaker tiebreak, const Player &highestRank, const Player &player);
-    TiebreakerResult checkTiebreakerValue(int highestRankValue, int playerValue);
+    //Matchups Page Functions and Variables//
+    // Adds the passed result to the players stats.
+    void AddResult(const std::string &result, const int playerIndex);
 
-    std::vector<std::vector<std::pair<Player, Player>>> m_AllRoundMatchups;
-    std::vector<std::pair<Player,Player>> m_CurrentRoundMatchups;
-    int m_MatchupsSelectedRow = -1;
-    int m_MatchupsSelectedCol = -1;
-    bool m_TableIsVictory{false};
-    int m_WinValue = 3;
-    int m_DrawValue = 1;
-    int m_LossValue = 0;
+    // Checks the first tiebreaker between two players.
+    // @return The result of the tiebreaker comparison.
+    TiebreakerResult CheckFirstTiebreaker(const Player &playerOne, const Player &playerTwo) const;
+
+    // Checks the second tiebreaker between two players.
+    // @return The result of the tiebreaker comparison.
+    TiebreakerResult CheckSecondTiebreaker(const Player &playerOne, const Player &playerTwo) const;
+
+    // Checks the third tiebreaker between two players.
+    // @return The result of the tiebreaker comparison.
+    TiebreakerResult CheckThirdTiebreaker(const Player &playerOne, const Player &playerTwo) const;
+
+    // Checks the fourth tiebreaker between two players.
+    // @return The result of the tiebreaker comparison.
+    TiebreakerResult CheckFourthTiebreaker(const Player &playerOne, const Player &playerTwo) const;
+
+    // Checks the specified tiebreaker between two players.
+    // @return The return to the tiebreaker comparison.
+    TiebreakerResult CheckTiebreaker(const Tiebreak::Tiebreaker tiebreak, const Player &playerOne, const Player &playerTwo) const;
+
+    // Checks the tiebreakers between two players, to see which should be ranking
+    //     higher.
+    // @return If player one beats player two on tiebreakers.
+    bool CheckTiebreakers(const Player &playerOne, const Player &playerTwo) const;
+
+    // Compares the two passed tiebreaker values.
+    // @return If playerOne's value is higher, equal or lower than playerTwo's.
+    TiebreakerResult CheckTiebreakerValue(const int playerOne, const int playerTwo) const;
+
+    // Create the initial matchups for the event.
+    void CreateInitialMatchups();
+
+    // Create the inital matchup with random matchups.
+    void CreateRandomMatchup();
+
+    // Create matchups usings the ranking table.
+    void CreateRankedMatchup();
+
+    // Create the initial matchup using players seeds.
+    void CreateSeededMatchup();
+
+    // Disables the round input fields.
+    void DisableRoundInput();
+
+    // Enables the round input fields.
+    void EnableRoundInput();
+
+    // Finds a random player from the list.
+    // @return The random player.
+    Player FindRandomPlayer(const int playerCount);
+
+    // Checks to see if all matchups have results.
+    // @return True if all matchups have results, False if they do not.
+    bool IsRoundFinished() const;
+
+    // Load the matchups page.
+    void LoadMatchupsPage();
+
+    // Load the matchups page from a previous event.
+    void LoadMatchupsPageFromLoadedEvent();
+
+    // Reset the matchups table to the start of the round.
+    void ResetMatchupsTable();
+
+    // Resets the round input fields.
+    void ResetRoundInput();
+
+    // Checks to see if an input result is valid.
+    // @return True if the input results are valid, False if they are not.
+    bool ResultsValid() const;
+
+    // Update the matchups to display the matchups.
+    void UpdateMatchupsTable();
+
+    // Update the player rankings.
+    void UpdatePlayerRankingList();
+
+    // Update the rankings.
+    void UpdateRankings();
+
+    // Updates the round input fields.
+    void UpdateRoundInput();
+
+    // Update the scores of all the players.
+    void UpdateScores();
+
+    // Updates the matchup table to have the new matchup.
+    void UpdateTableMatchUp(const Player &playerOne, const Player &playerTwo);
+
+    std::unique_ptr<std::vector<std::vector<std::pair<Player, Player>>>> m_AllRoundMatchups = std::make_unique<std::vector<std::vector<std::pair<Player, Player>>>>();
+    std::unique_ptr<std::vector<std::pair<Player,Player>>> m_CurrentRoundMatchups = std::make_unique<std::vector<std::pair<Player, Player>>>();
+    std::unique_ptr<int> m_MatchupsSelectedRow = std::make_unique<int>(-1);
+    std::unique_ptr<int> m_MatchupsSelectedCol = std::make_unique<int>(-1);
+    std::unique_ptr<bool> m_TableIsVictory = std::make_unique<bool>(false);
+    std::unique_ptr<int> m_WinValue = std::make_unique<int>(3);
+    std::unique_ptr<int> m_DrawValue = std::make_unique<int>(1);
+    std::unique_ptr<int> m_LossValue = std::make_unique<int>(0);
 
     //Results Page Functions and Vartiables
     void loadResultsPage();

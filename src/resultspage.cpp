@@ -222,7 +222,7 @@ void MainWindow::on_displayResultsPushButton_clicked()
     {
         UtilLog("Displaying Results");
         resetPage();
-        updateRankings();
+        UpdateRankings();
 
         //Fill in all award data
         std::string mostSportingPlayer = getMostSportingPlayer();

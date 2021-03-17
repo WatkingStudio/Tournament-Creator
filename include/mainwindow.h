@@ -46,8 +46,8 @@ private slots:
     void playerEntrySelected(int, int);
 
     //Start Page Slots
-    void on_createNewEventButton_clicked();
-    void on_loadEventButton_clicked();
+    void on_CreateNewEventButton_clicked();
+    void on_LoadEventButton_clicked();
 
     //Tournament Creator Slots
     // Add the new player
@@ -121,7 +121,8 @@ private:
     bool loadEventData();
 
     //Start Page Functions and Variables
-    void loadStartPage();
+    // Loads the start page
+    void LoadStartPage();
 
     // Tournament Creator Page Functions and Variables
     // Loads the Tournament Creator Page

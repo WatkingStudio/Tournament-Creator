@@ -135,7 +135,7 @@
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="startScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -153,7 +153,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QWidget" name="startCenterWidget" native="true">
+             <widget class="QWidget" name="StartCenterWidget" native="true">
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
                 <spacer name="verticalSpacer">
@@ -169,10 +169,10 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QWidget" name="startButtonWidget" native="true">
+                <widget class="QWidget" name="StartButtonWidget" native="true">
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
                   <item>
-                   <widget class="QPushButton" name="createNewEventButton">
+                   <widget class="QPushButton" name="CreateNewEventButton">
                     <property name="minimumSize">
                      <size>
                       <width>150</width>
@@ -197,7 +197,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="loadEventButton">
+                   <widget class="QPushButton" name="LoadEventButton">
                     <property name="minimumSize">
                      <size>
                       <width>150</width>

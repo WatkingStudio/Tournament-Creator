@@ -19,8 +19,8 @@ void MainWindow::LoadTournamentCreatorPage()
     }
     CreateFile(m_EventDataFileName->c_str(), *m_EventDirectory);
 
-    m_Ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
-    m_Ui->pageTitleWidget->setText("Tournament Creator");
+    m_Ui->StackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
+    m_Ui->PageTitleWidget->setText("Tournament Creator");
 
     *m_TournamentCreatorSelectedCol = -1;
     *m_TournamentCreatorSelectedRow = -1;
@@ -31,18 +31,18 @@ void MainWindow::LoadTournamentCreatorPage()
 void MainWindow::on_AddPlayerButton_clicked()
 {
     UtilDebug("Add Player Clicked");
-    if(m_Ui->playerNameInputLineEdit->displayText() != "")
+    if(m_Ui->PlayerNameInputLineEdit->displayText() != "")
     {
         UtilDebug("Add Player");
 
-        std::string name = m_Ui->playerNameInputLineEdit->text().toStdString();
-        uint seed = m_Ui->playerSeedInputLineEdit->text().toInt();
+        std::string name = m_Ui->PlayerNameInputLineEdit->text().toStdString();
+        uint seed = m_Ui->PlayerSeedInputLineEdit->text().toInt();
 
         m_TempPlayerList->emplace_back(name, seed);
 
         UpdatePlayerTable();
-        m_Ui->playerNameInputLineEdit->clear();
-        m_Ui->playerSeedInputLineEdit->clear();
+        m_Ui->PlayerNameInputLineEdit->clear();
+        m_Ui->PlayerSeedInputLineEdit->clear();
     }
 }
 
@@ -84,7 +84,7 @@ void MainWindow::on_RemovePlayerButton_clicked()
     UtilDebug("Remove Player Clicked");
     if(*m_TournamentCreatorSelectedRow != -1)
     {
-        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(*m_TournamentCreatorSelectedRow);
+        m_Ui->TournamentCreatorPlayerTableWidget->removeRow(*m_TournamentCreatorSelectedRow);
         m_TempPlayerList->erase(m_TempPlayerList->begin() + *m_TournamentCreatorSelectedRow);
         *m_TournamentCreatorSelectedRow = -1;
     }
@@ -114,11 +114,11 @@ void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData
     }
     if(eventSettingsData.mostSportingTPs >= 0)
     {
-        m_MostSportingValue = eventSettingsData.mostSportingTPs;
+        *m_MostSportingValue = eventSettingsData.mostSportingTPs;
     }
     if(eventSettingsData.bestPaintedTPs >= 0)
     {
-        m_BestPaintedValue = eventSettingsData.bestPaintedTPs;
+        *m_BestPaintedValue = eventSettingsData.bestPaintedTPs;
     }
     *m_UsingSeed = eventSettingsData.usingSeeded;
     if(eventSettingsData.numberOfRounds > 0)
@@ -136,14 +136,14 @@ void MainWindow::ResetPlayerTable()
 {
     UtilDebug("Reset Player Table");
 
-    int i = m_Ui->tournamentCreatorPlayerTableWidget->rowCount();
+    int i = m_Ui->TournamentCreatorPlayerTableWidget->rowCount();
     for(int j = 0; j < i; ++j)
     {
-        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(0);
+        m_Ui->TournamentCreatorPlayerTableWidget->removeRow(0);
     }
 
-    m_Ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
-    m_Ui->tournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
+    m_Ui->TournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Player Name"));
+    m_Ui->TournamentCreatorPlayerTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Player Seed"));
 }
 
 void MainWindow::UpdatePlayerTable()
@@ -155,10 +155,10 @@ void MainWindow::UpdatePlayerTable()
     {
         if(player.GetName() != "")
         {
-            int i = m_Ui->tournamentCreatorPlayerTableWidget->rowCount();
-            m_Ui->tournamentCreatorPlayerTableWidget->insertRow(i);
-            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.GetName().c_str()));
-            m_Ui->tournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.GetSeed()))));
+            int i = m_Ui->TournamentCreatorPlayerTableWidget->rowCount();
+            m_Ui->TournamentCreatorPlayerTableWidget->insertRow(i);
+            m_Ui->TournamentCreatorPlayerTableWidget->setItem(i, 0, new QTableWidgetItem(player.GetName().c_str()));
+            m_Ui->TournamentCreatorPlayerTableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(std::to_string(player.GetSeed()))));
         }
     }
 }

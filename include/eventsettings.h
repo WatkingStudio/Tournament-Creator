@@ -24,6 +24,7 @@ struct EventSettingsData
     std::string fourthTiebreaker;
 };
 
+//This class handles the Event Settings widget
 class EventSettings : public QWidget
 {
     Q_OBJECT

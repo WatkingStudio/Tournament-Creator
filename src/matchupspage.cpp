@@ -254,7 +254,7 @@ bool MainWindow::IsRoundFinished() const
 void MainWindow::LoadMatchupsPage()
 {
     UtilDebug("Load Matchups Page");
-    m_Ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
+    m_Ui->StackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
     m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
     m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
     m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
@@ -277,7 +277,7 @@ void MainWindow::LoadMatchupsPage()
 void MainWindow::LoadMatchupsPageFromLoadedEvent()
 {
     UtilDebug("Load Matchups Page from Loaded Event");
-    m_Ui->stackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
+    m_Ui->StackedWidget->setCurrentIndex(Pages::MATCHUPS_PAGE);
     m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
     m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
     m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
@@ -397,7 +397,7 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
     if(m_CurrentRoundNumber > m_NumberOfRounds)
     {
         UtilLog("Finished Final Round");
-        loadResultsPage();
+        LoadResultsPage();
     }
 }
 

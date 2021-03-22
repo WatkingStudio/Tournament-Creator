@@ -33,7 +33,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="titleWidget" native="true">
+    <widget class="QWidget" name="TitleWidget" native="true">
      <property name="minimumSize">
       <size>
        <width>310</width>
@@ -51,7 +51,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="titleLabel">
+       <widget class="QLabel" name="TitleLabel">
         <property name="font">
          <font>
           <family>Calibri</family>
@@ -72,10 +72,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="settingsWidget" native="true">
+    <widget class="QWidget" name="SettingsWidget" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QWidget" name="tournamentPointsSettingsWidget" native="true">
+       <widget class="QWidget" name="TournamentPointsSettingsWidget" native="true">
         <property name="minimumSize">
          <size>
           <width>310</width>
@@ -96,7 +96,7 @@
           <number>5</number>
          </property>
          <item>
-          <widget class="QWidget" name="winTournamentPointsWidget" native="true">
+          <widget class="QWidget" name="WinTournamentPointsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -108,7 +108,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QLabel" name="winLabel">
+             <widget class="QLabel" name="WinLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -130,7 +130,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="winLineEdit">
+             <widget class="QLineEdit" name="WinLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -152,7 +152,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="drawTournamentPointsWidget" native="true">
+          <widget class="QWidget" name="DrawTournamentPointsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -164,7 +164,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QLabel" name="drawLabel">
+             <widget class="QLabel" name="DrawLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -186,7 +186,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="drawLineEdit">
+             <widget class="QLineEdit" name="DrawLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -208,7 +208,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="lossTournamentPointsWidget" native="true">
+          <widget class="QWidget" name="LossTournamentPointsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -220,7 +220,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QLabel" name="lossLabel">
+             <widget class="QLabel" name="LossLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -242,7 +242,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lossLineEdit">
+             <widget class="QLineEdit" name="LossLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -264,7 +264,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="mostSportingPointsWidget" native="true">
+          <widget class="QWidget" name="MostSportingPointsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -276,7 +276,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QLabel" name="mostSportingLabel">
+             <widget class="QLabel" name="MostSportingLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -298,7 +298,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="mostSportingLineEdit">
+             <widget class="QLineEdit" name="MostSportingLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -320,7 +320,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="bestPaintedPointsWidget" native="true">
+          <widget class="QWidget" name="BestPaintedPointsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -332,7 +332,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
-             <widget class="QLabel" name="bestPaintedLabel">
+             <widget class="QLabel" name="BestPaintedLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -354,7 +354,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="bestPaintedLineEdit">
+             <widget class="QLineEdit" name="BestPaintedLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -388,7 +388,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QCheckBox" name="seededPlayersCheckBox">
+          <widget class="QCheckBox" name="SeededPlayersCheckBox">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -416,7 +416,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="numberOfRoundsWidget" native="true">
+          <widget class="QWidget" name="NumberOfRoundsWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -428,7 +428,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
-             <widget class="QLabel" name="numberOfRoundsLabel">
+             <widget class="QLabel" name="NumberOfRoundsLabel">
               <property name="minimumSize">
                <size>
                 <width>180</width>
@@ -450,7 +450,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="numberOfRoundsLineEdit">
+             <widget class="QLineEdit" name="NumberOfRoundsLineEdit">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -475,7 +475,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="tiebreakerSettingsWidget" native="true">
+       <widget class="QWidget" name="TiebreakerSettingsWidget" native="true">
         <property name="minimumSize">
          <size>
           <width>310</width>
@@ -484,7 +484,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QWidget" name="firstTiebreakerWidget" native="true">
+          <widget class="QWidget" name="FirstTiebreakerWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -496,7 +496,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
-             <widget class="QLabel" name="firstTiebreakerLabel">
+             <widget class="QLabel" name="FirstTiebreakerLabel">
               <property name="minimumSize">
                <size>
                 <width>130</width>
@@ -518,7 +518,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="firstTiebreakerComboBox">
+             <widget class="QComboBox" name="FirstTiebreakerComboBox">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -540,7 +540,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="secondTiebreakerWidget" native="true">
+          <widget class="QWidget" name="SecondTiebreakerWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -552,7 +552,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
-             <widget class="QLabel" name="secondTiebreakerLabel">
+             <widget class="QLabel" name="SecondTiebreakerLabel">
               <property name="minimumSize">
                <size>
                 <width>130</width>
@@ -574,7 +574,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="secondTiebreakerComboBox">
+             <widget class="QComboBox" name="SecondTiebreakerComboBox">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -596,7 +596,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="thirdTiebreakerWidget" native="true">
+          <widget class="QWidget" name="ThirdTiebreakerWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -608,7 +608,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
-             <widget class="QLabel" name="thirdTiebreakerLabel">
+             <widget class="QLabel" name="ThirdTiebreakerLabel">
               <property name="minimumSize">
                <size>
                 <width>130</width>
@@ -630,7 +630,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="thirdTiebreakerComboBox">
+             <widget class="QComboBox" name="ThirdTiebreakerComboBox">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -652,7 +652,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="fourthTieBreakerWidget" native="true">
+          <widget class="QWidget" name="FourthTieBreakerWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>300</width>
@@ -664,7 +664,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QLabel" name="fourthTiebreakerLabel">
+             <widget class="QLabel" name="FourthTiebreakerLabel">
               <property name="minimumSize">
                <size>
                 <width>130</width>
@@ -686,7 +686,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="fourthTieBreakerComboBox">
+             <widget class="QComboBox" name="FourthTieBreakerComboBox">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -714,7 +714,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="buttonWidget" native="true">
+    <widget class="QWidget" name="ButtonWidget" native="true">
      <property name="minimumSize">
       <size>
        <width>310</width>
@@ -738,7 +738,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="donePushButton">
+       <widget class="QPushButton" name="DonePushButton">
         <property name="minimumSize">
          <size>
           <width>100</width>

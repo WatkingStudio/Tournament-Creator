@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-image: url(:/background.png);</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="CentralWidget">
    <property name="styleSheet">
     <string notr="true"/>
    </property>
@@ -37,7 +37,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QWidget" name="headerWidget" native="true">
+     <widget class="QWidget" name="HeaderWidget" native="true">
       <property name="minimumSize">
        <size>
         <width>120</width>
@@ -70,7 +70,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="pageTitleWidget">
+        <widget class="QLabel" name="PageTitleWidget">
          <property name="minimumSize">
           <size>
            <width>120</width>
@@ -97,14 +97,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QScrollArea" name="mainScrollArea">
+     <widget class="QScrollArea" name="MainScrollArea">
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
+      <widget class="QWidget" name="ScrollAreaWidgetContents">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -130,17 +130,17 @@
          <number>0</number>
         </property>
         <item row="0" column="0">
-         <widget class="QStackedWidget" name="stackedWidget">
+         <widget class="QStackedWidget" name="StackedWidget">
           <property name="styleSheet">
            <string notr="true">background:transparent;</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
-          <widget class="QWidget" name="startScreen">
+          <widget class="QWidget" name="StartScreen">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <spacer name="horizontalSpacer">
+             <spacer name="HorizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -156,7 +156,7 @@
              <widget class="QWidget" name="StartCenterWidget" native="true">
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <spacer name="verticalSpacer">
+                <spacer name="VerticalSpacer">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
@@ -225,7 +225,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="verticalSpacer_2">
+                <spacer name="VerticalSpacer_2">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
@@ -241,7 +241,7 @@
              </widget>
             </item>
             <item>
-             <spacer name="horizontalSpacer_2">
+             <spacer name="HorizontalSpacer_2">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -255,10 +255,10 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tournamentCreatorPage">
+          <widget class="QWidget" name="TournamentCreatorPage">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QWidget" name="entryInformationWidget" native="true">
+             <widget class="QWidget" name="EntryInformationWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>175</width>
@@ -282,7 +282,7 @@
                 <number>1</number>
                </property>
                <item>
-                <widget class="QWidget" name="playerInputWidget" native="true">
+                <widget class="QWidget" name="PlayerInputWidget" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>160</width>
@@ -312,7 +312,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QWidget" name="playerNameInputWidget" native="true">
+                   <widget class="QWidget" name="PlayerNameInputWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>160</width>
@@ -336,7 +336,7 @@
                       <number>1</number>
                      </property>
                      <item>
-                      <widget class="QLabel" name="playerNameInputLabel">
+                      <widget class="QLabel" name="PlayerNameInputLabel">
                        <property name="minimumSize">
                         <size>
                          <width>70</width>
@@ -358,7 +358,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="playerNameInputLineEdit">
+                      <widget class="QLineEdit" name="PlayerNameInputLineEdit">
                        <property name="minimumSize">
                         <size>
                          <width>100</width>
@@ -386,7 +386,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="playerSeedInputWidget" native="true">
+                   <widget class="QWidget" name="PlayerSeedInputWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>160</width>
@@ -410,7 +410,7 @@
                       <number>1</number>
                      </property>
                      <item>
-                      <widget class="QLabel" name="playerSeedInputLabel">
+                      <widget class="QLabel" name="PlayerSeedInputLabel">
                        <property name="minimumSize">
                         <size>
                          <width>50</width>
@@ -432,7 +432,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="playerSeedInputLineEdit">
+                      <widget class="QLineEdit" name="PlayerSeedInputLineEdit">
                        <property name="minimumSize">
                         <size>
                          <width>100</width>
@@ -593,7 +593,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="verticalSpacer_3">
+                <spacer name="VerticalSpacer_3">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
@@ -674,7 +674,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QScrollArea" name="tournamentCreatorScrollView">
+             <widget class="QScrollArea" name="TournamentCreatorScrollView">
               <property name="minimumSize">
                <size>
                 <width>200</width>
@@ -687,7 +687,7 @@
               <property name="widgetResizable">
                <bool>true</bool>
               </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+              <widget class="QWidget" name="ScrollAreaWidgetContents_2">
                <property name="geometry">
                 <rect>
                  <x>0</x>
@@ -713,7 +713,7 @@
                  <number>1</number>
                 </property>
                 <item>
-                 <widget class="QTableWidget" name="tournamentCreatorPlayerTableWidget">
+                 <widget class="QTableWidget" name="TournamentCreatorPlayerTableWidget">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -841,7 +841,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <spacer name="verticalSpacer_6">
+                      <spacer name="VerticalSpacer_6">
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
                        </property>
@@ -854,7 +854,7 @@
                       </spacer>
                      </item>
                      <item>
-                      <widget class="QLabel" name="label">
+                      <widget class="QLabel" name="MatchupsRoundNumberLabel">
                        <property name="minimumSize">
                         <size>
                          <width>100</width>
@@ -952,7 +952,7 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="verticalSpacer_5">
+                   <spacer name="VerticalSpacer_5">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
@@ -1040,7 +1040,7 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="verticalSpacer_9">
+                   <spacer name="VerticalSpacer_9">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
@@ -1079,7 +1079,7 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="verticalSpacer_4">
+                   <spacer name="VerticalSpacer_4">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
@@ -1289,7 +1289,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_3">
+                <spacer name="HorizontalSpacer_3">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -1392,7 +1392,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_4">
+                <spacer name="HorizontalSpacer_4">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -1492,7 +1492,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_5">
+                <spacer name="HorizontalSpacer_5">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -1540,7 +1540,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="resultsPage">
+          <widget class="QWidget" name="ResultsPage">
            <layout class="QVBoxLayout" name="verticalLayout_11">
             <property name="spacing">
              <number>0</number>
@@ -1558,10 +1558,10 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QWidget" name="resultsPageWidget" native="true">
+             <widget class="QWidget" name="ResultsPageWidget" native="true">
               <layout class="QHBoxLayout" name="horizontalLayout_9">
                <item>
-                <widget class="QWidget" name="awardInputWidget" native="true">
+                <widget class="QWidget" name="AwardInputWidget" native="true">
                  <property name="maximumSize">
                   <size>
                    <width>410</width>
@@ -1570,7 +1570,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_12">
                   <item>
-                   <widget class="QWidget" name="bestPaintedInputWidget" native="true">
+                   <widget class="QWidget" name="BestPaintedInputWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -1588,7 +1588,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_13">
                      <item>
-                      <widget class="QLabel" name="bestPaintedTitleLabel">
+                      <widget class="QLabel" name="BestPaintedTitleLabel">
                        <property name="maximumSize">
                         <size>
                          <width>16777215</width>
@@ -1610,7 +1610,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="bestPatintedVoteInputWidget" native="true">
+                      <widget class="QWidget" name="BestPatintedVoteInputWidget" native="true">
                        <property name="maximumSize">
                         <size>
                          <width>400</width>
@@ -1619,13 +1619,13 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_10">
                         <item>
-                         <widget class="QWidget" name="bestPaintedVotingInputWidget" native="true">
+                         <widget class="QWidget" name="BestPaintedVotingInputWidget" native="true">
                           <property name="styleSheet">
                            <string notr="true">border:none;</string>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_14">
                            <item>
-                            <widget class="QLabel" name="bestPaintedVotingLabel">
+                            <widget class="QLabel" name="BestPaintedVotingLabel">
                              <property name="minimumSize">
                               <size>
                                <width>160</width>
@@ -1647,7 +1647,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="bestPaintedVotingComboBox">
+                            <widget class="QComboBox" name="BestPaintedVotingComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1666,13 +1666,13 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QWidget" name="bestPaintedVotedInputWidget" native="true">
+                         <widget class="QWidget" name="BestPaintedVotedInputWidget" native="true">
                           <property name="styleSheet">
                            <string notr="true">border:none;</string>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_15">
                            <item>
-                            <widget class="QLabel" name="bestPaintedVotedLabel">
+                            <widget class="QLabel" name="BestPaintedVotedLabel">
                              <property name="minimumSize">
                               <size>
                                <width>160</width>
@@ -1694,7 +1694,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="bestPaintedVotedComboBox">
+                            <widget class="QComboBox" name="BestPaintedVotedComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1716,7 +1716,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="bestPaintedPushButton">
+                      <widget class="QPushButton" name="BestPaintedPushButton">
                        <property name="font">
                         <font>
                          <family>Calibri</family>
@@ -1735,7 +1735,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="mostSportingInputWidget" native="true">
+                   <widget class="QWidget" name="MostSportingInputWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -1753,7 +1753,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_16">
                      <item>
-                      <widget class="QWidget" name="mostSportingTitleWidget" native="true">
+                      <widget class="QWidget" name="MostSportingTitleWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -1783,7 +1783,7 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="mostSportingTitleLabel">
+                         <widget class="QLabel" name="MostSportingTitleLabel">
                           <property name="font">
                            <font>
                             <family>Calibri</family>
@@ -1802,7 +1802,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="mostSportingVoteInputWidget" native="true">
+                      <widget class="QWidget" name="MostSportingVoteInputWidget" native="true">
                        <property name="maximumSize">
                         <size>
                          <width>400</width>
@@ -1811,13 +1811,13 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_11">
                         <item>
-                         <widget class="QWidget" name="mostSportingVotingInputWidget" native="true">
+                         <widget class="QWidget" name="MostSportingVotingInputWidget" native="true">
                           <property name="styleSheet">
                            <string notr="true">border:none;</string>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_18">
                            <item>
-                            <widget class="QLabel" name="mostSportingVotingLabel">
+                            <widget class="QLabel" name="MostSportingVotingLabel">
                              <property name="minimumSize">
                               <size>
                                <width>160</width>
@@ -1839,7 +1839,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="mostSportingVotingComboBox">
+                            <widget class="QComboBox" name="MostSportingVotingComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1858,13 +1858,13 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QWidget" name="mostSportingVotedInputWidget" native="true">
+                         <widget class="QWidget" name="MostSportingVotedInputWidget" native="true">
                           <property name="styleSheet">
                            <string notr="true">border:none;</string>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_17">
                            <item>
-                            <widget class="QLabel" name="mostSportingVotedLabel">
+                            <widget class="QLabel" name="MostSportingVotedLabel">
                              <property name="minimumSize">
                               <size>
                                <width>160</width>
@@ -1886,7 +1886,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="mostSportingVotedComboBox">
+                            <widget class="QComboBox" name="MostSportingVotedComboBox">
                              <property name="font">
                               <font>
                                <family>Calibri</family>
@@ -1908,7 +1908,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="mostSportingPushButton">
+                      <widget class="QPushButton" name="MostSportingPushButton">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -1939,7 +1939,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="displayResultsPushButton">
+                   <widget class="QPushButton" name="DisplayResultsPushButton">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -1964,7 +1964,7 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="verticalSpacer_7">
+                   <spacer name="VerticalSpacer_7">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
@@ -1980,10 +1980,10 @@
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="awardResultsWidget" native="true">
+                <widget class="QWidget" name="AwardResultsWidget" native="true">
                  <layout class="QVBoxLayout" name="verticalLayout_19">
                   <item>
-                   <widget class="QWidget" name="podiumResultsWidget" native="true">
+                   <widget class="QWidget" name="PodiumResultsWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -2010,7 +2010,7 @@
                       <number>1</number>
                      </property>
                      <item>
-                      <widget class="QLabel" name="podiumResultTitleLabel">
+                      <widget class="QLabel" name="PodiumResultTitleLabel">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2038,7 +2038,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="podiumFirstPlaceWidget" native="true">
+                      <widget class="QWidget" name="PodiumFirstPlaceWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2050,7 +2050,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_13">
                         <item>
-                         <widget class="QLabel" name="firstPlaceSetLabel">
+                         <widget class="QLabel" name="FirstPlaceSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>75</width>
@@ -2075,7 +2075,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="firstPlaceInputLabel">
+                         <widget class="QLabel" name="FirstPlaceInputLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2097,7 +2097,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="podiumSecondPlaceWidget" native="true">
+                      <widget class="QWidget" name="PodiumSecondPlaceWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2109,7 +2109,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_14">
                         <item>
-                         <widget class="QLabel" name="secondPlaceSetLabel">
+                         <widget class="QLabel" name="SecondPlaceSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>75</width>
@@ -2134,7 +2134,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="secondPlaceInputLabel">
+                         <widget class="QLabel" name="SecondPlaceInputLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2156,7 +2156,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="podiumThirdPlaceWidget" native="true">
+                      <widget class="QWidget" name="PodiumThirdPlaceWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2168,7 +2168,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_15">
                         <item>
-                         <widget class="QLabel" name="thirdPlaceSetLabel">
+                         <widget class="QLabel" name="ThirdPlaceSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>75</width>
@@ -2193,7 +2193,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="thirdPlaceInputLabel">
+                         <widget class="QLabel" name="ThirdPlaceInputLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2218,7 +2218,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="woodenSpoonResultWidget" native="true">
+                   <widget class="QWidget" name="WoodenSpoonResultWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -2236,7 +2236,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_21">
                      <item>
-                      <widget class="QLabel" name="woodenSpoonResultTitleLabel">
+                      <widget class="QLabel" name="WoodenSpoonResultTitleLabel">
                        <property name="maximumSize">
                         <size>
                          <width>16777215</width>
@@ -2258,7 +2258,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="woodenSpoonResultPlayerWIdget" native="true">
+                      <widget class="QWidget" name="WoodenSpoonResultPlayerWIdget" native="true">
                        <property name="maximumSize">
                         <size>
                          <width>16777215</width>
@@ -2270,7 +2270,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_16">
                         <item>
-                         <widget class="QLabel" name="woodenSpoonSetLabel">
+                         <widget class="QLabel" name="WoodenSpoonSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2295,7 +2295,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="woodenSpoonInputLabel">
+                         <widget class="QLabel" name="WoodenSpoonInputLabel">
                           <property name="font">
                            <font>
                             <family>Calibri</family>
@@ -2314,7 +2314,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="bestPaintedResultWidget" native="true">
+                   <widget class="QWidget" name="BestPaintedResultWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -2332,7 +2332,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_22">
                      <item>
-                      <widget class="QLabel" name="bestPaintedTitleLabel_2">
+                      <widget class="QLabel" name="BestPaintedTitleLabel_2">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2360,7 +2360,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="bestPaintedResultPlayerWidget" native="true">
+                      <widget class="QWidget" name="BestPaintedResultPlayerWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2378,7 +2378,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_17">
                         <item>
-                         <widget class="QLabel" name="bestPaintedSetLabel">
+                         <widget class="QLabel" name="BestPaintedSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2403,7 +2403,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="bestPaintedInputLabel">
+                         <widget class="QLabel" name="BestPaintedInputLabel">
                           <property name="font">
                            <font>
                             <family>Calibri</family>
@@ -2422,7 +2422,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="mostSportingResultWidget" native="true">
+                   <widget class="QWidget" name="MostSportingResultWidget" native="true">
                     <property name="minimumSize">
                      <size>
                       <width>390</width>
@@ -2440,7 +2440,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_23">
                      <item>
-                      <widget class="QLabel" name="mostSportingTitleLabel_2">
+                      <widget class="QLabel" name="MostSportingTitleLabel_2">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2468,7 +2468,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QWidget" name="mostSportingResultPlayerWidget" native="true">
+                      <widget class="QWidget" name="MostSportingResultPlayerWidget" native="true">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -2486,7 +2486,7 @@
                        </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_18">
                         <item>
-                         <widget class="QLabel" name="mostSportingSetLabel">
+                         <widget class="QLabel" name="MostSportingSetLabel">
                           <property name="minimumSize">
                            <size>
                             <width>100</width>
@@ -2511,7 +2511,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="mostSportingInputLabel">
+                         <widget class="QLabel" name="MostSportingInputLabel">
                           <property name="font">
                            <font>
                             <family>Calibri</family>
@@ -2530,7 +2530,7 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="verticalSpacer_8">
+                   <spacer name="VerticalSpacer_8">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
@@ -2546,10 +2546,10 @@
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="fullResultListWidget" native="true">
+                <widget class="QWidget" name="FullResultListWidget" native="true">
                  <layout class="QVBoxLayout" name="verticalLayout_24">
                   <item>
-                   <widget class="QLabel" name="fullResultsTitleLabel">
+                   <widget class="QLabel" name="FullResultsTitleLabel">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -2580,7 +2580,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTableWidget" name="fullResultsTable">
+                   <widget class="QTableWidget" name="FullResultsTable">
                     <property name="styleSheet">
                      <string notr="true">background:white; border:1px solid;</string>
                     </property>

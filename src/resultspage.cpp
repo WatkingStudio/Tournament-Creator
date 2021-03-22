@@ -154,6 +154,10 @@ void MainWindow::on_BestPaintedPushButton_clicked()
             }
         }
     }
+    else
+    {
+        UtilLog("Best Painted vote not valid, vote not provessed.");
+    }
 
     //clear field
     m_Ui->BestPaintedVotedComboBox->setCurrentIndex(0);
@@ -295,6 +299,10 @@ void MainWindow::on_MostSportingPushButton_clicked()
                 }
             }
         }
+    }
+    else
+    {
+        UtilLog("Most Sporting vote invalid, vote not processed.");
     }
 
     //clear field

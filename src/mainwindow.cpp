@@ -37,12 +37,15 @@ void MainWindow::PlayerEntrySelected(int row, int col)
 
 void MainWindow::MatchupSelected(int row, int col)
 {
-    *m_MatchupsSelectedRow = row;
-    *m_MatchupsSelectedCol = col;
+    if(!*m_MatchUpDataBeingInput)
+    {
+        *m_MatchupsSelectedRow = row;
+        *m_MatchupsSelectedCol = col;
 
-    m_Ui->MatchupsModifyMatchupsButton->setEnabled(true);
+        m_Ui->MatchupsModifyMatchupsButton->setEnabled(true);
 
-    UpdateRoundInput();
+        UpdateRoundInput();
+    }
 }
 
 void MainWindow::InitialiseResultsComboBox(QComboBox* comboBox)

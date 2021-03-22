@@ -5,6 +5,7 @@
 #include <string>
 #include <QJsonObject>
 
+// This class handles the code for a Player
 class Player
 {
 public:
@@ -38,7 +39,6 @@ public:
 
     // Add a Win result.
     void AddWin(const int value);
-
 
     // Who did this player vote for, for Best Painted.
     // @return The name of the player who was voted for.

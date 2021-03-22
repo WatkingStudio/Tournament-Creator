@@ -39,19 +39,19 @@ void DirectMatchupSwap::on_OkPushButton_clicked()
 
     for(auto it = m_TempPlayerList->begin(); it != m_TempPlayerList->end(); it++)
     {
-        if(it->GetName() == m_Ui->newMatchUpOnePlayerAName->text().toStdString())
+        if(it->GetName() == m_Ui->NewMatchUpOnePlayerAName->text().toStdString())
         {
             playerOne = it;
         }
-        else if(it->GetName() == m_Ui->newMatchUpOnePlayerBName->text().toStdString())
+        else if(it->GetName() == m_Ui->NewMatchUpOnePlayerBName->text().toStdString())
         {
             playerTwo = it;
         }
-        else if(it->GetName() == m_Ui->newMatchUpTwoPlayerCName->text().toStdString())
+        else if(it->GetName() == m_Ui->NewMatchUpTwoPlayerCName->text().toStdString())
         {
             playerThree = it;
         }
-        else if(it->GetName() == m_Ui->newMatchUpTwoPlayerDName->text().toStdString())
+        else if(it->GetName() == m_Ui->NewMatchUpTwoPlayerDName->text().toStdString())
         {
             playerFour = it;
         }
@@ -68,13 +68,13 @@ void DirectMatchupSwap::on_PlayerAComboBox_currentIndexChanged(const QString &ar
     {
         if(it.first.GetName() == arg1.toStdString())
         {
-            m_Ui->newMatchUpOnePlayerAName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerCName->setText(it.second.GetName().c_str());
+            m_Ui->NewMatchUpOnePlayerAName->setText(arg1);
+            m_Ui->NewMatchUpTwoPlayerCName->setText(it.second.GetName().c_str());
         }
         else if(it.second.GetName() == arg1.toStdString())
         {
-            m_Ui->newMatchUpOnePlayerAName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerCName->setText(it.first.GetName().c_str());
+            m_Ui->NewMatchUpOnePlayerAName->setText(arg1);
+            m_Ui->NewMatchUpTwoPlayerCName->setText(it.first.GetName().c_str());
         }
     }
 }
@@ -86,13 +86,13 @@ void DirectMatchupSwap::on_PlayerBComboBox_currentIndexChanged(const QString &ar
     {
         if(it.first.GetName() == arg1.toStdString())
         {
-            m_Ui->newMatchUpOnePlayerBName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerDName->setText(it.second.GetName().c_str());
+            m_Ui->NewMatchUpOnePlayerBName->setText(arg1);
+            m_Ui->NewMatchUpTwoPlayerDName->setText(it.second.GetName().c_str());
         }
         else if(it.second.GetName() == arg1.toStdString())
         {
-            m_Ui->newMatchUpOnePlayerBName->setText(arg1);
-            m_Ui->newMatchUpTwoPlayerDName->setText(it.first.GetName().c_str());
+            m_Ui->NewMatchUpOnePlayerBName->setText(arg1);
+            m_Ui->NewMatchUpTwoPlayerDName->setText(it.first.GetName().c_str());
         }
     }
 }
@@ -102,10 +102,10 @@ void DirectMatchupSwap::ResetWidget()
     m_Ui->PlayerAComboBox->setCurrentIndex(0);
     m_Ui->PlayerBComboBox->setCurrentIndex(0);
 
-    m_Ui->newMatchUpOnePlayerAName->setText("");
-    m_Ui->newMatchUpOnePlayerBName->setText("");
-    m_Ui->newMatchUpTwoPlayerCName->setText("");
-    m_Ui->newMatchUpTwoPlayerDName->setText("");
+    m_Ui->NewMatchUpOnePlayerAName->setText("");
+    m_Ui->NewMatchUpOnePlayerBName->setText("");
+    m_Ui->NewMatchUpTwoPlayerCName->setText("");
+    m_Ui->NewMatchUpTwoPlayerDName->setText("");
 }
 
 void DirectMatchupSwap::on_CancelPushButton_clicked()

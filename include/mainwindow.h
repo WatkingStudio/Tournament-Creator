@@ -30,6 +30,12 @@ enum TiebreakerResult{
     LOWER
 };
 
+struct PodiumPlayers{
+    std::string PlayerOne;
+    std::string PlayerTwo;
+    std::string PlayerThree;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,64 +49,73 @@ public:
 
 private slots:
     //Global
+    // Sets which cell has been clicked on.
     void PlayerEntrySelected(int, int);
 
     //Start Page Slots
+    // Creates a new event.
     void on_CreateNewEventButton_clicked();
+
+    // Loads a previous event.
     void on_LoadEventButton_clicked();
 
     //Tournament Creator Slots
-    // Add the new player
+    // Add the new player.
     void on_AddPlayerButton_clicked();
 
-    // Return to the previous page
+    // Return to the previous page.
     void on_BackTournamentCreatorButton_clicked();
 
-    // Continue to the matchups page
+    // Continue to the matchups page.
     void on_ContinueTournamentCreatorButton_clicked();
 
-    // Load the event settings widget
+    // Load the event settings widget.
     void on_EventSettingsButton_clicked();
 
-    // Remove the selected player from the list
+    // Remove the selected player from the list.
     void on_RemovePlayerButton_clicked();
 
-    // Save the current event data
+    // Save the current event data.
     void on_SaveEventTournamentCreatorButton_clicked();
 
-    // Receive the event settings when they are set
+    // Receive the event settings when they are set.
     void ReceiveEventSettings(const EventSettingsData &eventSettingsData);
 
     //Matchups Slots
-    // When a matchup is selected in the MatchupTable handle it
+    // When a matchup is selected in the MatchupTable handle it.
     void MatchupSelected(int row, int col);
 
-    // A new matchup has been determined, modify the event data to observe the change
+    // A new matchup has been determined, modify the event data to observe the change.
     void NewMatchUpsFromSwap(const Player &playerOne, const Player &playerTwo, const Player &playerThree, const Player &playerFour);
 
-    // Return to the Tournament Creator page
+    // Return to the Tournament Creator page.
     void on_MatchupsBackButton_clicked();
 
-    // Perform a direct matchup swap between four players
+    // Perform a direct matchup swap between four players.
     void on_MatchupsDirectMatchupSwapButton_clicked();
 
-    // Enter the results of the specified matchup
+    // Enter the results of the specified matchup.
     void on_MatchupsEnterResultsButton_clicked();
 
-    // Modify the matchup with the least impact to the event
+    // Modify the matchup with the least impact to the event.
     void on_MatchupsModifyMatchupsButton_clicked();
 
-    // Take the event to the next round
+    // Take the event to the next round.
     void on_MatchupsNextRoundButton_clicked();
 
-    // Reset the matchup table to what it was at the beginning of the round
+    // Reset the matchup table to what it was at the beginning of the round.
     void on_MatchupsResetMatchupTable_clicked();
 
 
     //Result Page Slots
-    void on_bestPaintedPushButton_clicked();
-    void on_mostSportingPushButton_clicked();
-    void on_displayResultsPushButton_clicked();
+    // Registers a Best Painted vote.
+    void on_BestPaintedPushButton_clicked();
+
+    // Displays the results of the event.
+    void on_DisplayResultsPushButton_clicked();
+
+    // Registers a Most Sporting vote.
+    void on_MostSportingPushButton_clicked();
 
 private:
     //General Functions and Variables
@@ -111,33 +126,33 @@ private:
     std::unique_ptr<bool> m_DebugMessagesOn = std::make_unique<bool>(true);
     std::unique_ptr<std::string> m_EventDataFileName = std::make_unique<std::string>("eventData.json");
     std::unique_ptr<std::vector<Player>> m_MainPlayerList = std::make_unique<std::vector<Player>>();
-    std::unique_ptr<int> m_NumBestPaintedVotes = std::make_unique<int>(0);
-    std::unique_ptr<int> m_NumMostSportingVotes = std::make_unique<int>(0);
+    std::unique_ptr<uint> m_NumBestPaintedVotes = std::make_unique<uint>(0);
+    std::unique_ptr<uint> m_NumMostSportingVotes = std::make_unique<uint>(0);
     std::unique_ptr<int> m_NumberOfRounds = std::make_unique<int>(6);
     std::unique_ptr<bool> m_UsingSeed = std::make_unique<bool>(false);
 
-    // Initialises the passed combo box with the results strings
+    // Initialises the passed combo box with the results strings.
     void InitialiseResultsComboBox(QComboBox* comboBox);
 
-    // Loads the event data from a chosen .json file
-    // @return True if the load is successful, False if it is not
+    // Loads the event data from a chosen .json file.
+    // @return True if the load is successful, False if it is not.
     bool LoadEventData();
 
-    // Saves the event data into a .json file tied to the event
+    // Saves the event data into a .json file tied to the event.
     void SaveEventData() const;
 
     //Start Page Functions and Variables
-    // Loads the start page
+    // Loads the start page.
     void LoadStartPage();
 
     // Tournament Creator Page Functions and Variables
-    // Loads the Tournament Creator Page
+    // Loads the Tournament Creator Page.
     void LoadTournamentCreatorPage();
 
-    // Updates the Player table to use the current Player list
+    // Updates the Player table to use the current Player list.
     void UpdatePlayerTable();
 
-    // Resets the Player table
+    // Resets the Player table.
     void ResetPlayerTable();
 
     std::unique_ptr<QString> m_EventDirectory = std::make_unique<QString>("TournamentData");
@@ -254,17 +269,36 @@ private:
     std::unique_ptr<int> m_LossValue = std::make_unique<int>(0);
 
     //Results Page Functions and Vartiables
-    void loadResultsPage();
-    void populateComboBox(QComboBox &comboBox);
-    std::string getMostSportingPlayer();
-    std::string getBestPaintedPlayer();
-    std::string getWoodenSpoonPlayer();
-    std::vector<std::string> getPodiumPlayers();
-    void populateResultsTable();
-    void resetPage();
+    // Gets the player with the most Best Painted votes.
+    // @return The name of the player who has the most Best Painted votes.
+    std::string GetBestPaintedPlayer() const;
 
-    int m_MostSportingValue = 0;
-    int m_BestPaintedValue = 0;
+    // Gets the player with the most Most Sporting votes.
+    // @return The name of the player who has the most Most Sporting votes.
+    std::string GetMostSportingPlayer() const;
+
+    // Gets the names of top three players.
+    // @return The names of the top three players, in string form.
+    PodiumPlayers GetPodiumPlayers() const;
+
+    // Gets the player in the last position.
+    // @return The name of the player in the last position.
+    std::string GetWoodenSpoonPlayer() const;
+
+    // Sets up the Results Page.
+    void LoadResultsPage();
+
+    // Populates the passed combo box.
+    void PopulateComboBox(QComboBox &comboBox);
+
+    // Populates the Results Table.
+    void PopulateResultsTable();
+
+    // Resets the results page.
+    void ResetPage();
+
+    std::unique_ptr<int> m_MostSportingValue = std::make_unique<int>(0);
+    std::unique_ptr<int> m_BestPaintedValue = std::make_unique<int>(0);
 private: //Json Strings
     std::unique_ptr<std::string> m_NumRoundsTag = std::make_unique<std::string>("number_of_rounds");
     std::unique_ptr<std::string> m_CurrentRoundTag = std::make_unique<std::string>("current_round");

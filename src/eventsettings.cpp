@@ -3,76 +3,76 @@
 
 EventSettings::EventSettings(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::EventSettings)
+    m_Ui(new Ui::EventSettings)
 {
-    ui->setupUi(this);
+    m_Ui->setupUi(this);
     PopulateComboBox();
     SetupWidget();
 }
 
 EventSettings::~EventSettings()
 {
-    delete ui;
+    delete m_Ui;
 }
 
-void EventSettings::SetupWidget()
+void EventSettings::on_DonePushButton_clicked()
 {
-    ui->winLineEdit->setText("3");
-    ui->drawLineEdit->setText("1");
-    ui->lossLineEdit->setText("0");
-    ui->mostSportingLineEdit->setText("0");
-    ui->bestPaintedLineEdit->setText("0");
-    ui->numberOfRoundsLineEdit->setText("6");
-    ui->seededPlayersCheckBox->setChecked(false);
-    ui->firstTiebreakerComboBox->setCurrentIndex(1);
-    ui->secondTiebreakerComboBox->setCurrentIndex(2);
-    ui->thirdTiebreakerComboBox->setCurrentIndex(3);
-    ui->fourthTieBreakerComboBox->setCurrentIndex(4);
+    UtilDebug("Event Settings Done Clicked");
+    EventSettingsData data = {
+        m_Ui->WinLineEdit->text().toInt(),
+        m_Ui->DrawLineEdit->text().toInt(),
+        m_Ui->LossLineEdit->text().toInt(),
+        m_Ui->MostSportingLineEdit->text().toInt(),
+        m_Ui->BestPaintedLineEdit->text().toInt(),
+        m_Ui->SeededPlayersCheckBox->isChecked(),
+        m_Ui->NumberOfRoundsLineEdit->text().toInt(),
+        m_Ui->FirstTiebreakerComboBox->currentText().toStdString(),
+        m_Ui->SecondTiebreakerComboBox->currentText().toStdString(),
+        m_Ui->ThirdTiebreakerComboBox->currentText().toStdString(),
+        m_Ui->FourthTieBreakerComboBox->currentText().toStdString()
+    };
+    emit SettingsComplete(data);
+    this->hide();
 }
 
 void EventSettings::PopulateComboBox()
 {
-    ui->firstTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
-    ui->firstTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
-    ui->firstTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
-    ui->firstTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
-    ui->firstTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
+    m_Ui->FirstTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
+    m_Ui->FirstTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
+    m_Ui->FirstTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
+    m_Ui->FirstTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
+    m_Ui->FirstTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
 
-    ui->secondTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
-    ui->secondTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
-    ui->secondTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
-    ui->secondTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
-    ui->secondTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
+    m_Ui->SecondTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
+    m_Ui->SecondTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
+    m_Ui->SecondTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
+    m_Ui->SecondTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
+    m_Ui->SecondTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
 
-    ui->thirdTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
-    ui->thirdTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
-    ui->thirdTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
-    ui->thirdTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
-    ui->thirdTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
+    m_Ui->ThirdTiebreakerComboBox->addItem(Tiebreak::NoneString->c_str());
+    m_Ui->ThirdTiebreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
+    m_Ui->ThirdTiebreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
+    m_Ui->ThirdTiebreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
+    m_Ui->ThirdTiebreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
 
-    ui->fourthTieBreakerComboBox->addItem(Tiebreak::NoneString->c_str());
-    ui->fourthTieBreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
-    ui->fourthTieBreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
-    ui->fourthTieBreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
-    ui->fourthTieBreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
+    m_Ui->FourthTieBreakerComboBox->addItem(Tiebreak::NoneString->c_str());
+    m_Ui->FourthTieBreakerComboBox->addItem(Tiebreak::VPTotalString->c_str());
+    m_Ui->FourthTieBreakerComboBox->addItem(Tiebreak::VPDiffString->c_str());
+    m_Ui->FourthTieBreakerComboBox->addItem(Tiebreak::MostSportingString->c_str());
+    m_Ui->FourthTieBreakerComboBox->addItem(Tiebreak::BestPaintedString->c_str());
 }
 
-void EventSettings::on_donePushButton_clicked()
+void EventSettings::SetupWidget()
 {
-    UtilDebug("Event Settings Done Clicked");
-    EventSettingsData data = {
-        ui->winLineEdit->text().toInt(),
-        ui->drawLineEdit->text().toInt(),
-        ui->lossLineEdit->text().toInt(),
-        ui->mostSportingLineEdit->text().toInt(),
-        ui->bestPaintedLineEdit->text().toInt(),
-        ui->seededPlayersCheckBox->isChecked(),
-        ui->numberOfRoundsLineEdit->text().toInt(),
-        ui->firstTiebreakerComboBox->currentText().toStdString(),
-        ui->secondTiebreakerComboBox->currentText().toStdString(),
-        ui->thirdTiebreakerComboBox->currentText().toStdString(),
-        ui->fourthTieBreakerComboBox->currentText().toStdString()
-    };
-    emit SettingsComplete(data);
-    this->hide();
+    m_Ui->WinLineEdit->setText("3");
+    m_Ui->DrawLineEdit->setText("1");
+    m_Ui->LossLineEdit->setText("0");
+    m_Ui->MostSportingLineEdit->setText("0");
+    m_Ui->BestPaintedLineEdit->setText("0");
+    m_Ui->NumberOfRoundsLineEdit->setText("6");
+    m_Ui->SeededPlayersCheckBox->setChecked(false);
+    m_Ui->FirstTiebreakerComboBox->setCurrentIndex(1);
+    m_Ui->SecondTiebreakerComboBox->setCurrentIndex(2);
+    m_Ui->ThirdTiebreakerComboBox->setCurrentIndex(3);
+    m_Ui->FourthTieBreakerComboBox->setCurrentIndex(4);
 }

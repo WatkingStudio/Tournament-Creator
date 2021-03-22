@@ -394,7 +394,7 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
 
     SaveEventData();
 
-    if(m_CurrentRoundNumber > m_NumberOfRounds)
+    if(*m_CurrentRoundNumber > *m_NumberOfRounds)
     {
         UtilLog("Finished Final Round");
         LoadResultsPage();

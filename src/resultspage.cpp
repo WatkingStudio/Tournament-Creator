@@ -53,7 +53,7 @@ PodiumPlayers MainWindow::GetPodiumPlayers() const
 std::string MainWindow::GetWoodenSpoonPlayer() const
 {
     UtilLog("Get Wooden Spoon Player");
-    return m_MainPlayerList->end()->GetName();;
+    return m_MainPlayerList->at(m_MainPlayerList->size() - 1).GetName();
 }
 
 void MainWindow::LoadResultsPage()

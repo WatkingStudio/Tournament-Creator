@@ -40,10 +40,10 @@ signals:
     void SettingsComplete(const EventSettingsData &settings);
 
 private slots:
-    void on_donePushButton_clicked();
+    void on_DonePushButton_clicked();
 
 private:
-    Ui::EventSettings *ui;
+    Ui::EventSettings *m_Ui;
 };
 
 #endif // EVENTSETTINGS_H

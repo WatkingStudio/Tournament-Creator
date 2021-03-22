@@ -44,13 +44,13 @@ void EventSettings::on_DonePushButton_clicked()
     if(CheckUniqueTiebreakers())
     {
         EventSettingsData data = {
-            m_Ui->WinLineEdit->text().toInt(),
-            m_Ui->DrawLineEdit->text().toInt(),
-            m_Ui->LossLineEdit->text().toInt(),
-            m_Ui->MostSportingLineEdit->text().toInt(),
-            m_Ui->BestPaintedLineEdit->text().toInt(),
+            m_Ui->WinSpinBox->value(),
+            m_Ui->DrawSpinBox->value(),
+            m_Ui->LossSpinBox->value(),
+            m_Ui->MostSportingSpinBox->value(),
+            m_Ui->BestPaintedSpinBox->value(),
             m_Ui->SeededPlayersCheckBox->isChecked(),
-            m_Ui->NumberOfRoundsLineEdit->text().toInt(),
+            m_Ui->NumberOfRoundsSpinBox->value(),
             m_Ui->FirstTiebreakerComboBox->currentText().toStdString(),
             m_Ui->SecondTiebreakerComboBox->currentText().toStdString(),
             m_Ui->ThirdTiebreakerComboBox->currentText().toStdString(),
@@ -94,12 +94,12 @@ void EventSettings::PopulateComboBox()
 
 void EventSettings::SetupWidget()
 {
-    m_Ui->WinLineEdit->setText("3");
-    m_Ui->DrawLineEdit->setText("1");
-    m_Ui->LossLineEdit->setText("0");
-    m_Ui->MostSportingLineEdit->setText("0");
-    m_Ui->BestPaintedLineEdit->setText("0");
-    m_Ui->NumberOfRoundsLineEdit->setText("6");
+    m_Ui->WinSpinBox->setValue(3);
+    m_Ui->DrawSpinBox->setValue(1);
+    m_Ui->LossSpinBox->setValue(0);
+    m_Ui->MostSportingSpinBox->setValue(0);
+    m_Ui->BestPaintedSpinBox->setValue(0);
+    m_Ui->NumberOfRoundsSpinBox->setValue(6);
     m_Ui->SeededPlayersCheckBox->setChecked(false);
     m_Ui->FirstTiebreakerComboBox->setCurrentIndex(1);
     m_Ui->SecondTiebreakerComboBox->setCurrentIndex(2);

@@ -56,14 +56,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
     UtilDebug("Tournament Creator Continue Button Clicked");
     if(m_TempPlayerList->size() > 0)
     {
-        m_MainPlayerList->clear();
-        for(const auto &player : *m_TempPlayerList)
-        {
-            UtilLog(player.GetName());
-            m_MainPlayerList->push_back(player);
-        }
-
-        //*m_MainPlayerList = std::move(*m_TempPlayerList);
+        *m_MainPlayerList = std::move(*m_TempPlayerList);
 
         LoadMatchupsPage();
     }

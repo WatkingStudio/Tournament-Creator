@@ -1,7 +1,7 @@
 # Tournament-Creator  
 ![](https://img.shields.io/badge/Code-C++-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Program-QtCreator-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2B7CBC)
-![](https://img.shields.io/badge/Version-1.2-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=E1B445)
+![](https://img.shields.io/badge/Version-1.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=E1B445)
 
 # Overview
 The tournament creator app was created to assist with the creation and running of a wargaming event, specifically running events for the wargame Middle Earth SBG. I ran a couple of small events before creating this app and used pen and paper to record results and determine match-ups. However, when I knew I was going to be running the final event in the Great British Hobbit League 2018 calendar, I knew that I would have to find an alternative method. Following my research of some existing options that other tournament organizers used, I decided to create my own app which would be customized to my requirements. After using the app at several events I continued to develop it, correcting bugs and adding additional features where required.

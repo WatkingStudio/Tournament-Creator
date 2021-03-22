@@ -42,6 +42,9 @@ private:
     std::unique_ptr<std::vector<std::pair<Player, Player>>> m_TempPlayerMatchup = std::make_unique<std::vector<std::pair<Player, Player>>>();
     std::unique_ptr<std::vector<Player>> m_TempPlayerList = std::make_unique<std::vector<Player>>();
 
+    // Checks that the input players are valid
+    bool CheckInputsAreValid() const;
+
     // Resets the Widget
     void ResetWidget();
 };

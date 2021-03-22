@@ -137,7 +137,6 @@ void MainWindow::on_BestPaintedPushButton_clicked()
                     m_MainPlayerList->at(i).SetBestPaintedVote(votedPlayer);
                     break;
                 }
-
             }
         }
 
@@ -226,7 +225,8 @@ void MainWindow::on_MostSportingPushButton_clicked()
         processVote = false;
     }
 
-    if(votingPlayer == votedPlayer)
+    if(votingPlayer == votedPlayer
+            && processVote)
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Voting for Themselves", "This player is voting for themselves. Do you wish to still process the vote?", QMessageBox::Yes|QMessageBox::No);
@@ -272,13 +272,13 @@ void MainWindow::on_MostSportingPushButton_clicked()
                         break;
                     }
                 }
-            }
-            else
-            {
-                addVote = true;
-                m_MainPlayerList->at(i).SetVotedMostSporting(true);
-                m_MainPlayerList->at(i).SetMostSportingVote(votedPlayer);
-                break;
+                else
+                {
+                    addVote = true;
+                    m_MainPlayerList->at(i).SetVotedMostSporting(true);
+                    m_MainPlayerList->at(i).SetMostSportingVote(votedPlayer);
+                    break;
+                }
             }
         }
 

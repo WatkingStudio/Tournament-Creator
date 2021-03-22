@@ -91,7 +91,7 @@ private slots:
     // Return to the Tournament Creator page.
     void on_MatchupsBackButton_clicked();
 
-    // Clear the Matchups fields
+    // Clear the Matchups fields.
     void on_MatchupsClearInputButton_clicked();
 
     // Perform a direct matchup swap between four players.

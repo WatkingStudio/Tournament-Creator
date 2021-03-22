@@ -33,17 +33,25 @@ public:
     explicit EventSettings(QWidget *parent = 0);
     ~EventSettings();
 
+    // Setup the Event Settings Widget
     void SetupWidget();
+
+    // Populate the combo boxes
     void PopulateComboBox();
 
 signals:
     void SettingsComplete(const EventSettingsData &settings);
 
 private slots:
+    // Do this when the Done button is clicked
     void on_DonePushButton_clicked();
 
 private:
     Ui::EventSettings *m_Ui;
+
+    // Check to see if the set tiebreakers are unique
+    // @return True if the tiebreakers are unique, False if they are not
+    bool CheckUniqueTiebreakers() const;
 };
 
 #endif // EVENTSETTINGS_H

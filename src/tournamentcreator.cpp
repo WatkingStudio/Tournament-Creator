@@ -25,7 +25,7 @@ void MainWindow::LoadTournamentCreatorPage()
     *m_TournamentCreatorSelectedCol = -1;
     *m_TournamentCreatorSelectedRow = -1;
 
-    ResetPlayerTable();
+    UpdatePlayerTable();
 }
 
 void MainWindow::on_AddPlayerButton_clicked()
@@ -56,7 +56,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
     UtilDebug("Tournament Creator Continue Button Clicked");
     if(m_TempPlayerList->size() > 0)
     {
-        *m_MainPlayerList = std::move(*m_TempPlayerList);
+        *m_MainPlayerList = *m_TempPlayerList;
 
         LoadMatchupsPage();
     }

@@ -43,7 +43,7 @@ public:
 
 private slots:
     //Global
-    void playerEntrySelected(int, int);
+    void PlayerEntrySelected(int, int);
 
     //Start Page Slots
     void on_CreateNewEventButton_clicked();
@@ -106,15 +106,15 @@ private:
     //General Functions and Variables
     Ui::MainWindow *m_Ui;
 
-    int m_ActiveRoundNumber = 0;
-    int m_CurrentRoundNumber = 0;
-    bool m_DebugMessagesOn{true};
-    std::string m_EventDataFileName = "eventData.json";
-    std::vector<Player> m_MainPlayerList;
-    int m_NumBestPaintedVotes = 0;
-    int m_NumMostSportingVotes = 0;
-    int m_NumberOfRounds = 6;
-    bool m_UsingSeed{false};
+    std::unique_ptr<int> m_ActiveRoundNumber = std::make_unique<int>(0);
+    std::unique_ptr<int> m_CurrentRoundNumber = std::make_unique<int>(0);
+    std::unique_ptr<bool> m_DebugMessagesOn = std::make_unique<bool>(true);
+    std::unique_ptr<std::string> m_EventDataFileName = std::make_unique<std::string>("eventData.json");
+    std::unique_ptr<std::vector<Player>> m_MainPlayerList = std::make_unique<std::vector<Player>>();
+    std::unique_ptr<int> m_NumBestPaintedVotes = std::make_unique<int>(0);
+    std::unique_ptr<int> m_NumMostSportingVotes = std::make_unique<int>(0);
+    std::unique_ptr<int> m_NumberOfRounds = std::make_unique<int>(6);
+    std::unique_ptr<bool> m_UsingSeed = std::make_unique<bool>(false);
 
     // Initialises the passed combo box with the results strings
     void InitialiseResultsComboBox(QComboBox* comboBox);
@@ -143,13 +143,13 @@ private:
     std::unique_ptr<QString> m_EventDirectory = std::make_unique<QString>("TournamentData");
     std::unique_ptr<QString> m_EventDefaultFileName = std::make_unique<QString>("/EventData_");
     std::unique_ptr<std::vector<Player>> m_TempPlayerList = std::make_unique<std::vector<Player>>();
-    int m_TournamentCreatorSelectedRow = -1;
-    int m_TournamentCreatorSelectedCol = -1;
-    bool m_EventSettingsActive = false;
-    Tiebreak::Tiebreaker m_FirstTiebreaker = Tiebreak::Tiebreaker::VP_TOTAL;
-    Tiebreak::Tiebreaker m_SecondTiebreaker = Tiebreak::Tiebreaker::VP_DIFF;
-    Tiebreak::Tiebreaker m_ThirdTiebreaker = Tiebreak::Tiebreaker::MOST_SPORTING;
-    Tiebreak::Tiebreaker m_FourthTiebreaker = Tiebreak::Tiebreaker::BEST_PAINTED;
+    std::unique_ptr<int> m_TournamentCreatorSelectedRow = std::make_unique<int>(-1);
+    std::unique_ptr<int> m_TournamentCreatorSelectedCol = std::make_unique<int>(-1);
+    std::unique_ptr<bool> m_EventSettingsActive = std::make_unique<bool>(false);
+    std::unique_ptr<Tiebreak::Tiebreaker> m_FirstTiebreaker = std::make_unique<Tiebreak::Tiebreaker>(Tiebreak::Tiebreaker::VP_TOTAL);
+    std::unique_ptr<Tiebreak::Tiebreaker> m_SecondTiebreaker = std::make_unique<Tiebreak::Tiebreaker>(Tiebreak::Tiebreaker::VP_DIFF);
+    std::unique_ptr<Tiebreak::Tiebreaker> m_ThirdTiebreaker = std::make_unique<Tiebreak::Tiebreaker>(Tiebreak::Tiebreaker::MOST_SPORTING);
+    std::unique_ptr<Tiebreak::Tiebreaker> m_FourthTiebreaker = std::make_unique<Tiebreak::Tiebreaker>(Tiebreak::Tiebreaker::BEST_PAINTED);
 
     //Matchups Page Functions and Variables//
     // Adds the passed result to the players stats.
@@ -266,25 +266,25 @@ private:
     int m_MostSportingValue = 0;
     int m_BestPaintedValue = 0;
 private: //Json Strings
-    std::string m_NumRoundsTag = "number_of_rounds";
-    std::string m_CurrentRoundTag = "current_round";
-    std::string m_ActiveRoundTag = "active_round";
-    std::string m_UsingSeedTag = "using_seed";
-    std::string m_WinValueTag = "win_value";
-    std::string m_DrawValueTag = "draw_value";
-    std::string m_LossValueTag = "loss_value";
-    std::string m_MostSportingValueTag = "most_sporting_value";
-    std::string m_BestPaintedValueTag = "best_painted_value";
-    std::string m_PlayerDataTag = "player_data";
-    std::string m_PairFirstTag = "first";
-    std::string m_PairSecondTag = "second";
-    std::string m_CurrentMatchupsTag = "current_matchups";
-    std::string m_AllMatchupsTag = "all_matchups";
-    std::string m_FirstTiebreakerTag = "first_tiebreaker";
-    std::string m_SecondTiebreakerTag = "second_tiebreaker";
-    std::string m_ThirdTiebreakerTag = "third_tiebreaker";
-    std::string m_FourthTiebreakerTag = "fourth_tiebreaker";
-    std::string m_EventDataFileNameTag = "event_file";
+    std::unique_ptr<std::string> m_NumRoundsTag = std::make_unique<std::string>("number_of_rounds");
+    std::unique_ptr<std::string> m_CurrentRoundTag = std::make_unique<std::string>("current_round");
+    std::unique_ptr<std::string> m_ActiveRoundTag = std::make_unique<std::string>("active_round");
+    std::unique_ptr<std::string> m_UsingSeedTag = std::make_unique<std::string>("using_seed");
+    std::unique_ptr<std::string> m_WinValueTag = std::make_unique<std::string>("win_value");
+    std::unique_ptr<std::string> m_DrawValueTag = std::make_unique<std::string>("draw_value");
+    std::unique_ptr<std::string> m_LossValueTag = std::make_unique<std::string>("loss_value");
+    std::unique_ptr<std::string> m_MostSportingValueTag = std::make_unique<std::string>("most_sporting_value");
+    std::unique_ptr<std::string> m_BestPaintedValueTag = std::make_unique<std::string>("best_painted_value");
+    std::unique_ptr<std::string> m_PlayerDataTag = std::make_unique<std::string>("player_data");
+    std::unique_ptr<std::string> m_PairFirstTag = std::make_unique<std::string>("first");
+    std::unique_ptr<std::string> m_PairSecondTag = std::make_unique<std::string>("second");
+    std::unique_ptr<std::string> m_CurrentMatchupsTag = std::make_unique<std::string>("current_matchups");
+    std::unique_ptr<std::string> m_AllMatchupsTag = std::make_unique<std::string>("all_matchups");
+    std::unique_ptr<std::string> m_FirstTiebreakerTag = std::make_unique<std::string>("first_tiebreaker");
+    std::unique_ptr<std::string> m_SecondTiebreakerTag = std::make_unique<std::string>("second_tiebreaker");
+    std::unique_ptr<std::string> m_ThirdTiebreakerTag = std::make_unique<std::string>("third_tiebreaker");
+    std::unique_ptr<std::string> m_FourthTiebreakerTag = std::make_unique<std::string>("fourth_tiebreaker");
+    std::unique_ptr<std::string> m_EventDataFileNameTag = std::make_unique<std::string>("event_file");
 };
 
 #endif // MAINWINDOW_H

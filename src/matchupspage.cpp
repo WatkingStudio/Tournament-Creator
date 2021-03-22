@@ -10,36 +10,36 @@ void MainWindow::AddResult(const std::string &result, int const playerIndex)
     UtilLog("Add Result: " + result);
     if(result == "Win")
     {
-        m_MainPlayerList.at(playerIndex).AddWin(*m_WinValue);
+        m_MainPlayerList->at(playerIndex).AddWin(*m_WinValue);
     }
     else if(result == "Draw")
     {
-        m_MainPlayerList.at(playerIndex).AddDraw(*m_DrawValue);
+        m_MainPlayerList->at(playerIndex).AddDraw(*m_DrawValue);
     }
     else if(result == "Loss")
     {
-        m_MainPlayerList.at(playerIndex).AddLoss(*m_LossValue);
+        m_MainPlayerList->at(playerIndex).AddLoss(*m_LossValue);
     }
 }
 
 TiebreakerResult MainWindow::CheckFirstTiebreaker(const Player &playerOne, const Player &playerTwo) const
 {
-    return CheckTiebreaker(m_FirstTiebreaker, playerOne, playerTwo);
+    return CheckTiebreaker(*m_FirstTiebreaker, playerOne, playerTwo);
 }
 
 TiebreakerResult MainWindow::CheckSecondTiebreaker(const Player &playerOne, const Player &playerTwo) const
 {
-    return CheckTiebreaker(m_SecondTiebreaker, playerOne, playerTwo);
+    return CheckTiebreaker(*m_SecondTiebreaker, playerOne, playerTwo);
 }
 
 TiebreakerResult MainWindow::CheckThirdTiebreaker(const Player &playerOne, const Player &playerTwo) const
 {
-    return CheckTiebreaker(m_ThirdTiebreaker, playerOne, playerTwo);
+    return CheckTiebreaker(*m_ThirdTiebreaker, playerOne, playerTwo);
 }
 
 TiebreakerResult MainWindow::CheckFourthTiebreaker(const Player &playerOne, const Player &playerTwo) const
 {
-    return CheckTiebreaker(m_FourthTiebreaker, playerOne, playerTwo);
+    return CheckTiebreaker(*m_FourthTiebreaker, playerOne, playerTwo);
 }
 
 TiebreakerResult MainWindow::CheckTiebreaker(const Tiebreak::Tiebreaker tiebreak, const Player &playerOne, const Player &playerTwo) const
@@ -117,23 +117,23 @@ TiebreakerResult MainWindow::CheckTiebreakerValue(const int playerOne, const int
 void MainWindow::CreateInitialMatchups()
 {
     UtilDebug("Set Initial Matchups");
-    if(m_MainPlayerList.size() % 2 != 0)
+    if(m_MainPlayerList->size() % 2 != 0)
     {
         UtilLog("Added Ringer");
-        m_MainPlayerList.emplace_back("Ringer", 0);
+        m_MainPlayerList->emplace_back("Ringer", 0);
     }
 
-    m_UsingSeed ? CreateSeededMatchup() : CreateRandomMatchup();
+    *m_UsingSeed ? CreateSeededMatchup() : CreateRandomMatchup();
 }
 
 void MainWindow::CreateRandomMatchup()
 {
     UtilDebug("Create Random Matchups");
-    int playerNumber = m_MainPlayerList.size();
+    int playerNumber = m_MainPlayerList->size();
 
-    for(auto &it : m_MainPlayerList)
+    for(auto &player : *m_MainPlayerList)
     {
-        it.SetFirstRoundSet(false);
+        player.SetFirstRoundSet(false);
     }
 
     for(int i = 1; i < playerNumber/2 + 1; ++i)
@@ -151,10 +151,10 @@ void MainWindow::CreateRankedMatchup()
 {
     UtilDebug("Create Ranked Matchup");
     m_CurrentRoundMatchups->clear();
-    for(uint i = 0; i < m_MainPlayerList.size(); i += 2)
+    for(uint i = 0; i < m_MainPlayerList->size(); i += 2)
     {
-        Player one = m_MainPlayerList.at(i);
-        Player two = m_MainPlayerList.at(i + 1);
+        Player one = m_MainPlayerList->at(i);
+        Player two = m_MainPlayerList->at(i + 1);
 
         m_CurrentRoundMatchups->push_back(std::pair<Player, Player>(one, two));
     }
@@ -170,23 +170,23 @@ void MainWindow::CreateSeededMatchup()
         return one.GetSeed() < two.GetSeed() ? true : false;
     };
     std::set<Player, decltype(playerSeedComparison)> temporarySet(playerSeedComparison);
-    for(auto &player : m_MainPlayerList)
+    for(auto &player : *m_MainPlayerList)
     {
         player.SetFirstRoundSet(false);
         temporarySet.insert(player);
     }
 
-    m_MainPlayerList.clear();
+    m_MainPlayerList->clear();
 
     for(const auto &player : temporarySet)
     {
-        m_MainPlayerList.push_back(player);
+        m_MainPlayerList->push_back(player);
     }
 
-    for(uint i = 0; i < m_MainPlayerList.size()/2; ++i)
+    for(uint i = 0; i < m_MainPlayerList->size()/2; ++i)
     {
-        Player one = m_MainPlayerList.at(0 + i);
-        Player two = m_MainPlayerList.at(m_MainPlayerList.size() - 1 - i);
+        Player one = m_MainPlayerList->at(0 + i);
+        Player two = m_MainPlayerList->at(m_MainPlayerList->size() - 1 - i);
 
         m_CurrentRoundMatchups->push_back(std::pair<Player, Player>(one, two));
     }
@@ -228,13 +228,13 @@ Player MainWindow::FindRandomPlayer(const int playerCount)
     while(searching)
     {
         number = rand() % playerCount;
-        if(!m_MainPlayerList.at(number).IsFirstRoundSet())
+        if(!m_MainPlayerList->at(number).IsFirstRoundSet())
         {
-            m_MainPlayerList.at(number).SetFirstRoundSet(true);
+            m_MainPlayerList->at(number).SetFirstRoundSet(true);
             searching = false;
         }
     }
-    return m_MainPlayerList.at(number);
+    return m_MainPlayerList->at(number);
 }
 
 bool MainWindow::IsRoundFinished() const
@@ -258,9 +258,9 @@ void MainWindow::LoadMatchupsPage()
     m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
     m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
     m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
-    m_CurrentRoundNumber = 1;
-    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
-    m_ActiveRoundNumber = 1;
+    *m_CurrentRoundNumber = 1;
+    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(*m_CurrentRoundNumber)));
+    *m_ActiveRoundNumber = 1;
     *m_MatchupsSelectedCol = -1;
     *m_MatchupsSelectedRow = -1;
 
@@ -281,19 +281,19 @@ void MainWindow::LoadMatchupsPageFromLoadedEvent()
     m_Ui->MatchupsPreviousRoundButton->setEnabled(false);
     m_Ui->MatchupsCurrentRoundButton->setEnabled(false);
     m_Ui->MatchupsModifyMatchupsButton->setEnabled(false);
-    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
+    m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(*m_CurrentRoundNumber)));
 
     ResetRoundInput();
 
     UtilDebug("Event Matchups Loaded");
-    *m_CurrentRoundMatchups = m_AllRoundMatchups->at(m_CurrentRoundNumber - 1);
+    *m_CurrentRoundMatchups = m_AllRoundMatchups->at(*m_CurrentRoundNumber - 1);
 
     UpdateMatchupsTable();
 
     //List Players
     m_Ui->MatchupsPlayerListWidget->clear();
 
-    for(const auto &player : m_MainPlayerList)
+    for(const auto &player : *m_MainPlayerList)
     {
         m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.GetName()));
     }
@@ -380,12 +380,12 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
         UpdateRankings();
         CreateRankedMatchup();
 
-        UtilLog("Round " + std::to_string(m_CurrentRoundNumber) + " Finished");
+        UtilLog("Round " + std::to_string(*m_CurrentRoundNumber) + " Finished");
 
-        m_ActiveRoundNumber = ++m_CurrentRoundNumber;
+        *m_ActiveRoundNumber = ++(*m_CurrentRoundNumber);
 
-        m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(m_CurrentRoundNumber)));
-        UtilLog("Round " + std::to_string(m_CurrentRoundNumber) + " Started");
+        m_Ui->MatchupsCurrentRoundNumberLabel->setText(QString::fromStdString("Current Round Number: " + std::to_string(*m_CurrentRoundNumber)));
+        UtilLog("Round " + std::to_string(*m_CurrentRoundNumber) + " Started");
     }
     else
     {
@@ -404,7 +404,7 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
 void MainWindow::on_MatchupsResetMatchupTable_clicked()
 {
     UtilDebug("Reset Matchups Clicked");
-    *m_CurrentRoundMatchups = m_AllRoundMatchups->at(m_CurrentRoundNumber - 1);
+    *m_CurrentRoundMatchups = m_AllRoundMatchups->at(*m_CurrentRoundNumber - 1);
     UpdateMatchupsTable();
 }
 
@@ -412,7 +412,7 @@ void MainWindow::on_MatchupsDirectMatchupSwapButton_clicked()
 {
     UtilDebug("Direct Matchup Clicked");
     m_MatchUpSwapWidget.show();
-    m_MatchUpSwapWidget.SetUp(m_MainPlayerList, *m_CurrentRoundMatchups);
+    m_MatchUpSwapWidget.SetUp(*m_MainPlayerList, *m_CurrentRoundMatchups);
 }
 
 void MainWindow::ResetMatchupsTable()
@@ -508,7 +508,7 @@ void MainWindow::UpdatePlayerRankingList()
     UtilDebug("Update Player Rankings List");
     m_Ui->MatchupsPlayerListWidget->clear();
 
-    for(const auto &player : m_MainPlayerList)
+    for(const auto &player : *m_MainPlayerList)
     {
         m_Ui->MatchupsPlayerListWidget->addItem(QString::fromStdString(player.GetName()));
     }
@@ -517,12 +517,12 @@ void MainWindow::UpdatePlayerRankingList()
 void MainWindow::UpdateRankings()
 {
     UtilDebug("Update Rankings");
-    std::vector<Player> tempList = m_MainPlayerList;
+    std::vector<Player> tempList = *m_MainPlayerList;
     std::vector<Player> tempRankings;
     Player highestRank;
     std::vector<Player>::iterator highestRankPlayer;
 
-    for(uint i = 0; i < m_MainPlayerList.size(); ++i)
+    for(uint i = 0; i < m_MainPlayerList->size(); ++i)
     {
         highestRankPlayer = tempList.begin();
 
@@ -545,7 +545,7 @@ void MainWindow::UpdateRankings()
         tempList.erase(highestRankPlayer);
     }
 
-    m_MainPlayerList = std::move(tempRankings);
+    *m_MainPlayerList = std::move(tempRankings);
     UpdatePlayerRankingList();
 }
 
@@ -579,19 +579,19 @@ void MainWindow::UpdateScores()
         std::string playerTwoResult = m_Ui->MatchupsPlayerTableWidget->item(i, 4)->text().toStdString();
         
         //Find them in the player list
-        for(uint i = 0; i < m_MainPlayerList.size(); ++i)
+        for(uint i = 0; i < m_MainPlayerList->size(); ++i)
         {
             //Update the players values.
-            if(m_MainPlayerList.at(i).GetName() == playerOneName)
+            if(m_MainPlayerList->at(i).GetName() == playerOneName)
             {
-                m_MainPlayerList.at(i).AddVPs(playerOneScore);
-                m_MainPlayerList.at(i).AddVPDiff(playerOneScore - playerTwoScore);
+                m_MainPlayerList->at(i).AddVPs(playerOneScore);
+                m_MainPlayerList->at(i).AddVPDiff(playerOneScore - playerTwoScore);
                 AddResult(playerOneResult, i);
             }
-            else if(m_MainPlayerList.at(i).GetName() == playerTwoName)
+            else if(m_MainPlayerList->at(i).GetName() == playerTwoName)
             {
-                m_MainPlayerList.at(i).AddVPs(playerTwoScore);
-                m_MainPlayerList.at(i).AddVPDiff(playerTwoScore - playerOneScore);
+                m_MainPlayerList->at(i).AddVPs(playerTwoScore);
+                m_MainPlayerList->at(i).AddVPDiff(playerTwoScore - playerOneScore);
                 AddResult(playerTwoResult, i);
             }
         }

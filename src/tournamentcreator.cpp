@@ -13,17 +13,17 @@ void MainWindow::LoadTournamentCreatorPage()
         filePath = *m_EventDirectory + *m_EventDefaultFileName + std::to_string(i++).c_str() + ".json";
         if(!FileExists(filePath))
         {
-            m_EventDataFileName = filePath.toStdString();
+            *m_EventDataFileName = filePath.toStdString();
             break;
         }
     }
-    CreateFile(m_EventDataFileName.c_str(), *m_EventDirectory);
+    CreateFile(m_EventDataFileName->c_str(), *m_EventDirectory);
 
     m_Ui->stackedWidget->setCurrentIndex(Pages::TOURNAMENT_CREATOR);
     m_Ui->pageTitleWidget->setText("Tournament Creator");
 
-    m_TournamentCreatorSelectedCol = -1;
-    m_TournamentCreatorSelectedRow = -1;
+    *m_TournamentCreatorSelectedCol = -1;
+    *m_TournamentCreatorSelectedRow = -1;
 
     ResetPlayerTable();
 }
@@ -56,11 +56,7 @@ void MainWindow::on_ContinueTournamentCreatorButton_clicked()
     UtilDebug("Tournament Creator Continue Button Clicked");
     if(m_TempPlayerList->size() > 0)
     {
-        m_MainPlayerList.clear();
-        for(const auto &player : *m_TempPlayerList)
-        {
-            m_MainPlayerList.push_back(player);
-        }
+        *m_MainPlayerList = std::move(*m_TempPlayerList);
 
         LoadMatchupsPage();
     }
@@ -86,11 +82,11 @@ void MainWindow::on_EventSettingsButton_clicked()
 void MainWindow::on_RemovePlayerButton_clicked()
 {
     UtilDebug("Remove Player Clicked");
-    if(m_TournamentCreatorSelectedRow != -1)
+    if(*m_TournamentCreatorSelectedRow != -1)
     {
-        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(m_TournamentCreatorSelectedRow);
-        m_TempPlayerList->erase(m_TempPlayerList->begin() + m_TournamentCreatorSelectedRow);
-        m_TournamentCreatorSelectedRow = -1;
+        m_Ui->tournamentCreatorPlayerTableWidget->removeRow(*m_TournamentCreatorSelectedRow);
+        m_TempPlayerList->erase(m_TempPlayerList->begin() + *m_TournamentCreatorSelectedRow);
+        *m_TournamentCreatorSelectedRow = -1;
     }
 }
 
@@ -124,16 +120,16 @@ void MainWindow::ReceiveEventSettings(const EventSettingsData &eventSettingsData
     {
         m_BestPaintedValue = eventSettingsData.bestPaintedTPs;
     }
-    m_UsingSeed = eventSettingsData.usingSeeded;
+    *m_UsingSeed = eventSettingsData.usingSeeded;
     if(eventSettingsData.numberOfRounds > 0)
     {
-        m_NumberOfRounds = eventSettingsData.numberOfRounds;
+        *m_NumberOfRounds = eventSettingsData.numberOfRounds;
     }
 
-    m_FirstTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.firstTiebreaker);
-    m_SecondTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.secondTiebreaker);
-    m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.thirdTiebreaker);
-    m_FourthTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.fourthTiebreaker);
+    *m_FirstTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.firstTiebreaker);
+    *m_SecondTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.secondTiebreaker);
+    *m_ThirdTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.thirdTiebreaker);
+    *m_FourthTiebreaker = Tiebreak::StringToTiebreaker(eventSettingsData.fourthTiebreaker);
 }
 
 void MainWindow::ResetPlayerTable()

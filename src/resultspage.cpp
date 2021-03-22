@@ -16,7 +16,7 @@ void MainWindow::loadResultsPage()
 void MainWindow::populateComboBox(QComboBox &comboBox)
 {
     comboBox.addItem("");
-    for(const auto &it : m_MainPlayerList)
+    for(const auto &it : *m_MainPlayerList)
     {
         comboBox.addItem(it.GetName().c_str());
     }
@@ -45,25 +45,25 @@ void MainWindow::on_bestPaintedPushButton_clicked()
     if(processVote)
     {
         //Check if Voting Player has Voted
-        for(int i = 0; i < m_MainPlayerList.size(); ++i)
+        for(int i = 0; i < m_MainPlayerList->size(); ++i)
         {
-            if(m_MainPlayerList.at(i).GetName() == votingPlayer)
+            if(m_MainPlayerList->at(i).GetName() == votingPlayer)
             {
-                if(m_MainPlayerList.at(i).HasVotedBestPainted())
+                if(m_MainPlayerList->at(i).HasVotedBestPainted())
                 {
                     QMessageBox::StandardButton reply;
                     reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
                     if(reply == QMessageBox::Yes)
                     {
-                        for(int j = 0; j < m_MainPlayerList.size(); ++j)
+                        for(int j = 0; j < m_MainPlayerList->size(); ++j)
                         {
-                            if(m_MainPlayerList.at(j).GetName() == m_MainPlayerList.at(i).GetBestPaintedVote())
+                            if(m_MainPlayerList->at(j).GetName() == m_MainPlayerList->at(i).GetBestPaintedVote())
                             {
-                                m_MainPlayerList.at(j).RemoveBestPaintedArmyVote(m_BestPaintedValue);
+                                m_MainPlayerList->at(j).RemoveBestPaintedArmyVote(m_BestPaintedValue);
                                 break;
                             }
                         }
-                        m_MainPlayerList.at(i).SetBestPaintedVote(votedPlayer);
+                        m_MainPlayerList->at(i).SetBestPaintedVote(votedPlayer);
                         addVote = true;
                         break;
                     }
@@ -81,8 +81,8 @@ void MainWindow::on_bestPaintedPushButton_clicked()
                 else
                 {
                     addVote = true;
-                    m_MainPlayerList.at(i).SetVotedBestPainted(true);
-                    m_MainPlayerList.at(i).SetBestPaintedVote(votedPlayer);
+                    m_MainPlayerList->at(i).SetVotedBestPainted(true);
+                    m_MainPlayerList->at(i).SetBestPaintedVote(votedPlayer);
                     break;
                 }
 
@@ -91,13 +91,13 @@ void MainWindow::on_bestPaintedPushButton_clicked()
 
         if(addVote)
         {
-            for(int i = 0; i < m_MainPlayerList.size(); ++i)
+            for(int i = 0; i < m_MainPlayerList->size(); ++i)
             {
-                if(m_MainPlayerList.at(i).GetName() == votedPlayer)
+                if(m_MainPlayerList->at(i).GetName() == votedPlayer)
                 {
                     UtilLog("Adding Best Painted Vote");
-                    m_MainPlayerList.at(i).AddBestPaintedArmyVote(m_BestPaintedValue);
-                    m_NumBestPaintedVotes++;
+                    m_MainPlayerList->at(i).AddBestPaintedArmyVote(m_BestPaintedValue);
+                    (*m_NumBestPaintedVotes)++;
                     break;
                 }
             }
@@ -132,25 +132,25 @@ void MainWindow::on_mostSportingPushButton_clicked()
     if(processVote)
     {
         //Check if Voting Player has Voted
-        for(int i = 0; i < m_MainPlayerList.size(); ++i)
+        for(int i = 0; i < m_MainPlayerList->size(); ++i)
         {
-            if(m_MainPlayerList.at(i).GetName() == votingPlayer)
+            if(m_MainPlayerList->at(i).GetName() == votingPlayer)
             {
-                if(m_MainPlayerList.at(i).HasVotedMostSporting())
+                if(m_MainPlayerList->at(i).HasVotedMostSporting())
                 {
                     QMessageBox::StandardButton reply;
                     reply = QMessageBox::question(this, "Previously Voted", "This player has already voted. Do you wish to replace their previous vote?", QMessageBox::Yes|QMessageBox::No);
                     if(reply == QMessageBox::Yes)
                     {
-                        for(int j = 0; j < m_MainPlayerList.size(); ++j)
+                        for(int j = 0; j < m_MainPlayerList->size(); ++j)
                         {
-                            if(m_MainPlayerList.at(j).GetName() == m_MainPlayerList.at(i).GetMostSportingVote())
+                            if(m_MainPlayerList->at(j).GetName() == m_MainPlayerList->at(i).GetMostSportingVote())
                             {
-                                m_MainPlayerList.at(j).RemoveMostSportingVote(m_MostSportingValue);
+                                m_MainPlayerList->at(j).RemoveMostSportingVote(m_MostSportingValue);
                                 break;
                             }
                         }
-                        m_MainPlayerList.at(i).SetMostSportingVote(votedPlayer);
+                        m_MainPlayerList->at(i).SetMostSportingVote(votedPlayer);
                         addVote = true;
                         break;
                     }
@@ -169,21 +169,21 @@ void MainWindow::on_mostSportingPushButton_clicked()
             else
             {
                 addVote = true;
-                m_MainPlayerList.at(i).SetVotedMostSporting(true);
-                m_MainPlayerList.at(i).SetMostSportingVote(votedPlayer);
+                m_MainPlayerList->at(i).SetVotedMostSporting(true);
+                m_MainPlayerList->at(i).SetMostSportingVote(votedPlayer);
                 break;
             }
         }
 
         if(addVote)
         {
-            for(int i = 0; i < m_MainPlayerList.size(); ++i)
+            for(int i = 0; i < m_MainPlayerList->size(); ++i)
             {
-                if(m_MainPlayerList.at(i).GetName() == votedPlayer)
+                if(m_MainPlayerList->at(i).GetName() == votedPlayer)
                 {
                     UtilLog("Most Sportin Vote Added");
-                    m_MainPlayerList.at(i).AddMostSportingVote(m_MostSportingValue);
-                    m_NumMostSportingVotes++;
+                    m_MainPlayerList->at(i).AddMostSportingVote(m_MostSportingValue);
+                    (*m_NumMostSportingVotes)++;
                     break;
                 }
             }
@@ -200,7 +200,7 @@ void MainWindow::on_displayResultsPushButton_clicked()
 {
     UtilDebug("Display Results Clicked");
     bool display = true;
-    if(m_NumBestPaintedVotes < m_MainPlayerList.size())
+    if(*m_NumBestPaintedVotes < m_MainPlayerList->size())
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Missing Best Painted Votes", "Not all players have voted for Best Painted army, do you wish to continue?", QMessageBox::Yes|QMessageBox::No);
@@ -209,7 +209,7 @@ void MainWindow::on_displayResultsPushButton_clicked()
             display = false;
         }
     }
-    if(m_NumMostSportingVotes < m_MainPlayerList.size() && display)
+    if(*m_NumMostSportingVotes < m_MainPlayerList->size() && display)
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Missing Most Sporting Votes", "Not all players have voted for Most Sporting, do you wish to continue?", QMessageBox::Yes|QMessageBox::No);
@@ -249,7 +249,7 @@ std::string MainWindow::getMostSportingPlayer()
     std::string mostSportingPlayer;
     int mostSportingVotes = 0;
 
-    for(const auto &player : m_MainPlayerList)
+    for(const auto &player : *m_MainPlayerList)
     {
         if(player.GetMostSportingVotes() > mostSportingVotes)
         {
@@ -267,7 +267,7 @@ std::string MainWindow::getBestPaintedPlayer()
     std::string bestPaintedPlayer;
     int bestPaintedVotes = 0;
 
-    for(const auto &player : m_MainPlayerList)
+    for(const auto &player : *m_MainPlayerList)
     {
         if(player.GetBestPaintedArmyVotes() > bestPaintedVotes)
         {
@@ -281,17 +281,17 @@ std::string MainWindow::getBestPaintedPlayer()
 
 std::string MainWindow::getWoodenSpoonPlayer()
 {
-    UtilLog("Get Wooden Spoon Player");
-    return m_MainPlayerList.at(m_MainPlayerList.size() - 1).GetName();
+    UtilLog("Get Wooden Spoon Player");    
+    return m_MainPlayerList->end()->GetName();;
 }
 
 std::vector<std::string> MainWindow::getPodiumPlayers()
 {
     UtilLog("Get Podium Players");
     std::vector<std::string> podiumPlayers;
-    podiumPlayers.push_back(m_MainPlayerList.at(0).GetName());
-    podiumPlayers.push_back(m_MainPlayerList.at(1).GetName());
-    podiumPlayers.push_back(m_MainPlayerList.at(2).GetName());
+    podiumPlayers.push_back(m_MainPlayerList->at(0).GetName());
+    podiumPlayers.push_back(m_MainPlayerList->at(1).GetName());
+    podiumPlayers.push_back(m_MainPlayerList->at(2).GetName());
 
     return podiumPlayers;
 }
@@ -299,7 +299,7 @@ std::vector<std::string> MainWindow::getPodiumPlayers()
 void MainWindow::populateResultsTable()
 {
     UtilDebug("Populate Results Table");
-    for(const auto &player : m_MainPlayerList)
+    for(const auto &player : *m_MainPlayerList)
     {
         int rowCount = m_Ui->fullResultsTable->rowCount();
         m_Ui->fullResultsTable->insertRow(rowCount);

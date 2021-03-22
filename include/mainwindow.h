@@ -91,6 +91,9 @@ private slots:
     // Return to the Tournament Creator page.
     void on_MatchupsBackButton_clicked();
 
+    // Clear the Matchups fields
+    void on_MatchupsClearInputButton_clicked();
+
     // Perform a direct matchup swap between four players.
     void on_MatchupsDirectMatchupSwapButton_clicked();
 
@@ -102,6 +105,12 @@ private slots:
 
     // Take the event to the next round.
     void on_MatchupsNextRoundButton_clicked();
+
+    // When PlayerOne's combo box index is changed.
+    void on_MatchupsPlayerOneComboBox_currentIndexChanged(int index);
+
+    // When PlayerTwo's combo box index is changed.
+    void on_MatchupsPlayerTwoComboBox_currentIndexChanged(int index);
 
     // Reset the matchup table to what it was at the beginning of the round.
     void on_MatchupsResetMatchupTable_clicked();
@@ -267,6 +276,8 @@ private:
     std::unique_ptr<int> m_WinValue = std::make_unique<int>(3);
     std::unique_ptr<int> m_DrawValue = std::make_unique<int>(1);
     std::unique_ptr<int> m_LossValue = std::make_unique<int>(0);
+
+    std::unique_ptr<bool> m_MatchUpDataBeingInput = std::make_unique<bool>(false);
 
     //Results Page Functions and Vartiables
     // Gets the player with the most Best Painted votes.

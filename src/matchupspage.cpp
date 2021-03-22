@@ -312,6 +312,18 @@ void MainWindow::on_MatchupsBackButton_clicked()
     LoadTournamentCreatorPage();
 }
 
+void MainWindow::on_MatchupsClearInputButton_clicked()
+{
+    ResetRoundInput();
+}
+
+void MainWindow::on_MatchupsDirectMatchupSwapButton_clicked()
+{
+    UtilDebug("Direct Matchup Clicked");
+    m_MatchUpSwapWidget.show();
+    m_MatchUpSwapWidget.SetUp(*m_MainPlayerList, *m_CurrentRoundMatchups);
+}
+
 void MainWindow::on_MatchupsEnterResultsButton_clicked()
 {
     UtilDebug("Enter Results Button Selected");
@@ -401,18 +413,21 @@ void MainWindow::on_MatchupsNextRoundButton_clicked()
     }
 }
 
+void MainWindow::on_MatchupsPlayerOneComboBox_currentIndexChanged(int index)
+{
+    *m_MatchUpDataBeingInput = true;
+}
+
+void MainWindow::on_MatchupsPlayerTwoComboBox_currentIndexChanged(int index)
+{
+    * m_MatchUpDataBeingInput = true;
+}
+
 void MainWindow::on_MatchupsResetMatchupTable_clicked()
 {
     UtilDebug("Reset Matchups Clicked");
     *m_CurrentRoundMatchups = m_AllRoundMatchups->at(*m_CurrentRoundNumber - 1);
     UpdateMatchupsTable();
-}
-
-void MainWindow::on_MatchupsDirectMatchupSwapButton_clicked()
-{
-    UtilDebug("Direct Matchup Clicked");
-    m_MatchUpSwapWidget.show();
-    m_MatchUpSwapWidget.SetUp(*m_MainPlayerList, *m_CurrentRoundMatchups);
 }
 
 void MainWindow::ResetMatchupsTable()
@@ -443,6 +458,8 @@ void MainWindow::ResetRoundInput()
     m_Ui->MatchupsPlayerTwoNameLabel->setText(QString("Player Two"));
     m_Ui->MatchupsPlayerTwoComboBox->setCurrentIndex(0);
     m_Ui->MatchupsPlayerTwoSpinBox->setValue(0);
+
+    *m_MatchUpDataBeingInput = false;
 
     DisableRoundInput();
 }

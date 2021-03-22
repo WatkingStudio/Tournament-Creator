@@ -1,5 +1,6 @@
 #include "include/eventsettings.h"
 #include "ui_eventsettings.h"
+#include <QMessageBox>
 
 EventSettings::EventSettings(QWidget *parent) :
     QWidget(parent),
@@ -15,24 +16,53 @@ EventSettings::~EventSettings()
     delete m_Ui;
 }
 
+bool EventSettings::CheckUniqueTiebreakers() const
+{
+    if(m_Ui->FirstTiebreakerComboBox->currentText() == m_Ui->SecondTiebreakerComboBox->currentText()
+            || m_Ui->FirstTiebreakerComboBox->currentText() == m_Ui->ThirdTiebreakerComboBox->currentText()
+            || m_Ui->FirstTiebreakerComboBox->currentText() == m_Ui->FourthTieBreakerComboBox->currentText())
+    {
+        return false;
+    }
+    else if(m_Ui->SecondTiebreakerComboBox->currentText() == m_Ui->ThirdTiebreakerComboBox->currentText()
+            || m_Ui->SecondTiebreakerComboBox->currentText() == m_Ui->FourthTieBreakerComboBox->currentText())
+    {
+        return false;
+    }
+    else if(m_Ui->ThirdTiebreakerComboBox->currentText() == m_Ui->FourthTieBreakerComboBox->currentText())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 void EventSettings::on_DonePushButton_clicked()
 {
     UtilDebug("Event Settings Done Clicked");
-    EventSettingsData data = {
-        m_Ui->WinLineEdit->text().toInt(),
-        m_Ui->DrawLineEdit->text().toInt(),
-        m_Ui->LossLineEdit->text().toInt(),
-        m_Ui->MostSportingLineEdit->text().toInt(),
-        m_Ui->BestPaintedLineEdit->text().toInt(),
-        m_Ui->SeededPlayersCheckBox->isChecked(),
-        m_Ui->NumberOfRoundsLineEdit->text().toInt(),
-        m_Ui->FirstTiebreakerComboBox->currentText().toStdString(),
-        m_Ui->SecondTiebreakerComboBox->currentText().toStdString(),
-        m_Ui->ThirdTiebreakerComboBox->currentText().toStdString(),
-        m_Ui->FourthTieBreakerComboBox->currentText().toStdString()
-    };
-    emit SettingsComplete(data);
-    this->hide();
+
+    if(CheckUniqueTiebreakers())
+    {
+        EventSettingsData data = {
+            m_Ui->WinLineEdit->text().toInt(),
+            m_Ui->DrawLineEdit->text().toInt(),
+            m_Ui->LossLineEdit->text().toInt(),
+            m_Ui->MostSportingLineEdit->text().toInt(),
+            m_Ui->BestPaintedLineEdit->text().toInt(),
+            m_Ui->SeededPlayersCheckBox->isChecked(),
+            m_Ui->NumberOfRoundsLineEdit->text().toInt(),
+            m_Ui->FirstTiebreakerComboBox->currentText().toStdString(),
+            m_Ui->SecondTiebreakerComboBox->currentText().toStdString(),
+            m_Ui->ThirdTiebreakerComboBox->currentText().toStdString(),
+            m_Ui->FourthTieBreakerComboBox->currentText().toStdString()
+        };
+        emit SettingsComplete(data);
+        this->hide();
+    }
+    else
+    {
+        QMessageBox::warning(this, "Duplicate Tiebreakers", "Some of the Tiebreakers set are duplicate. Ensure that they are all unique.");
+    }
 }
 
 void EventSettings::PopulateComboBox()
